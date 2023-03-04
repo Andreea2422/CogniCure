@@ -1,2 +1,50 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="container1">
+  <div class="home-page center">
+    <div class="title-logo">
+      <h1>ME:today</h1>
+      <h2>
+        This is the home page for the
+        <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a> sample application.
+      </h2>
+      <div class="button">
+      <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    </div>
+    </div>
+
+    <div class="image-logo">
+      <%= image_tag("metoday.png", alt: "Me today logo", height: 250, id: "home-logo") %>
+    </div>
+
+    <div class="scroll-button">
+      <input type="button" onclick="document.getElementById('middle').scrollIntoView()">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container2" id="middle">
+  <div class="image-puppet2">
+    <p>IMAGE PLACEHOLDER</p>
+  </div>
+
+  <div class="text-description2">
+    <p class="title">TITLE PLACEHOLDER</p>
+    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
+    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
+    <a href="#">Check it out! -></a>
+  </div>
+</div>
+
+<div class="container3" id="bottom">
+  <div class="text-description3">
+    <p class="title">TITLE PLACEHOLDER</p>
+    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
+    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
+    <a href="#">Check it out! -></a>
+  </div>
+
+  <div class="image-puppet3">
+    <p>IMAGE PLACEHOLDER</p>
+  </div>
+</div>

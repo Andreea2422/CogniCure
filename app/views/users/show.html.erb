@@ -1,11 +1,80 @@
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-</div>
+<main id="main" class>
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">My Account</h1>
+      </div>
+    </div>
+  </div>
+  <div class="page-wrapper my-account mb">
+    <div class="container" role="main">
+      <div class="row vertical-tabs">
+        <div class="large-3 col-border col">
+          <div class="account-user circle">
+            <span class="image mr-half inline-block">
+                <%= gravatar_for @user %>
+            </span>
+            <span class="user-name inline-block">
+                <%= @user.name %>
+            </span>
+          </div>
+          <ul id="my-account-nav" class="account-nav nav nav-line nav-uppercase nav-vertical mt-half">
+            <%=link_to current_user, class: "nav-link" do %>
+              <li class="account-li">
+                Profile
+              </li>
+            <%end %>
+            <%=link_to "#", class: "nav-link" do %>
+              <li class="account-li">
+                My Achievements
+              </li>
+            <%end %>
+            <%=link_to "#", class: "nav-link" do %>
+              <li class="account-li">
+                Settings
+              </li>
+            <%end %>
+            <%=link_to "#", class: "nav-link" do %>
+              <li class="account-li">
+                ??
+              </li>
+            <%end %>
+            <%=link_to logout_path, method: :delete, class: "nav-link" do %>
+              <li class="account-li">
+                Log Out
+              </li>
+            <%end %>
+          </ul>
+        </div>
+
+        <div class="large-9 col">
+          <div class="profile-content">
+            <% if current_user %>
+              <p>shsjhjsh</p>
+            <%else %>
+            <p>gfhgfh</p>
+            <p>gfhgfh</p>
+            <p>gfhgfh</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<%# provide(:title, @user.name) %>
+<!--<div class="row">-->
+<!--  <aside class="col-md-4">-->
+<!--    <section class="user_info">-->
+<!--      <h1>-->
+        <%#= gravatar_for @user %>
+        <%#= @user.name %>
+<!--      </h1>-->
+<!--    </section>-->
+<!--  </aside>-->
+<!--</div>-->
+
+
+
+</main>

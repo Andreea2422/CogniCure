@@ -219,10 +219,166 @@ body.homepage{
 }
 
 
+/////////////////////////////////////////////////////////////
+/* my account page */
+#main{
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto 50px;
+}
+.page-title{
+  position: relative;
+}
+.normal-title .page-title-inner{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.page-title-inner{
+  position: relative;
+  min-height: 60px;
+}
+.text-center{
+  text-align: center;
+}
+.flex-col {
+  max-height: 100%;
+}
+.flex-grow{
+  -webkit-box-flex: 1;
+  flex: 1;
+}
+.uppercase{
+  text-transform: uppercase;
+  font-size: 25px;
+  line-height: 1.2;
+  margin-bottom: 0!important;
+}
 
+.page-wrapper{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.container{
+  max-width: 1170px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.row:not(.row-collapse) {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: -15px;
+  margin-right: -15px;
+  width: auto;
+}
+.row{
+  //display: flex;
+  -webkit-box-orient: horizontal;
+  flex-flow: row wrap;
+}
+.large-3 {
+  max-width: 25%;
+  flex-basis: 25%;
+}
+.col-border {
+  padding-right: 25px;
+  border-right: 5px solid #2b107c;
+}
+.col{
+  position: relative;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 30px;
+  padding-left: 15px;
+  width: 100%;
+}
+@media screen and (max-width: 849px){
+  .col {
+    max-width: 100%;
+    flex-basis: 100%;
+    padding-bottom: 30px;
+  }
+}
+.circle{
+  border-radius: 999px!important;
+  object-fit: cover;
+}
+.inline-block{
+  display: inline-block;
+}
+.mr-half{
+  margin-right: 15px;
+}
+.account-nav.nav-vertical{
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-flow: column;
+}
+.mt-half {
+  margin-top: 15px;
+}
+.account-nav{
+  width: 100%;
+  position: relative;
+  //display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.account-nav, .account-nav ul:not(.nav-dropdown) {
+  margin: 0;
+  padding: 0;
+}
+#my-account-nav {
+  //list-style: disc;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+.account-nav.nav-vertical .account-li {
+  list-style: none;
+  margin: 0;
+  width: 100%;
+}
+.account-nav .account-li:first-child {
+  margin-left: 0!important;
+}
+.nav-vertical>.account-li {
+  display: flex;
+  -webkit-box-orient: horizontal;
+  flex-flow: row wrap;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.account-li {
+  padding: 10px;
+  position: relative;
+  //text-align: -webkit-match-parent;
+  border: 1px solid #262626;
+  border-right: 2px solid #262626;
+  transition: 0.5s;
+}
+.account-li:hover{
+  transform: translateX(25px);
+}
+.nav-link{
+  padding: 0;
+}
 
-
-
+@media screen and (min-width: 850px) {
+  .col-border+.col{
+    padding-left: 30px;
+  }
+}
+@media screen and (min-width: 850px) {
+  .large-9 {
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+}
 
 
 /////////////////////////////////////////////////////////////

@@ -27,7 +27,7 @@
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
                 <li><%= link_to "My Achievements", '#', class: "dropdown-item" %></li>
-                <li><%= link_to "Settings", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %></li>
                 <li><%= link_to "??", '#', class: "dropdown-item" %></li>
   <!--              <li class="divider"></li>-->
                 <li>

@@ -29,7 +29,7 @@
                 My Achievements
               </li>
             <%end %>
-            <%=link_to "#", class: "nav-link" do %>
+            <%=link_to update_content_path(template: "edit"), remote: true, data:{url: update_content_path(template: "edit")}, class: "nav-link" do %>
               <li class="account-li">
                 Settings
               </li>
@@ -47,12 +47,12 @@
           </ul>
         </div>
 
-        <div class="large-9 col">
+        <div id="my-div" class="large-9 col">
           <div class="profile-content">
             <% if current_user %>
-              <p>shsjhjsh</p>
-            <%else %>
-            <p>gfhgfh</p>
+              <p>IMG PLACEHOLDER</p>
+            <%elsif edit_user_path(current_user)%>
+              <%=render edit_user_path %>
             <p>gfhgfh</p>
             <p>gfhgfh</p>
             <% end %>

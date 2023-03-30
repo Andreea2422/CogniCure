@@ -12,8 +12,28 @@
 
 
 require("@rails/ujs").start()
-require("turbo").start()
+require("turbolinks")
 require("@rails/activestorage").start()
 require("../channels")
 require("jquery")
-import "bootstrap"
+import "jquery";
+import "bootstrap";
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     const links = document.querySelectorAll("#source a");
+//
+//     links.forEach((link) => {
+//         link.addEventListener("click", (event) => {
+//             event.preventDefault();
+//
+//             const url = event.target.getAttribute("href");
+//
+//             fetch(url, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+//                 .then(response => response.text())
+//                 .then(html => {
+//                     const target = document.querySelector("#target");
+//                     target.innerHTML = html;
+//                 });
+//         });
+//     });
+// });

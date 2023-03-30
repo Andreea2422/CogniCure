@@ -1,10 +1,15 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
 /* mixins, variables, etc. */
 $dark-blue: #2b107c;
 $blue: #3e0ac2;
 $purple: #6600d0;
 $light-purple: #ba9fdc;
 $gray: #c6c2cc;
-
+//$body-bg: #ba9fdc;
+//$body-color: #ba9fdc;
+//
+//@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -18,7 +23,7 @@ body {
   margin-bottom: 60px;
   height: 100%;
   width: 100%;
-  background-color: $light-purple;
+  background-color: $light-purple !important;
 }
 html{
   overflow-y: scroll; overflow-x:hidden;
@@ -259,12 +264,12 @@ body.homepage{
   padding-bottom: 30px;
 }
 .container{
-  max-width: 1170px;
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1170px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 .row:not(.row-collapse) {
   padding-left: 0;
@@ -279,11 +284,11 @@ body.homepage{
   flex-flow: row wrap;
 }
 .large-3 {
-  max-width: 25%;
-  flex-basis: 25%;
+  max-width: 25%!important;
+  flex-basis: 25%!important;
 }
 .col-border {
-  padding-right: 25px;
+  padding-right: 25px !important;
   border-right: 5px solid #2b107c;
 }
 .col{
@@ -291,8 +296,8 @@ body.homepage{
   margin: 0;
   padding-top: 0;
   padding-bottom: 30px;
-  padding-left: 15px;
-  width: 100%;
+  padding-left: 15px !important;
+  width: 100% !important;
 }
 @media screen and (max-width: 849px){
   .col {
@@ -365,7 +370,8 @@ body.homepage{
   transform: translateX(25px);
 }
 .nav-link{
-  padding: 0;
+  padding-right: 0 !important;
+  margin-top: -15px !important;
 }
 
 @media screen and (min-width: 850px) {
@@ -378,6 +384,14 @@ body.homepage{
     max-width: 75%;
     flex-basis: 75%;
   }
+}
+
+/////////////////////////////////////////////////////////////
+/* edit/settings page */
+.row-edit{
+  padding: 50px !important;
+  margin-left: 500px;
+
 }
 
 
@@ -407,17 +421,14 @@ body.homepage{
 //////////////////////////////////////////////////////////////
 /* footer */
 .footer {
-  //position: fixed;
+  position: fixed;
   margin-top: 45px;
   margin-left: 100px;
   margin-right: 100px;
-  padding-top: 5px;
   border-top: 1px solid $dark-blue;
   color: $blue;
-
-  position: relative;
   bottom: 0;
-  //width: 100%;
+  height: 10px;
 
   a {
     color: $gray;
@@ -544,4 +555,6 @@ input {
   width: auto;
   margin-left: 0;
 }
-
+.form-control{
+  //width: 50% !important;
+}

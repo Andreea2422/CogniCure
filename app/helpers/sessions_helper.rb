@@ -4,6 +4,7 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  # Remembers a user in a persistent session
   def remember_helper(user)
     user.remember
     cookies.permanent.encrypted[:user_id] = user.id

@@ -2,63 +2,60 @@
   <div class="my-account-header page-title normal-title">
     <div class="page-title-inner flex-row container">
       <div class="flex-col flex-grow text-center">
-        <h1 class="uppercase mb-0">My Account</h1>
-      </div>
-    </div>
-  </div>
-  <div class="page-wrapper my-account mb">
-    <div class="container" role="main">
-      <div class="row vertical-tabs">
-        <div id="source" class="large-3 col-border col">
-          <div class="account-user circle">
-            <span class="image mr-half inline-block">
-                <%= gravatar_for @user %>
-            </span>
-            <span class="user-name inline-block">
-                <%= @user.name %>
-            </span>
-          </div>
-          <ul id="my-account-nav" class="account-nav nav nav-line nav-uppercase nav-vertical mt-half">
-            <%=link_to current_user, class: "nav-link" do %>
-              <li class="account-li">
-                Profile
-              </li>
-            <%end %>
-            <%=link_to "#", class: "nav-link" do %>
-              <li class="account-li">
-                My Achievements
-              </li>
-            <%end %>
-            <%=link_to edit_user_path, class: "nav-link"  do %>
-              <li class="account-li">
-<!--                <a href="/users/1/edit/">-->
-                  Settings
-<!--                </a>-->
-              </li>
-            <%end %>
-            <%=link_to "#", class: "nav-link" do %>
-              <li class="account-li">
-                ??
-              </li>
-            <%end %>
-            <%=link_to logout_path, method: :delete, class: "nav-link" do %>
-              <li class="account-li">
-                Log Out
-              </li>
-            <%end %>
-          </ul>
-        </div>
-
-        <div  class="large-9 col">
-          <div id="target" class="profile-content">
-
-          </div>
-        </div>
+        <h1 class="uppercase mb-0">Hi, <%= @user.name %> !</h1>
       </div>
     </div>
   </div>
 
-
-
+  <div class="grid-container">
+    <div class="grid-item">
+      <%=link_to '#', class: "nav-link"  do %>
+        My Progress
+        <div class="subtext">
+          Keep track of your progress here ->
+        </div>
+      <%end %>
+    </div>
+    <div class="grid-item">
+      <%=link_to '#', class: "nav-link"  do %>
+        My Achievements
+        <div class="subtext">
+          View your obtained badges ->
+        </div>
+      <%end %>
+    </div>
+    <div class="grid-item">
+      <%=link_to edit_user_path, class: "nav-link"  do %>
+        Settings
+        <div class="subtext">
+          Update your account's details ->
+        </div>
+      <%end %>
+    </div>
+    <div class="grid-item">
+      <%=link_to '#', class: "nav-link"  do %>
+        Appointments ??
+        <div class="subtext">
+          View your upcoming appointments here ->
+        </div>
+      <%end %>
+    </div>
+    <div class="grid-item">
+      <%=link_to '#', class: "nav-link"  do %>
+        Chat with --- !
+        <div class="subtext">
+          Just ask and they will answer! ->
+        </div>
+      <%end %>
+    </div>
+    <div class="grid-item">
+      <%=link_to logout_path, method: :delete, class: "nav-link"  do %>
+        Log Out
+        <div class="subtext">
+          ----------------->
+        </div>
+      <%end %>
+    </div>
+  </div>
 
 </main>

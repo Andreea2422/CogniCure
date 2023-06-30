@@ -11,10 +11,45 @@
             <%= link_to "Home", root_path , class: "nav-link"%>
           </li>
           <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-auto-close="outside"
+               id="navbarDarkDropdownMenuLink" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Discover
+            </a>
+            <%#= link_to "Discover", '#' , class: "nav-link"%>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li class="dropend">
+                <%#= link_to "Self-Growth", '#', class: "dropdown-item nav-link dropdown-toggle", id: "navbarDarkDropdownMenuLink", role: "button"%>
+                <%= link_to "Self-Growth", '#', class: "dropdown-item dropdown-toggle", 'data-bs-toggle': "dropdown"%>
+<!--                <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">-->
+<!--                  Self-Growth-->
+<!--                </a>-->
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><%= link_to "Learn more about yourself", yourself_path, class: "dropdown-item" %></li>
+                  <li><%= link_to "Techniques to use", '#', class: "dropdown-item" %></li>
+                  <li><%= link_to "More about self-growth", '#', class: "dropdown-item" %></li>
+                </ul>
+              </li>
+
+              <li><%= link_to "Quizzes", '#', class: "dropdown-item" %></li>
+              <li class="dropend">
+                <%= link_to "Mental Health", '#', class: "dropdown-item dropdown-toggle", 'data-bs-toggle': "dropdown"%>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><%= link_to "Anxiety", '#', class: "dropdown-item" %></li>
+                  <li><%= link_to "Depression", '#', class: "dropdown-item" %></li>
+                  <li><%= link_to "More about mental Illnesses", '#', class: "dropdown-item" %></li>
+                  <li><%= link_to "Techniques to use", '#', class: "dropdown-item" %></li>
+                  <li><%= link_to "Book an appointment", '#', class: "dropdown-item" %></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
             <%= link_to "Help", help_path , class: "nav-link"%>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> Menu item </a>
+            <%= link_to "About", '#' , class: "nav-link"%>
           </li>
           <% if logged_in? %>
             <li><%= link_to "Users", '#', class: "nav-link" %></li>
@@ -24,11 +59,13 @@
                  data-bs-toggle="dropdown" aria-expanded="false">
                 Account
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
+                <li><%= link_to "My Progress", '#', class: "dropdown-item" %></li>
                 <li><%= link_to "My Achievements", '#', class: "dropdown-item" %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %></li>
-                <li><%= link_to "??", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "Appointments", '#', class: "dropdown-item" %></li>
+                <li><%= link_to "Chat with ---!", '#', class: "dropdown-item" %></li>
                 <li class="dropdown-divider"></li>
                 <li>
                   <%= link_to "Log Out", logout_path, method: :delete, class: "dropdown-item" %>

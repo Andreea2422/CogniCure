@@ -3,7 +3,8 @@
     <div class="flex-col flex-grow text-left">
       <p class="uppercase mb-0"> This is a Title! </p>
       <div class="subtext">
-        Author: XYZ, Date: XX_XX_XXXX
+        Description Description Description Description <br> Description
+        Description Description Description Description Description
       </div>
     </div>
   </div>
@@ -12,7 +13,7 @@
   <div class="article-content">
 
     <div class="col-xs-12">
-      <ul class="breadcrumb">
+      <ul class="path-structure">
         <li><%= link_to "Home", root_path, class:"custom-link" %></li>
         <li class="active">Discover</li>
         <li class="active">Self-Growth</li>
@@ -21,14 +22,11 @@
       </ul>
     </div>
 
-
     <div>
-<!--      <img src="cat1.jpg" alt="Article 1 image">-->
       <%= image_tag "cat1.jpg", class: "article-img" %>
     </div>
-
     <p class="article-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      &nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
       dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
       aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
@@ -116,11 +114,28 @@
     </p>
 
 
+    <blockquote>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+      culpa qui officia deserunt mollit anim id est laborum.
+    </blockquote>
+
+
+    <section class="article-footer">
+      <p class="article-author">
+        Author: XYZ
+      </p>
+      <p class="article-date">
+        Date: XX_XX_XXXX
+      </p>
+    </section>
+
+
     <div class="keywords-title">
       <p class="mb-0"> Keywords </p>
     </div>
-
-
     <div class="grid-keywords">
       <%=link_to '#', class: "nav-link"  do %>
         <div class="grid-key-item">
@@ -150,10 +165,7 @@
     </div>
 
 
-
   </div>
-
-
 
 
 </article>

@@ -32,6 +32,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def progress
+    @user = User.find(params[:id])
+    @moods = @user.moods #.paginate(page: params[:page])
+    render 'my_progress'
+  end
 
 
   ##########################

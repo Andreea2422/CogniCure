@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'moods/new'
+
   root 'static_pages#home'
 
   get '/help', to: 'static_pages#help'
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   # get '/yourself', to: 'static_pages#yourself'
   # get '/yourself', to: 'static_pages#yourself'
 
+  # get '/my-progress', to: 'static_pages#progress', as: 'progress'
 
   get '/signup', to: 'users#new'
 
@@ -16,7 +19,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      get :progress
+    end
+  end
 
 
 

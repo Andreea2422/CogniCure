@@ -1,0 +1,58 @@
+<main id="main">
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">Hi <%= @user.name %>!</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <% if @user.moods.any? %>
+      <h3>Moods (<%= @user.moods.count %>)</h3>
+      <ol class="moods">
+        <%= render @moods %>
+      </ol>
+    <% end%>
+  </div>
+
+  <!--  <div class="grid-container">-->
+
+  <div id="app-cover">
+    <h1 class="app-title">How was your mood today?</h1>
+    <div id="app">
+      <div class="mood" id="mood-anxious">
+        <div class="face">
+          <div class="eyes-cover">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        <div class="mood-name"><span>anxious</span></div>
+      </div>
+      <div class="mood" id="mood-relaxed">
+        <div class="face">
+          <div class="eyes-cover">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        <div class="mood-name"><span>relaxed</span></div>
+      </div>
+      <div class="mood" id="mood-joyful">
+        <div class="face">
+          <div class="eyes-cover">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        <div class="mood-name"><span>joyful</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!--  </div>-->
+</main>

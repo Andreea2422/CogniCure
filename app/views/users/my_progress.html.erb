@@ -11,10 +11,11 @@
     <% if @user.moods.any? %>
       <h3>Moods (<%= @user.moods.count %>)</h3>
       <ol class="moods">
-        <%= render @moods %>
+        <%= render @all_moods %>
       </ol>
     <% end%>
   </div>
+
 
   <!--  <div class="grid-container">-->
 
@@ -55,4 +56,119 @@
   </div>
 
   <!--  </div>-->
+
+
+  <%# moods_data = [["Mon", "11"], ["Tue", "13"], ["Wed", "14"], ["Thu", "5"], ["Fri", "2"], ["Sat", "15"], ["Sun", "9"]] %>
+
+  <button class="btn btn-success" id="week">
+    By Week
+  </button>
+  <button class="btn btn-success" id="month">
+    By Month
+  </button>
+
+<!--  <span id="start-date"><%#= @start_date %></span>-->
+<!--  <span id="end-date"><%#= @end_date %></span>-->
+<!--  <button class="btn btn-info" id="previous">-->
+<!--    <-->
+<!--  </button>-->
+<!--  <button class="btn btn-info" id="next">-->
+<!--    >-->
+<!--  </button>-->
+
+
+  <div id="week-chart-figure">
+    <%= line_chart @mood_data_week ,
+                 id: 'mood-chart',
+                 title: 'Mood Variations',
+                 colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03']],
+                 xtitle: 'Date',
+                 ytitle: 'Mood',
+                 label: "Mood",
+                 legend: false,
+                 dataset: {
+                   radius: 10
+                 }
+    %>
+  </div>
+
+  <div id="month-chart-figure" > <!--style="pointer-events: none"-->
+    <%= line_chart @mood_data_month ,
+                    # id: 'mood-chart',
+                    title: 'Mood Variations',
+                    colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03'],['#79fc8f']],
+                    xtitle: 'Month',
+                    ytitle: 'Mood',
+                    label: "Mood",
+                    dataset: {
+                       radius: 10
+                     }
+    %>
+  </div>
+
+  <%#= line_chart [{name: "anxious" , data: [["Mon", "11"],["Tue", "13"]]},
+                  {name: "relaxed" , data: [["Tue", "13"],["Wed", "14"]]},
+                  {name: "okay" , data: [["Wed", "14"],["Thu", "5"]]},
+                  {name: "depressed" , data: [["Thu", "5"],["Fri", "2"]]},
+                  {name: "bitter" , data: [["Fri", "2"],["Sat", "15"]]},
+                  {name: "joyful" , data: [["Sat", "15"],["Sun", "9"]]},
+                  {name: "afraid" , data: [["Sun", "9"],["Sun", "9"]]}],
+
+                 title: 'Mood Variations',
+                 colors:[['yellow'],['#c6fc03'],['green'],['blue'],['red'],['green'],['yellow']]
+
+  %>
+
+  <%#= line_chart [{name: "anxious" , data: [["Mon", "11"]]},
+                  {name: "relaxed" , data: [["Tue", "13"]]},
+                  {name: "okay" , data: [["Wed", "14"]]},
+                  {name: "depressed" , data: [["Thu", "5"]]},
+                  {name: "bitter" , data: [["Fri", "2"]]},
+                  {name: "joyful" , data: [["Sat", "15"]]},
+                  {name: "afraid" , data: [["Sun", "9"]]}],
+
+                 title: 'Mood Variations',
+                 legend: false,
+                 colors: {
+                   linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                   # stops: [[0, '#ff0000'], [1, '#ffff00']]
+                   stops: [[0, 'red'], [0.5, 'yellow'], [1, 'green']]
+                 },
+                 dataset: {
+                           radius: 20,
+                           # colors:['red'],
+                 }
+
+  %>
+
+  <script type="text/javascript" charset="utf-8">
+    const week = document.getElementById('week');
+    const month = document.getElementById('month');
+
+    // const previous = document.getElementById('previous');
+    // const next = document.getElementById('next');
+
+    // previous.addEventListener('click',minusWeek);
+    // next.addEventListener('click',plusWeek);
+
+
+    week.addEventListener('click',changeWeek);
+    month.addEventListener('click',changeMonth);
+
+
+    function changeWeek(){
+        console.log('Changed chart to week!');
+        document.getElementById('month-chart-figure').style.display = 'none'
+        document.getElementById('week-chart-figure').style.display = 'block'
+    }
+
+    function changeMonth(){
+        console.log('Changed chart to month!');
+        document.getElementById('week-chart-figure').style.display = 'none'
+        document.getElementById('month-chart-figure').style.display = 'block'
+    }
+  </script>
+
+
+
 </main>

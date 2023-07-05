@@ -8,6 +8,9 @@ gem "rails", "~> 7.0.4"
 
 gem 'bootstrap', '~> 5.1'
 gem 'jquery-rails', '~> 4.4'
+gem "chartkick"
+gem "groupdate", "~> 6.3"
+gem 'highcharts-rails', '~> 6.0', '>= 6.0.3'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -55,7 +58,8 @@ gem "webpacker"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  # gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'byebug', '11.1.3', platforms: %i[ mri mingw x64_mingw ]
 end
 
 
@@ -80,4 +84,6 @@ group :test do
   gem 'minitest',                 '5.16.3'
   gem 'minitest-reporters',       '1.3.8'
 end
+
+
 

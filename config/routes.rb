@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   get '/learn-more-about-yourself', to: 'static_pages#learn_more_about_yourself', as: 'yourself'
   get '/learn-more-about-yourself/article1', to: 'static_pages#article1', as: 'article1'
+  get '/quizzes', to: 'static_pages#quizzes'
+  get '/quizzes/quiz1', to: 'static_pages#quiz1', as: 'quiz1'
   # get '/yourself', to: 'static_pages#yourself'
   # get '/yourself', to: 'static_pages#yourself'
 
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :progress
+      get :progress, :chat
     end
   end
 

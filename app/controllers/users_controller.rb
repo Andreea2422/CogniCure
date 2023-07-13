@@ -156,6 +156,12 @@ class UsersController < ApplicationController
 
   end
 
+
+  def chat
+    @user = User.find(params[:id])
+  end
+
+
   ##########################
   private
   def user_params

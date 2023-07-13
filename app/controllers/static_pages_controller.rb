@@ -33,5 +33,10 @@ class StaticPagesController < ApplicationController
   def article6
   end
 
+  def quizzes
+  end
+
+  def quiz1
+  end
 
 end

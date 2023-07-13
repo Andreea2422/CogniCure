@@ -13,24 +13,11 @@ class StaticPagesController < ApplicationController
   end
 
   def learn_more_about_yourself
+    @articles = Article.all
   end
 
-  def article1
-  end
-
-  def article2
-  end
-
-  def article3
-  end
-
-  def article4
-  end
-
-  def article5
-  end
-
-  def article6
+  def article
+    @article = Article.find(params[:id])
   end
 
   def quizzes

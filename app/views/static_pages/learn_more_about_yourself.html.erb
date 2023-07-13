@@ -10,27 +10,47 @@
     </div>
   </div>
 
+  <% @articles.each do |article| %>
+
+
+<!--    <h1><%#= article.title %></h1>-->
+<!--    <p><%#= article.content %></p>-->
+
   <section class="cards">
-    <%=link_to article1_path, class: "card nav-link" do %>
+    <%#=link_to article1_path, class: "card nav-link" do %>
+    <%=link_to article_path(article), class: "card nav-link" do %>
       <div class="card__overlay">
         <span>Read More</span>
       </div>
 
-      <div class="card__image" ></div>
+      <div class="card__image" style="background-image: url('<%= asset_url(article.cover_image) %>')">
+      </div>
 
       <div class="card__content">
 
 
-        <div class="card__title">This is a Title!</div>
+<!--        <div class="card__title">This is a Title!</div>-->
+        <div class="card__title"><%= article.title %></div>
+<!--        <div class="card__description">-->
+<!--          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod-->
+<!--          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,-->
+<!--          qborum.-->
+<!--        </div>-->
         <div class="card__description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          qborum.
+          <%= article.description %>
         </div>
 
       </div>
-      <div class="card__date">June 28th 2023</div>
-      <div class="card__readtime">5 min read</div>
+<!--      <div class="card__date">June 28th 2023</div>-->
+      <div class="card__date">
+        <% @date = article.publish_date %>
+        <%= @date.strftime("%B") %>
+        <%= @date.day.ordinalize %>,
+        <%= @date.year %>
+
+      </div>
+<!--      <div class="card__readtime">5 min read</div>-->
+      <div class="card__readtime"><%= article.readtime %></div>
     <%end %>
 
     <%=link_to '#', class: "card nav-link" do %>
@@ -38,7 +58,7 @@
         <span>Read More</span>
       </div>
 
-      <div class="card__image" ></div>
+      <div class="card__image" style="background-image: url('<%= asset_url("cat1.jpg") %>')"></div>
 
       <div class="card__content">
         <div class="card__title">This is a Title!</div>
@@ -148,7 +168,7 @@
 
   </section>
 
-
+  <% end %>
 
 
 

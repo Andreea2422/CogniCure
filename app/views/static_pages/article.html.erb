@@ -122,7 +122,7 @@
 <!--    </p>-->
 
     <p class="article-text">
-      &nbsp;&nbsp;&nbsp; <%= @article.content %>
+      &nbsp;&nbsp;&nbsp; <%= @article.content.gsub('\n', '<br>').html_safe %>
     </p>
 
 <!--      <blockquote>-->

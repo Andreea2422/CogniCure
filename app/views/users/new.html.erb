@@ -19,6 +19,11 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+      <%= f.label :doctor, class: "checkbox inline" do %>
+        <%= f.check_box :doctor %>
+        <span>Are you a doctor?</span>
+      <% end %>
+
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
     <% end %>
   </div>

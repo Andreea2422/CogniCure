@@ -30,9 +30,11 @@
       <%#= image_tag "cat1.jpg", class: "article-img" %>
 <!--    </div>-->
 
-    <div>
-      <%= image_tag @article.cover_image, class: "article-img" %>
-    </div>
+    <% if @article.cover_image.attached?%>
+      <div>
+        <%= image_tag @article.cover_image, class: "article-img" %>
+      </div>
+    <%end %>
 <!--    <p class="article-text">-->
 <!--      &nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et-->
 <!--      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut-->
@@ -149,7 +151,7 @@
 <!--      </p>-->
 
       <p class="article-author">
-        Author: XYZ
+        Author: <%= @article.user.name %>
       </p>
       <p class="article-date">
         Date: <%= @article.publish_date %>

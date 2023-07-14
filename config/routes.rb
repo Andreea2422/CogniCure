@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'articles/new'
   get 'moods/new'
 
   root 'static_pages#home'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   # get '/my-progress', to: 'static_pages#progress', as: 'progress'
 
   get '/signup', to: 'users#new'
+  get '/submit-article', to: 'articles#new', as: 'submit'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
       get :progress, :chat
     end
   end
+
+  resources :articles, only: [:create, :destroy]
 
 
 

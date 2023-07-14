@@ -1040,7 +1040,6 @@ blockquote::before, blockquote::after {
   .grid-keywords { grid-template-columns: repeat(5,1fr)}
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /* QUIZZES STATIC PAGE */
 
@@ -1334,6 +1333,66 @@ input {
   width: auto;
   margin-left: 0;
 }
-.form-control{
-  //width: 50% !important;
+
+.article-form{
+  display: grid;
+  //grid-template-columns: auto auto auto;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px 20px rgba(0,0,0,.2);
+  padding: 80px;
+  border-radius: 50px;
+  margin-bottom: 200px;
+}
+.title-form{
+  font-size: 30px;
+  font-family: "Arial", serif;
+  font-weight: bold;
+}
+.my-form-control{
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 0 20px 5px #6600d03d;
+  padding: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.my-form-image{
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 20px;
+}
+.my-form-button{
+  margin-top: 50px;
+  width: 50%;
+  margin-left: 25%;
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: $light-purple;
+}
+@media screen and (max-width: 600px){
+  .my-form-button{
+    width: 100%;
+    margin-left: 0;
+    font-size: 15px;
+    padding: 5px;
+  }
+  .article-form{
+    padding: 30px;
+    margin-bottom: 100px;
+  }
+  .title-form{
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 15px;
+  }
+  .my-form-control{
+    padding: 5px;
+    font-size: 10px;
+  }
+  .my-form-image{
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 10px;
+  }
 }

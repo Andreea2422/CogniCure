@@ -1,28 +1,37 @@
-<% provide(:button_text, 'Submit my article') %>
-<div>
-  <%= form_with(model: @article, local: true, multipart: true) do |f| %>
-    <%#= render "shared/error_messages", object: f.object %>
+<main id="main">
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">Submit your new Article</h1>
+      </div>
+    </div>
+  </div>
 
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
+  <% provide(:button_text, 'Submit my article') %>
+  <div class="article-form">
+    <%= form_with(model: @article, local: true, multipart: true) do |f| %>
+      <%#= render "shared/error_messages", object: f.object %>
 
-    <%= f.label :description %>
-    <%= f.text_field :description, class: 'form-control' %>
+      <%= f.label :title, class: 'title-form' %>
+      <%= f.text_field :title, class: 'my-form-control' %>
 
-    <%= f.label :cover_image %>
-    <%= f.file_field :cover_image %>
+      <%= f.label :description, class: 'title-form' %>
+      <%= f.text_field :description, class: 'my-form-control' %>
 
-    <%= f.label :readtime %>
-    <%= f.text_field :readtime, class: 'form-control' %>
+      <%= f.label :cover_image, "Choose a cover image (not mandatory)", class: 'title-form' %>
+      <%= f.file_field :cover_image, class: 'my-form-image' %>
 
-    <%= f.label :content %>
-    <%= f.text_area :content, size: "70x5", class: 'form-control' %>
+      <%= f.label :readtime, "Reading Time", class: 'title-form' %>
+      <%= f.text_field :readtime, class: 'my-form-control' %>
 
-    <%= f.label :quote %>
-    <%= f.text_field :quote, class: 'form-control' %>
+      <%= f.label :content, class: 'title-form' %>
+      <%= f.text_area :content, size: "70x5", class: 'my-form-control' %>
 
-    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-  <% end %>
-</div>
+      <%= f.label :quote, "Add a quote (if it fits the content)", class: 'title-form' %>
+      <%= f.text_field :quote, class: 'my-form-control' %>
 
+      <%= f.submit yield(:button_text), class: "my-form-button" %>
+    <% end %>
+  </div>
 
+</main>

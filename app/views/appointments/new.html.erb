@@ -1,0 +1,132 @@
+<main id="main">
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">Book your Appointment</h1>
+      </div>
+    </div>
+  </div>
+
+  <% provide(:button_text, 'Book') %>
+
+
+  <div class="grid-container">
+    <% @doctors.each do |doctor| %>
+      <div class="grid-item">
+      <button class="doctor-btn"
+              data-doctor-id="<%= doctor.id %>"
+              data-doctor-name="<%= doctor.name %>" >
+        <span class="user"><%= doctor.name%></span>
+        <span class="user"><%= gravatar_for doctor, size: 50 %></span>
+      </button>
+      </div>
+    <%end %>
+  </div>
+
+  <div id="form">
+    <div class="article-form">
+      <%= form_with(model: @appointment, local: true) do |f| %>
+        <%#= render "shared/error_messages", object: f.object %>
+
+        <%= f.label :patient, class: 'title-form' %>
+        <%= f.text_field :patient, class: 'my-form-control' %>
+
+        <div class="col-lg-3 col-sm-6 datepicker-wrapper">
+            <%= f.label :appointment_date, class: 'title-form' %>
+            <%= f.text_field :appointment_date, class: 'my-form-control', id: 'appointment_appointment_date' %>   <!--, data: { doctor_id: '' }-->
+            <span class="calendar-icon">
+              <i class="fas fa-calendar input-prefix" tabindex=0></i>
+            </span>
+        </div>
+
+
+        <%= f.label :doctor_name, class: 'title-form' %>
+        <%= f.text_field :doctor_name, class: 'my-form-control', id: 'appointment_doctor_name', readonly: true %>
+
+        <%= f.label :doctor_id, class: 'title-form' %>
+        <%= f.number_field :doctor_id, class: 'my-form-control', id: 'appointment_doctor_id', readonly: true %>
+
+        <%= f.submit yield(:button_text), class: "my-form-button" %>
+      <% end %>
+    </div>
+  </div>
+</main>
+
+<script>
+
+  var inputFieldName = document.getElementById("appointment_doctor_name")
+  var inputFieldID = document.getElementById("appointment_doctor_id")
+  var datetimeField = document.getElementById("appointment_appointment_date");
+
+  var allAppointments = <%= @all_appointments.to_json.html_safe %>;
+  var tomorrow = <%= @tomorrow.to_json.html_safe %>;
+
+  document.addEventListener("DOMContentLoaded", function() {
+      var datepicker = $('#appointment_appointment_date').flatpickr({
+          // disable: disabledDates
+          minDate: tomorrow
+      });
+
+      var doctorButtons = document.querySelectorAll('.doctor-btn');
+
+
+      doctorButtons.forEach(function (button){
+          button.addEventListener('click', function(){
+              document.getElementById('form').scrollIntoView();
+
+              // Extract the ID and name from the button's data attributes
+              var selectedDoctorId = button.dataset.doctorId;
+              inputFieldName.value = button.dataset.doctorName;
+              inputFieldID.value = selectedDoctorId;
+
+              var disabledDates = getDisabledDatesForDoctor(selectedDoctorId);
+
+              console.log(disabledDates)
+              datepicker.set('disable', disabledDates)
+          });
+      });
+
+
+      function getDisabledDatesForDoctor(doctorId){
+          var parsedDisabledDates = [];
+          var selectedDoctorId = parseInt(doctorId);
+
+          // Filter booked dates based on selected doctor
+          var filteredDates = [];
+          for (let i = 0; i < allAppointments.length; i++) {
+              for (var key in allAppointments[i]) {
+                  if(key === "doctor_id") {
+                      if (allAppointments[i][key] === selectedDoctorId) {
+                          filteredDates.push(allAppointments[i])
+                      }
+                  }
+              }
+          }
+
+          for (let i = 0; i < filteredDates.length; i++) {
+              for (key in filteredDates[i]) {
+                  if (key === "appointment_date") {
+                      var appointmentDate = new Date(filteredDates[i][key]);
+                      // console.log(appointmentDate)
+                      // var localDateString = appointmentDate.toISOString().slice(0, 16);
+                      // console.log(localDateString)
+                      //
+                      // var year = new Date(localDateString).getFullYear();
+                      // var month = new Date(localDateString).getMonth();
+                      // var day = new Date(localDateString).getDate();
+                      //
+                      // var newDate = new Date(year, month, day);
+
+                      parsedDisabledDates.push(appointmentDate);
+                  }
+              }
+          }
+
+          return parsedDisabledDates;
+
+      }
+  });
+
+</script>
+
+

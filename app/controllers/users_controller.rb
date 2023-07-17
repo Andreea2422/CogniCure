@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @doctors = User.where(doctor: true)
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -31,6 +35,14 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def appointments
+    @user = User.find(params[:id])
+    @appointments = @user.appointments.order(appointment_date: :asc)
+    @doctor_appointments = @user.doctor_appointments.order(appointment_date: :asc)
+
+    render 'my_appointments'
   end
 
   def progress

@@ -20,48 +20,67 @@
         </div>
         <div class="grid-item">
           <%=link_to '#', class: "nav-link"  do %>
-            My Achievements
+            My ??
             <div class="subtext">
               View your obtained badges ->
             </div>
           <%end %>
         </div>
-        <div class="grid-item">
-          <%=link_to edit_user_path, class: "nav-link"  do %>
-            Settings
-            <div class="subtext">
-              Update your account's details ->
-            </div>
-          <%end %>
-        </div>
-        <div class="grid-item">
-          <%=link_to '#', class: "nav-link"  do %>
-            Appointments ??
-            <div class="subtext">
-              View your upcoming appointments here ->
-            </div>
-          <%end %>
-        </div>
-        <div class="grid-item">
-          <%=link_to chat_user_path, class: "nav-link"  do %>
-            Chat with --- !
-            <div class="subtext">
-              Just ask and they will answer! ->
-            </div>
-          <%end %>
-        </div>
-        <div class="grid-item">
-          <%=link_to logout_path, method: :delete, class: "nav-link"  do %>
-            Log Out
-            <div class="subtext">
-              ----------------->
-            </div>
-          <%end %>
-        </div>
+      <div class="grid-item">
+        <%=link_to appointments_user_path, class: "nav-link"  do %>
+          Appointments
+          <div class="subtext">
+            View your upcoming appointments here ->
+          </div>
+        <%end %>
+      </div>
+      <div class="grid-item">
+        <%=link_to chat_user_path, class: "nav-link"  do %>
+          Chat with --- !
+          <div class="subtext">
+            Just ask and they will answer! ->
+          </div>
+        <%end %>
+      </div>
+      <div class="grid-item">
+        <%=link_to edit_user_path, class: "nav-link"  do %>
+          Settings
+          <div class="subtext">
+            Update your account's details ->
+          </div>
+        <%end %>
+      </div>
+      <div class="grid-item">
+        <%=link_to logout_path, method: :delete, class: "nav-link"  do %>
+          Log Out
+          <div class="subtext">
+            ----------------->
+          </div>
+        <%end %>
+      </div>
 
     <%elsif current_user.doctor? && logged_in?%>
 
-        <div class="grid-item">
+      <% if !current_user.info.present? %>
+          <div class="grid-item">
+            <%=link_to '#', class: "nav-link"  do %>
+              Create your Profile
+              <div class="subtext">
+                subtext ->
+              </div>
+            <%end %>
+          </div>
+        <% elsif current_user.info.present?%>
+          <div class="grid-item">
+              <%=link_to '#', class: "nav-link"  do %>
+                Update your Profile
+                <div class="subtext">
+                  subtext ->
+                </div>
+              <%end %>
+            </div>
+        <%end %>
+      <div class="grid-item">
           <%=link_to submit_path, class: "nav-link"  do %>
             Post a new Article!
             <div class="subtext">
@@ -69,30 +88,30 @@
             </div>
           <%end %>
         </div>
-        <div class="grid-item">
-          <%=link_to edit_user_path, class: "nav-link"  do %>
-            Settings
-            <div class="subtext">
-              Update your account's details ->
-            </div>
-          <%end %>
-        </div>
-        <div class="grid-item">
-          <%=link_to '#', class: "nav-link"  do %>
-            Upcoming Appointments
-            <div class="subtext">
-              View your upcoming appointments here ->
-            </div>
-          <%end %>
-        </div>
-        <div class="grid-item">
-          <%=link_to logout_path, method: :delete, class: "nav-link"  do %>
-            Log Out
-            <div class="subtext">
-              ----------------->
-            </div>
-          <%end %>
-        </div>
+      <div class="grid-item">
+        <%=link_to appointments_user_path, class: "nav-link"  do %>
+          Upcoming Patient Appointments
+          <div class="subtext">
+            View your upcoming appointments here ->
+          </div>
+        <%end %>
+      </div>
+      <div class="grid-item">
+        <%=link_to edit_user_path, class: "nav-link"  do %>
+          Settings
+          <div class="subtext">
+            Update your account's details ->
+          </div>
+        <%end %>
+      </div>
+      <div class="grid-item">
+        <%=link_to logout_path, method: :delete, class: "nav-link"  do %>
+          Log Out
+          <div class="subtext">
+            ----------------->
+          </div>
+        <%end %>
+      </div>
 
     <% end %>
 

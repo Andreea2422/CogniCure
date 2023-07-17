@@ -20,6 +20,7 @@ import "jquery";
 import "bootstrap";
 import "chartkick/chart.js"
 
+
 // document.addEventListener("DOMContentLoaded", function() {
 //     const links = document.querySelectorAll("#source a");
 //

@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  get 'articles/new'
-  get 'moods/new'
+  # get 'infos/new'
+  # get 'infos/create'
+  # get 'infos/edit'
+  # get 'infos/update'
+  # get 'appointments/new'
+  # get 'appointments/create'
+  # get 'articles/new'
+  # get 'moods/new'
 
   root 'static_pages#home'
 
@@ -19,6 +25,8 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   get '/submit-article', to: 'articles#new', as: 'submit'
+  get '/book-an-appointment', to: 'appointments#new', as: 'book_appointment'
+  get '/doctor-details/:id', to: 'infos#show', as: 'show_info'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -26,11 +34,15 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :progress, :chat
+      get :progress
+      get :chat
+      get :appointments
     end
   end
 
   resources :articles, only: [:create, :destroy]
+  resources :appointments, only: [:create, :destroy]
+  resources :infos
 
 
 

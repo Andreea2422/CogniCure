@@ -1041,6 +1041,69 @@ blockquote::before, blockquote::after {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
+/* ALL DOCTORS PAGE */
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+/* DOCTOR DETAILS PAGE */
+.grid-container-info {
+  display: grid;
+  grid-template-columns: 30rem auto;
+  grid-template-areas:
+   '.            biography    biography   biography     biography     biography'
+   'name         .            .           experience    experience    experience'
+   'speciality   speciality   contact     contact       contact       contact';
+  background-color: #ffffff;
+  box-shadow: 0 0 20px 20px rgba(0,0,0,.2);
+  padding: 80px;
+  border-radius: 50px;
+  grid-gap: 50px;
+  margin-bottom: 200px;
+}
+//.item0 { grid-area: image; }
+.item1 { grid-area: name; }
+.item2 { grid-area: biography; }
+.item3 { grid-area: speciality; }
+.item4 {
+  grid-area: experience;
+  text-align: right;
+}
+.item5 {
+  grid-area: contact;
+  text-align: right;
+}
+.grid-item-info {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 7px dashed #6600d03d;
+  padding: 20px;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.profile-image{
+  border: 10px dashed #6600d03d;
+  inline-size: fit-content;
+  //max-width: 100%; /* Ensures the container does not exceed its parent's width */
+  //width: 100%; /* Responsive width */
+  //height: auto;
+}
+
+
+@media screen and (max-width: 900px) {
+  .grid-container-info { grid-template-areas:
+    '.' 'name' 'speciality' 'biography' 'experience' 'contact';
+    grid-template-columns: auto;
+  }
+
+}
+@media screen and (min-width: 900px) and (max-width: 1000px) {
+  .grid-container-info { grid-template-areas:
+   '.            biography    biography    biography'
+   'name         .            experience   experience'
+   'speciality   speciality   contact      contact';
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
 /* QUIZZES STATIC PAGE */
 
 /////////////////////////////////////////////////////////////
@@ -1289,7 +1352,7 @@ aside {
 }
 .gravatar {
   float: left;
-  margin-right: 10px;
+  //margin-right: 10px;
 }
 .gravatar_edit {
   margin-top: 15px;
@@ -1306,6 +1369,7 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+
 
 #error_explanation {
   color: red;
@@ -1370,6 +1434,21 @@ input {
   font-weight: bold;
   background-color: $light-purple;
 }
+.my-form-subtext{
+  margin-top: 60px;
+}
+
+.datepicker-wrapper {
+   position: relative;
+ }
+.calendar-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  //transform: translateY(-50%);
+  pointer-events: none;
+}
+
 @media screen and (max-width: 600px){
   .my-form-button{
     width: 100%;

@@ -1,0 +1,91 @@
+<main id="main">
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">My Appointments</h1>
+      </div>
+    </div>
+  </div>
+
+  <% unless current_user.doctor? %>
+    <div style="background-color: #0cf574">
+          <%=   link_to "Book an Appointment here!", book_appointment_path   %>
+    </div>
+  <%  end %>
+
+  <div class="grid-container">
+    <% if !current_user.doctor? %>
+
+      <% @appointments.each do |appointment| %>
+        <% if appointment.appointment_date > Time.current %>
+          <div class="grid-item">
+            UPCOMING
+            <div class="subtext">
+              <%= appointment.patient %><br>
+              <%= appointment.appointment_date.strftime('%A, %B %d, %Y, %H:%M') %><br>
+              <%= appointment.doctor_name %>
+            </div>
+          </div>
+        <%# else %>
+  <!--        <div class="grid-item">-->
+  <!--          OLD APPOINTMENTS-->
+  <!--          <div class="subtext">-->
+              <%#= appointment.patient %>
+              <%#= appointment.appointment_date %>
+              <%#= appointment.doctor_name %>
+  <!--          </div>-->
+  <!--        </div>-->
+        <% end %>
+      <% end %>
+
+    <%elsif current_user.doctor? %>
+
+        <% @doctor_appointments.each do |appointment| %>
+          <% if appointment.appointment_date > Time.current %>
+            <div class="grid-item">
+              UPCOMING
+              <div class="subtext">
+                <%= appointment.patient %><br>
+                <%= appointment.appointment_date.strftime('%A, %B %d, %Y, %H:%M') %><br>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+
+      <%end %>
+  </div>
+
+  <div class="grid-container">
+    <% if !current_user.doctor? %>
+
+      <% @appointments.each do |appointment| %>
+        <% if appointment.appointment_date < Time.current %>
+          <div class="grid-item">
+            OLD APPOINTMENTS
+            <div class="subtext">
+              <%= appointment.patient %><br>
+              <%= appointment.appointment_date.strftime('%A, %B %d, %Y, %H:%M') %><br>
+              <%= appointment.doctor_name %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    <%elsif current_user.doctor? %>
+
+      <% @doctor_appointments.each do |appointment| %>
+        <% if appointment.appointment_date < Time.current %>
+          <div class="grid-item">
+            OLD APPOINTMENTS
+            <div class="subtext">
+              <%= appointment.patient %><br>
+              <%= appointment.appointment_date.strftime('%A, %B %d, %Y, %H:%M') %><br>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+    <%end %>
+  </div>
+
+</main>

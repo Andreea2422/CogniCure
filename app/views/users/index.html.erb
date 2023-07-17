@@ -1,0 +1,23 @@
+<main id="main">
+  <% provide(:title, 'All users') %>
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">All psychologists and therapists</h1>
+      </div>
+    </div>
+  </div>
+
+    <div class="grid-container">
+      <% @doctors.each do |doctor| %>
+    <!--    <li>-->
+        <div class="grid-item">
+          <%=link_to show_info_path(doctor.id), class: "nav-link"  do %>
+              <%= gravatar_for doctor, size: 100 %>
+              <%= doctor.name %>
+          <%end %>
+        </div>
+    <!--    </li>-->
+      <% end %>
+    </div>
+</main>

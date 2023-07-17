@@ -1,0 +1,61 @@
+<main id="main">
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">
+          <% job = @user_info.speciality[0].to_s%>
+          <% n = job.size %>
+          <% job = job[0..n-2] + "ist" %>
+          <%=job %>
+          &nbsp;&nbsp;<%=@user_info.user.name %>&nbsp;&nbsp;
+          info</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-container-info">
+
+    <div class="profile-image">
+    <%= gravatar_for @user_info.user, size: 400 %>
+  </div>
+    <div class="grid-item-info item1">
+      Profile
+      <div class="subtext">
+        <%= @user_info.user.name %>
+      </div>
+    </div>
+    <div class="grid-item-info item2">
+      Biography
+      <div class="subtext">
+        <%= @user_info.biography %>
+      </div>
+    </div>
+    <div class="grid-item-info item3">
+      Speciality
+      <div class="subtext">
+        <% i = 0 %>
+        <% until i == @user_info.speciality.count do %>
+          <%= @user_info.speciality[i] %> &nbsp;&nbsp;&nbsp;
+          <% i = i + 1 %>
+        <% end %>
+      </div>
+    </div>
+    <div class="grid-item-info item4">
+      Experience
+      <div class="subtext">
+        <%= @user_info.experience %>
+      </div>
+    </div>
+    <div class="grid-item-info item5">
+      Contact
+      <div class="subtext">
+        <% i = 0 %>
+        <% until i == @user_info.contact.count do %>
+          <%= @user_info.contact[i] %><br>
+          <% i = i + 1 %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</main>

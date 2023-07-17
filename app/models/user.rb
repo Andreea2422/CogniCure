@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :moods, dependent: :destroy
   has_many :articles, dependent: :destroy
+  has_many :appointments, foreign_key: 'user_id',dependent: :destroy
+  has_many :doctor_appointments, class_name: 'Appointment', foreign_key: 'doctor_id',dependent: :destroy
+  has_one :info
+
   before_save{ email.downcase! }
   attr_accessor :remember_token
   validates(:name, presence: true, length: {maximum: 70})

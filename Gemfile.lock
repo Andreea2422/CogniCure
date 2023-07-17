@@ -79,6 +79,8 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
+    bootstrap-will_paginate (1.0.0)
+      will_paginate
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.38.0)
@@ -96,6 +98,8 @@ GEM
     date (3.3.3)
     erubi (1.12.0)
     execjs (2.8.1)
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5-x64-mingw-ucrt)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -242,6 +246,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.7)
@@ -253,9 +258,11 @@ DEPENDENCIES
   bcrypt (~> 3.1.13)
   bootsnap
   bootstrap (~> 5.1)
+  bootstrap-will_paginate (= 1.0.0)
   byebug (= 11.1.3)
   capybara
   chartkick
+  faker (= 2.21.0)
   groupdate (~> 6.3)
   highcharts-rails (~> 6.0, >= 6.0.3)
   jbuilder
@@ -276,6 +283,7 @@ DEPENDENCIES
   web-console
   webdrivers
   webpacker
+  will_paginate (= 3.3.1)
 
 RUBY VERSION
    ruby 3.1.3p185

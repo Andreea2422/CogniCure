@@ -15,12 +15,27 @@
 #              doctor: true)
 #
 # # Generate a bunch of additional users.
-# 99.times do |n|
+# 10.times do |n|
 #   name = Faker::Name.name
-#   email = "example-#{n+1}@railstutorial.org"
+#   email = "example-#{n+1}@gmail.org"
 #   password = "password"
 #   User.create!(name: name,
 #                email: email,
 #                password: password,
 #                password_confirmation: password)
 # end
+
+# Generate infos for a subset of users.
+users = User.order(created_at: :desc).take(6)
+n=10
+users.each do |user|
+  biography = Faker::Lorem.sentence(word_count: 5)
+  speciality = ["Psychotherapy"]
+  experience = "#{n+1} years"
+  contact = ["#{n+1000} #{n+5000} #{n+6000}","job@clinic.com"]
+  user.create_info!(biography: biography,
+                    speciality: speciality,
+                    experience: experience,
+                    contact: contact)
+  n=n+1
+end

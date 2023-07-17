@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_14_202032) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_17_130610) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_202032) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "patient"
+    t.date "appointment_date"
+    t.string "doctor_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "doctor_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -53,6 +64,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_202032) do
     t.string "quote"
     t.bigint "user_id"
     t.index ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
+  end
+
+  create_table "infos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "biography"
+    t.string "speciality", default: [], array: true
+    t.string "experience"
+    t.string "contact", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_infos_on_user_id"
   end
 
   create_table "moods", force: :cascade do |t|
@@ -77,6 +99,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_14_202032) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "appointments", "users", column: "doctor_id"
   add_foreign_key "articles", "users"
+  add_foreign_key "infos", "users"
   add_foreign_key "moods", "users"
 end

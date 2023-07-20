@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_17_130610) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_180551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_17_130610) do
     t.text "content"
     t.string "quote"
     t.bigint "user_id"
+    t.string "keywords", default: [], array: true
     t.index ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
   end
 

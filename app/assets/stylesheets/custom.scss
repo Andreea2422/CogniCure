@@ -1047,6 +1047,35 @@ a{
   text-decoration-line: none !important;
 }
 
+.autocomplete-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-top: none;
+  display: none;
+}
+
+.autocomplete-results ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.autocomplete-results li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.autocomplete-results li:hover {
+  background-color: #ddd;
+}
+
+
+
+
 @media (min-width: 768px){
   .md\:items-center {
     align-items: center;
@@ -1877,6 +1906,40 @@ input {
   border-radius: 50px;
   margin-bottom: 200px;
 }
+
+
+/* Hide the default checkbox input */
+.checkbox-button input[type="checkbox"] {
+  display: none;
+}
+/* Style the label to look like a button */
+.checkbox-button {
+  padding: 10px 20px;
+  width:90%;
+  border:1px solid #6600d03d;
+  margin:5px;
+  border-radius: 17px;/* Button border radius */
+  background-color: #ffffff; /* Button background color */
+  color: rgb(0, 0, 0); /* Button text color */
+  cursor: pointer;
+}
+/* Apply styles to the button when it's selected */
+.checkbox-button.selected {
+  background-color: #6600d03d; /* Selected background color */
+}
+.items-collection{
+  margin:20px 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(6,minmax(0,1fr));
+  justify-items: stretch;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+
+
 .title-form{
   font-size: 30px;
   font-family: "Arial", serif;

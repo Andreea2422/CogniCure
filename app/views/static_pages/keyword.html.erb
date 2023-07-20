@@ -1,0 +1,52 @@
+<main id="main">
+  <div class="page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0"> Keyword: <%= @search_query %></h1>
+      </div>
+    </div>
+  </div>
+
+  <section class="cards">
+    <% @articles.each do |article| %>
+
+      <%=link_to article_path(article), class: "card nav-link" do %>
+        <div class="card__overlay">
+          <span>Read More</span>
+        </div>
+
+        <% if article.cover_image.attached?%>
+          <div class="card__image">
+            <!--        style="background-image: url('<%#= asset_url(article.cover_image) %>')">-->
+            <%= image_tag article.cover_image, class: "article-img" %>
+          </div>
+        <%else %>
+          <div class="card__image" style="background-color: aquamarine"></div>
+        <%end %>
+
+        <div class="card__content">
+          <div class="card__title"><%= article.title %></div>
+          <div class="card__description">
+            <%= article.description %>
+          </div>
+        </div>
+
+        <div class="card__date">
+          <% @date = article.publish_date %>
+          <%= @date.strftime("%B") %>
+          <%= @date.day.ordinalize %>,
+          <%= @date.year %>
+        </div>
+
+        <div class="card__readtime"><%= article.readtime %></div>
+      <%end %>
+
+    <% end %>
+
+
+  </section>
+
+
+
+  </div>
+</main>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   get '/discover', to: 'static_pages#discover'
+  get '/discover/:keyword', to: 'static_pages#keyword', as: 'static_keyword'
   get '/learn-more-about-yourself', to: 'static_pages#learn_more_about_yourself', as: 'yourself'
   # get '/learn-more-about-yourself/article1', to: 'static_pages#article1', as: 'article1'
   get '/learn-more-about-yourself/:id', to: 'static_pages#article', as: 'article'

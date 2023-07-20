@@ -163,31 +163,43 @@
       <p class="mb-0"> Keywords </p>
     </div>
     <div class="grid-keywords">
-      <%=link_to '#', class: "nav-link"  do %>
-        <div class="grid-key-item">
-          Keyword 1
-        </div>
-      <%end %>
-      <%=link_to '#', class: "nav-link"  do %>
-        <div class="grid-key-item">
-          Keyword 2Keyword 2Keyword 2
-        </div>
-      <%end %>
-      <%=link_to '#', class: "nav-link"  do %>
-        <div class="grid-key-item">
-          Keyword 3
-        </div>
-      <%end %>
-      <%=link_to '#', class: "nav-link"  do %>
-        <div class="grid-key-item">
-          Keyword 4
-        </div>
-      <%end %>
-      <%=link_to '#', class: "nav-link"  do %>
-        <div class="grid-key-item">
-          Keyword 5
-        </div>
-      <%end %>
+
+      <% i = 0 %>
+      <% until i == @article.keywords.count do %>
+        <%=link_to '#', class: "nav-link"  do %>
+          <div class="grid-key-item">
+            <%= @article.keywords[i] %> &nbsp;&nbsp;&nbsp;
+            <% i = i + 1 %>
+          </div>
+        <%end %>
+      <% end %>
+
+
+      <%#=link_to '#', class: "nav-link"  do %>
+<!--        <div class="grid-key-item">-->
+<!--          Keyword 1-->
+<!--        </div>-->
+      <%#end %>
+      <%#=link_to '#', class: "nav-link"  do %>
+<!--        <div class="grid-key-item">-->
+<!--          Keyword 2Keyword 2Keyword 2-->
+<!--        </div>-->
+      <%#end %>
+      <%#=link_to '#', class: "nav-link"  do %>
+<!--        <div class="grid-key-item">-->
+<!--          Keyword 3-->
+<!--        </div>-->
+      <%#end %>
+      <%#=link_to '#', class: "nav-link"  do %>
+<!--        <div class="grid-key-item">-->
+<!--          Keyword 4-->
+<!--        </div>-->
+      <%#end %>
+      <%#=link_to '#', class: "nav-link"  do %>
+<!--        <div class="grid-key-item">-->
+<!--          Keyword 5-->
+<!--        </div>-->
+      <%#end %>
     </div>
 
 

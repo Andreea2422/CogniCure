@@ -1,180 +1,180 @@
 <main id="main">
-  <div class="page-title normal-title">
-    <div class="page-title-inner flex-row container">
-      <div class="flex-col flex-grow text-center">
-        <h1 class="uppercase mb-0"> Learn more about yourself</h1>
-        <div class="subtext">
-          Find out more about self-growth through different topics and reads
+      <div class="page-title normal-title">
+        <div class="page-title-inner flex-row container">
+          <div class="flex-col flex-grow text-center">
+            <h1 class="uppercase mb-0"> Learn more about yourself</h1>
+            <div class="subtext">
+              Find out more about self-growth through different topics and reads
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <% if current_user.doctor? && logged_in?%>
-    <%#= render template: "articles/new" %>
-    <%= link_to "Post up now!", submit_path %>
-  <% end %>
-
-
-<!--  <ul>-->
-    <%#= render @articles %>
-<!--  </ul>-->
-
-
-    <section class="cards">
-      <% @articles.each do |article| %>
-
-        <%=link_to article_path(article), class: "card nav-link" do %>
-          <div class="card__overlay">
-            <span>Read More</span>
-          </div>
-
-          <% if article.cover_image.attached?%>
-            <div class="card__image">
-              <!--        style="background-image: url('<%#= asset_url(article.cover_image) %>')">-->
-              <%= image_tag article.cover_image, class: "article-img" %>
-            </div>
-            <%else %>
-              <div class="card__image" style="background-color: aquamarine"></div>
-          <%end %>
-
-          <div class="card__content">
-            <div class="card__title"><%= article.title %></div>
-            <div class="card__description">
-              <%= article.description %>
-            </div>
-          </div>
-
-          <div class="card__date">
-            <% @date = article.publish_date %>
-            <%= @date.strftime("%B") %>
-            <%= @date.day.ordinalize %>,
-            <%= @date.year %>
-          </div>
-
-          <div class="card__readtime"><%= article.readtime %></div>
-        <%end %>
-
+      <% if current_user.doctor? && logged_in?%>
+        <%#= render template: "articles/new" %>
+        <%= link_to "Post up now!", submit_path %>
       <% end %>
 
 
-
-      <%=link_to '#', class: "card nav-link" do %>
-        <div class="card__overlay">
-          <span>Read More</span>
-        </div>
-
-        <div class="card__image" style="background-image: url('<%= asset_url("cat1.jpg") %>')"></div>
-
-        <div class="card__content">
-          <div class="card__title">This is a Title!</div>
-          <div class="card__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            qest laborum.
-          </div>
-
-        </div>
-        <div class="card__date">June 28th 2023</div>
-        <div class="card__readtime">5 min read</div>
-      <%end %>
-
-      <%=link_to '#', class: "card nav-link" do %>
-        <div class="card__overlay">
-          <span>Read More</span>
-        </div>
-
-        <div class="card__image" ></div>
-
-        <div class="card__content">
-          <div class="card__title">This is a Title!</div>
-          <div class="card__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-
-        </div>
-        <div class="card__date">June 28th 2023</div>
-        <div class="card__readtime">5 min read</div>
-      <%end %>
-
-      <%=link_to '#', class: "card nav-link" do %>
-        <div class="card__overlay">
-          <span>Read More</span>
-        </div>
-
-        <div class="card__image" ></div>
-
-        <div class="card__content">
-          <div class="card__title">This is a Title!</div>
-          <div class="card__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-
-        </div>
-        <div class="card__date">June 28th 2023</div>
-        <div class="card__readtime">5 min read</div>
-      <%end %>
-
-      <%=link_to '#', class: "card nav-link" do %>
-        <div class="card__overlay">
-          <span>Read More</span>
-        </div>
-
-        <div class="card__image" ></div>
-
-        <div class="card__content">
-          <div class="card__title">This is a Title!</div>
-          <div class="card__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-
-        </div>
-        <div class="card__date">June 28th 2023</div>
-        <div class="card__readtime">5 min read</div>
-      <%end %>
-
-      <%=link_to '#', class: "card nav-link" do %>
-        <div class="card__overlay">
-          <span>Read More</span>
-        </div>
-
-        <div class="card__image" ></div>
-
-        <div class="card__content">
-          <div class="card__title">This is a Title!</div>
-          <div class="card__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-
-        </div>
-        <div class="card__date">June 28th 2023</div>
-        <div class="card__readtime">5 min read</div>
-      <%end %>
+    <!--  <ul>-->
+        <%#= render @articles %>
+    <!--  </ul>-->
 
 
-    </section>
+        <section class="cards">
+          <% @articles.each do |article| %>
+
+            <%=link_to article_path(article), class: "card nav-link" do %>
+              <div class="card__overlay">
+                <span>Read More</span>
+              </div>
+
+              <% if article.cover_image.attached?%>
+                <div class="card__image">
+                  <!--        style="background-image: url('<%#= asset_url(article.cover_image) %>')">-->
+                  <%= image_tag article.cover_image, class: "article-img" %>
+                </div>
+                <%else %>
+                  <div class="card__image" style="background-color: aquamarine"></div>
+              <%end %>
+
+              <div class="card__content">
+                <div class="card__title"><%= article.title %></div>
+                <div class="card__description">
+                  <%= article.description %>
+                </div>
+              </div>
+
+              <div class="card__date">
+                <% @date = article.publish_date %>
+                <%= @date.strftime("%B") %>
+                <%= @date.day.ordinalize %>,
+                <%= @date.year %>
+              </div>
+
+              <div class="card__readtime"><%= article.readtime %></div>
+            <%end %>
+
+          <% end %>
 
 
 
+          <%=link_to '#', class: "card nav-link" do %>
+            <div class="card__overlay">
+              <span>Read More</span>
+            </div>
 
+            <div class="card__image" style="background-image: url('<%= asset_url("cat1.jpg") %>')"></div>
+
+            <div class="card__content">
+              <div class="card__title">This is a Title!</div>
+              <div class="card__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                qest laborum.
+              </div>
+
+            </div>
+            <div class="card__date">June 28th 2023</div>
+            <div class="card__readtime">5 min read</div>
+          <%end %>
+
+          <%=link_to '#', class: "card nav-link" do %>
+            <div class="card__overlay">
+              <span>Read More</span>
+            </div>
+
+            <div class="card__image" ></div>
+
+            <div class="card__content">
+              <div class="card__title">This is a Title!</div>
+              <div class="card__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+
+            </div>
+            <div class="card__date">June 28th 2023</div>
+            <div class="card__readtime">5 min read</div>
+          <%end %>
+
+          <%=link_to '#', class: "card nav-link" do %>
+            <div class="card__overlay">
+              <span>Read More</span>
+            </div>
+
+            <div class="card__image" ></div>
+
+            <div class="card__content">
+              <div class="card__title">This is a Title!</div>
+              <div class="card__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+
+            </div>
+            <div class="card__date">June 28th 2023</div>
+            <div class="card__readtime">5 min read</div>
+          <%end %>
+
+          <%=link_to '#', class: "card nav-link" do %>
+            <div class="card__overlay">
+              <span>Read More</span>
+            </div>
+
+            <div class="card__image" ></div>
+
+            <div class="card__content">
+              <div class="card__title">This is a Title!</div>
+              <div class="card__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+
+            </div>
+            <div class="card__date">June 28th 2023</div>
+            <div class="card__readtime">5 min read</div>
+          <%end %>
+
+          <%=link_to '#', class: "card nav-link" do %>
+            <div class="card__overlay">
+              <span>Read More</span>
+            </div>
+
+            <div class="card__image" ></div>
+
+            <div class="card__content">
+              <div class="card__title">This is a Title!</div>
+              <div class="card__description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+
+            </div>
+            <div class="card__date">June 28th 2023</div>
+            <div class="card__readtime">5 min read</div>
+          <%end %>
+
+
+        </section>
+
+
+
+  </div>
 </main>

@@ -12,6 +12,10 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def discover
+
+  end
+
   def learn_more_about_yourself
     @articles = Article.all
   end

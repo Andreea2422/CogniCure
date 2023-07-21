@@ -1,34 +1,34 @@
-<div class="container1">
-  <div class="home-page center">
-    <div class="title-logo">
-      <h1>ME:today</h1>
-      <h2>
-        This is the home page for the
-        <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a> sample application.
-      </h2>
-      <div class="button">
-      <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-    </div>
-    </div>
+<div class="relative container1">
+  <div class="container1-1 flex flex-row-reverse home-page">
+      <div class="title-logo relative">
+        <h1 style="z-index: 10">ME:today</h1>
+        <h2 style="z-index: 10">
+          Description placeholder.<br>
+          Description placeholder.
+          Description placeholder.
+        </h2>
+        <div class="button" style="z-index: 10; margin-top: 60px">
+          <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+        </div>
+      </div>
 
-    <div class="image-logo">
-      <%= image_tag("metoday.png", alt: "Me today logo", height: 250, id: "home-logo") %>
-    </div>
+  </div>
 
-    <div class="scroll-button">
-      <input type="button" onclick="document.getElementById('middle').scrollIntoView()">
-    </div>
+  <div class="scroll-button">
+    <button onclick="document.getElementById('middle').scrollIntoView()">
+      |
+    </button>
   </div>
 </div>
 
 
 
-<div class="container2" id="middle">
-  <div class="image-puppet2">
+<div class="container2 relative" id="middle">
+  <div class="image-puppet">
     <p>IMAGE PLACEHOLDER</p>
   </div>
 
-  <div class="text-description2">
+  <div class="text-description">
     <p class="title">TITLE PLACEHOLDER</p>
     <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
     <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
@@ -36,16 +36,15 @@
   </div>
 </div>
 
-<div class="container3" id="bottom">
-  <div class="text-description3">
+<div class="container2 relative reverse" id="bottom">
+  <div class="text-description">
     <p class="title">TITLE PLACEHOLDER</p>
     <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
     <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
     <a href="#">Check it out! -></a>
   </div>
 
-  <div class="image-puppet3">
+  <div class="image-puppet">
     <p>IMAGE PLACEHOLDER</p>
   </div>
 </div>
-

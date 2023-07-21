@@ -1,7 +1,11 @@
 class ArticlesController < ApplicationController
   def new
     @article = Article.new
-    @keywords = ['Anxiety', 'Depression', 'ADHD']
+    @keywords = ['Anxiety', 'Addiction', 'ADHD', 'Bipolar Disorder', 'Breathing techniques',
+                 'Cognitive Behavioral Theraphy', 'Counselling', 'Depression', 'Eating disorders',
+                 'Emotional Intelligence', 'Empathy', 'Food guilt', 'Grief', 'Happiness', 'Loneliness',
+                 'Meditation', 'Mental Health', 'Mindfulness', 'Obsessive Compulsive Disorder', 'Online bullying',
+                 'Personal growth', 'PTSD', 'Self love', 'Social anxiety', 'Stress', 'Therapy']
   end
 
   def create

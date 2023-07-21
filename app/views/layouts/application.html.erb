@@ -7,7 +7,11 @@
     <%= render 'layouts/shim' %>
   </head>
 
-  <body class="<%= @home_page ? 'homepage' : ''%>">
+  <body class="<%= if @home_page
+                     @discover_page ? 'homepage dark-overlay' : 'homepage'
+                   else
+                     ''
+                   end %>">
     <%= render 'layouts/header' %>
 
     <% flash.each do |message_type, message| %>

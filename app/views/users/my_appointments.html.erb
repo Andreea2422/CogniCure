@@ -13,7 +13,7 @@
     </div>
   <%  end %>
 
-  <div class="grid-container">
+  <div class="grid-container box-shadow">
     <% if !current_user.doctor? %>
 
       <% @appointments.each do |appointment| %>
@@ -55,7 +55,7 @@
       <%end %>
   </div>
 
-  <div class="grid-container">
+  <div class="grid-container box-shadow">
     <% if !current_user.doctor? %>
 
       <% @appointments.each do |appointment| %>

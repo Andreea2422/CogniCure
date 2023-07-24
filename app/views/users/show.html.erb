@@ -22,7 +22,7 @@
           <%=link_to '#', class: "nav-link"  do %>
             My ??
             <div class="subtext">
-              View your obtained badges ->
+               ->
             </div>
           <%end %>
         </div>
@@ -63,7 +63,7 @@
 
       <% if !current_user.info.present? %>
           <div class="grid-item">
-            <%=link_to '#', class: "nav-link"  do %>
+            <%=link_to create_info_path, class: "nav-link"  do %>
               Create your Profile
               <div class="subtext">
                 subtext ->
@@ -72,7 +72,7 @@
           </div>
         <% elsif current_user.info.present?%>
           <div class="grid-item">
-              <%=link_to '#', class: "nav-link"  do %>
+              <%=link_to edit_info_path, class: "nav-link"  do %>
                 Update your Profile
                 <div class="subtext">
                   subtext ->

@@ -1,2 +1,38 @@
-<h1>Infos#edit</h1>
-<p>Find me in app/views/infos/edit.html.erb</p>
+<main id="main">
+  <% provide(:title, "Edit details") %>
+
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">Update your details</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-form">
+    <!--    <div class="col-md-5 col-md-offset-3 row-edit">-->
+    <%= form_with(model: @user_info, local: true) do |f| %>
+      <%#= render 'shared/error_messages', object: f.object%>
+
+      <%= f.label :biography, class: 'title-form' %>
+      <%= f.text_area :biography, size: "70x5", class: 'my-form-control' %>
+
+      <div>
+        <label class="title-form" for="info_speciality">Speciality</label>
+          <input id="info_speciality" class="my-form-control" style="width: 100%" type="text" name="info[speciality]" value="<%= @user_info.speciality.join(', ') %>">
+      </div>
+
+      <%= f.label :experience, class: 'title-form' %>
+      <%= f.text_field :experience, class: 'my-form-control' %>
+
+      <div>
+        <label class="title-form" for="info_contact">Contact (phone and/or email)</label>
+          <input id="info_contact" class="my-form-control" type="text" name="info[contact]" value="<%= @user_info.contact.join(', ') %>">
+      </div>
+
+      <%= f.submit "Save changes", class: "my-form-button" %>
+    <% end %>
+    <!--    </div>-->
+  </div>
+
+</main>

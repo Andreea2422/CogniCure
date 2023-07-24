@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/submit-article', to: 'articles#new', as: 'submit'
   get '/book-an-appointment', to: 'appointments#new', as: 'book_appointment'
+
+  get '/create-doctor-details', to: 'infos#new', as: 'create_info'
   get '/doctor-details/:id', to: 'infos#show', as: 'show_info'
+  get '/doctor-details/:id/edit', to: 'infos#edit', as: 'edit_info'
+  # post '/doctor-details/:id', to: 'infos#update'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -33,9 +37,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :articles, only: [:create, :destroy]
-  resources :appointments, only: [:create, :destroy]
-  resources :infos
+  resources :articles, only: [:new, :create, :destroy, :edit, :update]
+  resources :appointments, only: [:new, :create, :destroy]
+  resources :infos, only: [:new, :create, :edit, :update]
 
 
 

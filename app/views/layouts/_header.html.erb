@@ -19,7 +19,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
               <li><%= link_to "A-Z", discover_path, class: "dropdown-item" %></li>
-              <li class="dropend">
+              <li class="dropstart">
                 <%#= link_to "Self-Growth", '#', class: "dropdown-item nav-link dropdown-toggle", id: "navbarDarkDropdownMenuLink", role: "button"%>
                 <%= link_to "Self-Growth", '#', class: "dropdown-item dropdown-toggle", 'data-bs-toggle': "dropdown"%>
 <!--                <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">-->
@@ -34,7 +34,7 @@
 
               <li><%= link_to "Quizzes", quizzes_path, class: "dropdown-item" %></li>
 
-              <li class="dropend">
+              <li class="dropstart">
                 <%= link_to "Mental Health", '#', class: "dropdown-item dropdown-toggle", 'data-bs-toggle': "dropdown"%>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Anxiety", '#', class: "dropdown-item" %></li>
@@ -46,7 +46,7 @@
               </li>
             </ul>
           </li>
-          <% unless current_user.doctor? %>
+          <% if (logged_in? and !current_user.doctor?) or (!logged_in?)%>
             <li class="nav-item">
                   <%=  link_to "Help/Chat", help_path , class: "nav-link" %>
             </li>

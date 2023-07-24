@@ -6,8 +6,6 @@ class InfosController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_info = Info.joins(:user).find_by(infos: {user_id: @user.id})
-    # @user_info = Info.find(params[:user_id])
-    # @user = @user_info.user_id
   end
 
   def create

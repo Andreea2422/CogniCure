@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @doctors = User.where(doctor: true)
+    @doctors = User.where(doctor: true).order(name: :asc)
   end
 
   def show

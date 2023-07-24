@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
   def discover
     @home_page = true
     @discover_page = true
-    @search_query = params[:keyword]&.downcase # Downcase the search query if it's not nil
+    @search_query = params[:keyword] #&.downcase # Downcase the search query if it's not nil
 
     # Then redirect to the appropriate page based on the search query
     if @search_query.present?
@@ -26,7 +26,7 @@ class StaticPagesController < ApplicationController
   end
 
   def keyword
-    @search_query = params[:keyword].titleize
+    @search_query = params[:keyword] #.titleize
     @articles = find_articles(params[:keyword])
   end
 
@@ -34,8 +34,8 @@ class StaticPagesController < ApplicationController
     @articles = Article.all
   end
 
-  def article
-    @article = Article.find(params[:id])
+  def mental_health
+    @articles = Article.all
   end
 
   def quizzes

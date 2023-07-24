@@ -1,0 +1,117 @@
+<main id="main">
+  <div class="my-account-header page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0">Update your details</h1>
+      </div>
+    </div>
+  </div>
+
+  <% provide(:button_text, 'Update my article') %>
+  <div class="article-form">
+    <%= form_with(model: @article, local: true, multipart: true) do |f| %>
+      <%#= render "shared/error_messages", object: f.object %>
+
+      <%= f.label :title, class: 'title-form' %>
+      <%= f.text_field :title, class: 'my-form-control' %>
+
+      <%= f.label :description, class: 'title-form' %>
+      <%= f.text_field :description, class: 'my-form-control' %>
+
+      <%= f.label :cover_image, "Choose a cover image (not mandatory)", class: 'title-form' %>
+      <%= f.file_field :cover_image, class: 'my-form-image' %>
+
+      <%= f.label :readtime, "Reading Time (please fill in as '__ min read' )", class: 'title-form' %>
+      <%= f.text_field :readtime, class: 'my-form-control' %>
+
+      <%= f.label :content, class: 'title-form' %>
+      <%= f.text_area :content, size: "70x5", class: 'my-form-control' %>
+
+      <%= f.label :quote, "Add a quote (not mandatory)", class: 'title-form' %>
+      <%= f.text_field :quote, class: 'my-form-control' %>
+
+      <label class="title-form">Keywords (please choose tags for the article)</label>
+      <div class="row">
+        <div class="form-group">
+          <div class="grid-container text-center text-uppercase" style="margin-bottom: 0">
+            <% @all_keywords.each do |keyword| %>
+              <div>
+                <label class="checkbox-button">
+                  <input type="checkbox" name="article[keywords][]" value="<%= keyword %>">
+                  <%= keyword %>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%= f.submit yield(:button_text), class: "my-form-button" %>
+    <% end %>
+  </div>
+
+</main>
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+    const allKeywords = <%= @article_keywords.to_json.html_safe %>;
+    // console.log(allKeywords)
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var checkboxButtons = document.querySelectorAll('.checkbox-button');
+
+        checkboxButtons.forEach(function(button) {
+            var checkbox = button.querySelector('input[type="checkbox"]');
+
+            // Check if the checkboxValue exists in the allKeywords array
+            if (allKeywords.includes(checkbox.value)) {
+                checkbox.checked = true;
+                button.classList.add('selected');
+            }
+
+            button.addEventListener('click', function() {
+                // Toggle the 'selected' class on the button when it's clicked
+                button.classList.toggle('selected', checkbox.checked);
+            });
+        });
+    });
+
+
+    // Get all the checkboxes
+    var checkboxes = document.querySelectorAll('input[type="checkbox"][name="article[keywords][]"]');
+
+    // Create an empty array to store the selected values
+    var selectedKeywords = [];
+    for (let i = 0; i < allKeywords.length; i++) {
+        selectedKeywords.push(allKeywords[i]);
+    }
+
+
+    console.log(selectedKeywords)
+
+    // Add an event listener to each checkbox
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            // If the checkbox is checked, add its value to the selectedKeywords array
+            if (checkbox.checked) {
+
+                selectedKeywords.push(checkbox.value);
+                console.log(selectedKeywords)
+            } else {
+                // If the checkbox is unchecked, remove its value from the selectedKeywords array
+                var index = selectedKeywords.indexOf(checkbox.value);
+                if (index !== -1) {
+                    selectedKeywords.splice(index, 1);
+                    console.log(selectedKeywords)
+                }
+            }
+
+            // Print the selectedKeywords array to see the selected values
+            console.log(selectedKeywords);
+        });
+    });
+
+</script>

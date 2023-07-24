@@ -1,0 +1,71 @@
+<main id="main">
+  <div class="page-title normal-title">
+    <div class="page-title-inner flex-row container">
+      <div class="flex-col flex-grow text-center">
+        <h1 class="uppercase mb-0"> Mental Health</h1>
+        <div class="subtext">
+          Find out more about mental illnesses through different topics and reads
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if current_user.doctor? && logged_in?%>
+    <%= link_to "Post up now!", submit_path %>
+  <% end %>
+
+
+  <section class="cards">
+    <% @articles.each do |article| %>
+
+      <%=link_to show_article_path(article.id), class: "card nav-link" do %>
+        <div class="card__overlay">
+          <span>Read More</span>
+        </div>
+
+        <% if article.cover_image.attached?%>
+          <div class="card__image" style="<%= "background-image: url(#{url_for(article.cover_image)})" %>">
+            <%#= image_tag article.cover_image, class: "article-img" %>
+          </div>
+
+          <div class="card__content">
+            <div class="card__title"><%= article.title %></div>
+            <div class="card__description">
+              <%= article.description %>
+            </div>
+          </div>
+
+          <div class="card__date">
+            <% @date = article.publish_date %>
+            <%= @date.strftime("%B") %>
+            <%= @date.day.ordinalize %>,
+            <%= @date.year %>
+          </div>
+
+        <%else %>
+          <div class="card__content_noimg">
+            <div class="card__title"><%= article.title %></div>
+            <div class="card__description">
+              <%= article.description %>
+            </div>
+          </div>
+
+          <div class="card__date_noimg">
+            <% @date = article.publish_date %>
+            <%= @date.strftime("%B") %>
+            <%= @date.day.ordinalize %>,
+            <%= @date.year %>
+          </div>
+
+        <%end %>
+
+
+
+        <div class="card__readtime"><%= article.readtime %></div>
+      <%end %>
+
+    <% end %>
+  </section>
+
+
+</main>

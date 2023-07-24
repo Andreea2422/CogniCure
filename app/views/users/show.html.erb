@@ -10,22 +10,14 @@
   <div class="grid-container box-shadow">
     <% if !current_user.doctor? && logged_in?%>
 
-        <div class="grid-item">
-          <%=link_to progress_user_path, class: "nav-link"  do %>
-            My Progress
-            <div class="subtext">
-              Keep track of your progress here ->
-            </div>
-          <%end %>
-        </div>
-        <div class="grid-item">
-          <%=link_to '#', class: "nav-link"  do %>
-            My ??
-            <div class="subtext">
-               ->
-            </div>
-          <%end %>
-        </div>
+      <div class="grid-item">
+        <%=link_to progress_user_path, class: "nav-link"  do %>
+          My Progress
+          <div class="subtext">
+            Keep track of your progress here ->
+          </div>
+        <%end %>
+      </div>
       <div class="grid-item">
         <%=link_to appointments_user_path, class: "nav-link"  do %>
           Appointments

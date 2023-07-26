@@ -1,14 +1,26 @@
 class MoodsController < ApplicationController
 
-  # def mood_chart
-  #   # current_date = Date.today
-  #   # start_date = current_date.beginning_of_week(:monday)
-  #   # end_date = current_date.end_of_week(:sunday)
-  #   start_date = Date.new(2023, 5, 1)
-  #   end_date = Date.new(2023, 5, 7)
-  #   user = User.find(params[:user_id])
-  #   moods = user.moods.where(day: start_date..end_date).pluck(:day, :name)
-  #   @mood_data = moods.map { |day, name| [day.strftime("%d-%m-%Y"), name] }
-  #
-  # end
+  def new
+    @mood = Mood.new
+  end
+
+  def create
+    @mood = current_user.moods.build(mood_params)
+    @mood.day = Date.today
+
+    if @mood.save
+      render json: { status: 'success', message: 'Mood saved!', mood_name: @mood.name }
+    else
+      # Mood save failed, respond with JSON data
+      render json: { status: 'error', message: 'Mood not saved' }
+    end
+  end
+
+
+
+  ##########################
+  private
+  def mood_params
+    params.require(:mood).permit(:name)
+  end
 end

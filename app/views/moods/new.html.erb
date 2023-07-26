@@ -1,0 +1,297 @@
+<%= form_with(model: @mood, local: true) do |f| %>
+    <div id="app-cover">
+      <h1 class="app-title">How was your mood today?</h1>
+      <div id="app-grid">
+        <div class="dropdown">
+            <button class="app-emotions-card" style="background-color: red" id="emotionRedDropdownMenuLink"
+                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
+              RED
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionRedDropdownMenuLink" >
+              <li>
+                  <div class="mood" id="mood-furious" data-mood-name="furious">
+                    <div class="face">
+                      <div class="eyes-cover">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                      </div>
+                      <div class="mouth"></div>
+                    </div>
+                    <div class="mood-name"><span>furious</span></div>
+                  </div>
+              </li>
+              <li>
+                  <div class="mood" id="mood-bitter" data-mood-name="bitter">
+                    <div class="face">
+                      <div class="eyes-cover">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                      </div>
+                      <div class="mouth"></div>
+                    </div>
+                    <div class="mood-name"><span>bitter</span></div>
+                  </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-frustrated" data-mood-name="frustrated">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>frustrated</span></div>
+                </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-annoyed" data-mood-name="annoyed">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>annoyed</span></div>
+                </div>
+              </li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button class="app-emotions-card" style="background-color: blue" id="emotionBlueDropdownMenuLink"
+                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
+              BLUE
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionBlueDropdownMenuLink">
+              <li>
+                  <div class="mood" id="mood-depressed" data-mood-name="depressed">
+                    <div class="face">
+                      <div class="eyes-cover">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                      </div>
+                      <div class="mouth"></div>
+                    </div>
+                    <div class="mood-name"><span>depressed</span></div>
+                  </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-lonely" data-mood-name="lonely">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>lonely</span></div>
+                </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-disappointed" data-mood-name="disappointed">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>disappointed</span></div>
+                </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-sad" data-mood-name="sad">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>sad</span></div>
+                </div>
+              </li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button class="app-emotions-card" style="background-color: yellow" id="emotionYellowDropdownMenuLink"
+                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
+              YELLOW
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionYellowDropdownMenuLink">
+              <li>
+                  <div class="mood" id="mood-afraid" data-mood-name="afraid">
+                    <div class="face">
+                      <div class="eyes-cover">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                      </div>
+                      <div class="mouth"></div>
+                    </div>
+                    <div class="mood-name"><span>afraid</span></div>
+                  </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-stressed" data-mood-name="stressed">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>stressed</span></div>
+                </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-anxious" data-mood-name="anxious">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>anxious</span></div>
+                </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-nervous" data-mood-name="nervous">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye left"></div>
+                      <div class="eye right"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>nervous</span></div>
+                </div>
+              </li>
+            </ul>
+        </div>
+
+        <div class="dropdown">
+            <button class="app-emotions-card" style="background-color: green" id="emotionGreenDropdownMenuLink"
+                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
+              GREEN
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionGreenDropdownMenuLink" >
+              <li>
+                  <div class="mood" id="mood-relaxed" data-mood-name="relaxed">
+                    <div class="face">
+                      <div class="eyes-cover">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                      </div>
+                      <div class="mouth"></div>
+                    </div>
+                    <div class="mood-name"><span>relaxed</span></div>
+                  </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-okay" data-mood-name="okay">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye"></div>
+                      <div class="eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>okay</span></div>
+                </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-joyful" data-mood-name="joyful">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye"></div>
+                      <div class="eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>joyful</span></div>
+                </div>
+              </li>
+              <li>
+                <div class="mood" id="mood-loved" data-mood-name="loved">
+                  <div class="face">
+                    <div class="eyes-cover">
+                      <div class="eye"></div>
+                      <div class="eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                  </div>
+                  <div class="mood-name"><span>loved</span></div>
+                </div>
+              </li>
+            </ul>
+        </div>
+
+
+      </div>
+    </div>
+
+  <div style="display: block">
+    <%= f.label :name, class: 'title-form' , hidden: true%>
+    <%= f.text_field :name, class: 'my-form-control', id: 'name', hidden: true, autocomplete: 'off' %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript" charset="UTF-8">
+    var inputFieldName = document.getElementById("name");
+    var form = document.querySelector('form');
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var moodButtons = document.querySelectorAll('.mood');
+
+
+        moodButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // Extract the ID and name from the button's data attributes
+                inputFieldName.value = button.dataset.moodName;
+
+                // form.submit();
+
+                console.log(button.dataset.moodName)
+
+                // Send the POST request using AJAX
+                fetch('/moods', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': '<%= form_authenticity_token %>'
+                    },
+                    body: JSON.stringify({ name: button.dataset.moodName })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the JSON data received from the server
+                        if (data.status === 'success') {
+                            // Show the success message from the JSON data
+                            console.log(data.message);
+
+                            // Reload the page after a short delay (e.g., 0.1 second)
+                            setTimeout(function() {
+                                location.reload();
+                            }, 100); // Change the delay time as needed
+                        } else if (data.status === 'error') {
+                            // Show an error message or take appropriate action
+                            console.log(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        // Handle errors
+                        console.log('Error: '+ error)
+                    });
+            });
+
+
+            });
+
+    });
+
+</script>

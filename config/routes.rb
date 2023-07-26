@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :articles, only: [:new, :create, :destroy, :edit, :update]
   resources :appointments, only: [:new, :create, :destroy]
   resources :infos, only: [:new, :create, :edit, :update]
+  resources :moods, only: [:new, :create]
 
 
 

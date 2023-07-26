@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @today = Date.current.strftime('%Y-%m-%d')
   end
 
   def new
@@ -46,28 +47,25 @@ class UsersController < ApplicationController
   end
 
   def progress
-    @start_date = Date.new(2023, 5, 1)
-    # @start_date = Date.today.beginning_of_week(:monday)
-    @start_date_month = Date.new(2023, 5, 1).beginning_of_month
-    @end_date = Date.new(2023, 5, 7)
-    # @end_date = Date.today.end_of_week(:sunday)
-    @end_date_month = @start_date_month.end_of_month
-
     @user = User.find(params[:id])
     @all_moods = @user.moods
-
-    @moods_week = @all_moods.where(day: @start_date..@end_date).order(:day)
-    @moods_month = @all_moods.where(day: @start_date_month..@end_date_month).order(:day)
-    # @mood_data = @moods.map { |day, name| [day.strftime("%d-%m-%Y"), name] }
-
     @moods_ord = @user.moods.order(:day)
+    @last_mood = @moods_ord.last
+
+    @today = params[:date]
+    formatted_date = Date.parse(@today)
+
+
+    @start_date_week = formatted_date.beginning_of_week
+    @end_date_week = formatted_date.end_of_week
+    @start_date_month = formatted_date.beginning_of_month
+    @end_date_month = formatted_date.end_of_month
+
+    @moods_week = @all_moods.where(day: @start_date_week..@end_date_week).order(:day)
+    @moods_month = @all_moods.where(day: @start_date_month..@end_date_month).order(:day)
 
     @mood_data_week = []
     @mood_data_month = []
-    # @simple_mood_data = []
-    # @moods_ord.each do |mood|
-    #   @mood_data << { name: mood.day.strftime("%Y-%m-%d"), data: [[mood.day, mood.name]] }
-    # end
 
     @moods_week.each do |mood|
       if mood.day.monday?
@@ -121,7 +119,6 @@ class UsersController < ApplicationController
       end
 
       @mood_data_week << { name: mood.name.capitalize, data: [[@day, @name]] }
-      # @simple_mood_data << [@day, @name]
     end
 
     @moods_month.each do |mood|
@@ -164,7 +161,19 @@ class UsersController < ApplicationController
 
 
     # debugger
-    render 'my_progress'
+    response_data = {
+      mood_data_week: @mood_data_week,
+      mood_data_month: @mood_data_month
+    }
+
+    respond_to do |format|
+      format.html do
+        render 'my_progress'
+      end
+      format.json do
+        render json: response_data
+      end
+    end
 
   end
 

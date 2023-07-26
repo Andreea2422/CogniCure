@@ -18,47 +18,11 @@
 
 
   <!--  <div class="grid-container">-->
-
-  <div id="app-cover">
-    <h1 class="app-title">How was your mood today?</h1>
-    <div id="app">
-      <div class="mood" id="mood-anxious">
-        <div class="face">
-          <div class="eyes-cover">
-            <div class="eye"></div>
-            <div class="eye"></div>
-          </div>
-          <div class="mouth"></div>
-        </div>
-        <div class="mood-name"><span>anxious</span></div>
-      </div>
-      <div class="mood" id="mood-relaxed">
-        <div class="face">
-          <div class="eyes-cover">
-            <div class="eye"></div>
-            <div class="eye"></div>
-          </div>
-          <div class="mouth"></div>
-        </div>
-        <div class="mood-name"><span>relaxed</span></div>
-      </div>
-      <div class="mood" id="mood-joyful">
-        <div class="face">
-          <div class="eyes-cover">
-            <div class="eye"></div>
-            <div class="eye"></div>
-          </div>
-          <div class="mouth"></div>
-        </div>
-        <div class="mood-name"><span>joyful</span></div>
-      </div>
-    </div>
-  </div>
+  <%# unless @last_mood.day.eql?(Date.parse(@today)) %>
+    <%=  render template: 'moods/new'  %>
+  <%#  end %>
 
   <!--  </div>-->
-
-
-  <%# moods_data = [["Mon", "11"], ["Tue", "13"], ["Wed", "14"], ["Thu", "5"], ["Fri", "2"], ["Sat", "15"], ["Sun", "9"]] %>
 
   <button class="btn btn-success" id="week">
     By Week
@@ -66,19 +30,20 @@
   <button class="btn btn-success" id="month">
     By Month
   </button>
+  <br>
 
-<!--  <span id="start-date"><%#= @start_date %></span>-->
-<!--  <span id="end-date"><%#= @end_date %></span>-->
-<!--  <button class="btn btn-info" id="previous">-->
-<!--    <-->
-<!--  </button>-->
-<!--  <button class="btn btn-info" id="next">-->
-<!--    >-->
-<!--  </button>-->
+  <span id="current-date"><%= params[:date] %></span>
+
+  <button class="btn btn-success" id="previous">
+    <-
+  </button>
+  <button class="btn btn-success" id="next">
+    ->
+  </button>
 
 
   <div id="week-chart-figure">
-    <%= line_chart @mood_data_week ,
+    <%#= line_chart @mood_data_week ,
                  id: 'mood-chart',
                  title: 'Mood Variations',
                  colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03']],
@@ -93,7 +58,7 @@
   </div>
 
   <div id="month-chart-figure" > <!--style="pointer-events: none"-->
-    <%= line_chart @mood_data_month ,
+    <%#= line_chart @mood_data_month ,
                     # id: 'mood-chart',
                     title: 'Mood Variations',
                     colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03'],['#79fc8f']],
@@ -106,69 +71,223 @@
     %>
   </div>
 
-  <%#= line_chart [{name: "anxious" , data: [["Mon", "11"],["Tue", "13"]]},
-                  {name: "relaxed" , data: [["Tue", "13"],["Wed", "14"]]},
-                  {name: "okay" , data: [["Wed", "14"],["Thu", "5"]]},
-                  {name: "depressed" , data: [["Thu", "5"],["Fri", "2"]]},
-                  {name: "bitter" , data: [["Fri", "2"],["Sat", "15"]]},
-                  {name: "joyful" , data: [["Sat", "15"],["Sun", "9"]]},
-                  {name: "afraid" , data: [["Sun", "9"],["Sun", "9"]]}],
-
-                 title: 'Mood Variations',
-                 colors:[['yellow'],['#c6fc03'],['green'],['blue'],['red'],['green'],['yellow']]
-
-  %>
-
-  <%#= line_chart [{name: "anxious" , data: [["Mon", "11"]]},
-                  {name: "relaxed" , data: [["Tue", "13"]]},
-                  {name: "okay" , data: [["Wed", "14"]]},
-                  {name: "depressed" , data: [["Thu", "5"]]},
-                  {name: "bitter" , data: [["Fri", "2"]]},
-                  {name: "joyful" , data: [["Sat", "15"]]},
-                  {name: "afraid" , data: [["Sun", "9"]]}],
-
-                 title: 'Mood Variations',
-                 legend: false,
-                 colors: {
-                   linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                   # stops: [[0, '#ff0000'], [1, '#ffff00']]
-                   stops: [[0, 'red'], [0.5, 'yellow'], [1, 'green']]
-                 },
-                 dataset: {
-                           radius: 20,
-                           # colors:['red'],
-                 }
-
-  %>
-
-  <script type="text/javascript" charset="utf-8">
-    const week = document.getElementById('week');
-    const month = document.getElementById('month');
-
-    // const previous = document.getElementById('previous');
-    // const next = document.getElementById('next');
-
-    // previous.addEventListener('click',minusWeek);
-    // next.addEventListener('click',plusWeek);
-
-
-    week.addEventListener('click',changeWeek);
-    month.addEventListener('click',changeMonth);
-
-
-    function changeWeek(){
-        console.log('Changed chart to week!');
-        document.getElementById('month-chart-figure').style.display = 'none'
-        document.getElementById('week-chart-figure').style.display = 'block'
-    }
-
-    function changeMonth(){
-        console.log('Changed chart to month!');
-        document.getElementById('week-chart-figure').style.display = 'none'
-        document.getElementById('month-chart-figure').style.display = 'block'
-    }
-  </script>
-
-
-
 </main>
+
+<script type="text/javascript" charset="utf-8">
+  const week = document.getElementById('week');
+  const month = document.getElementById('month');
+
+  var on_week = true;
+  var on_month = false;
+
+  week.addEventListener('click',changeWeek);
+  month.addEventListener('click',changeMonth);
+
+  function changeWeek(){
+      console.log('Changed chart to week!');
+      on_month = false;
+      on_week = true;
+      document.getElementById('month-chart-figure').style.display = 'none'
+      document.getElementById('week-chart-figure').style.display = 'block'
+  }
+
+  function changeMonth(){
+      console.log('Changed chart to month!');
+      on_week = false;
+      on_month = true;
+      document.getElementById('week-chart-figure').style.display = 'none'
+      document.getElementById('month-chart-figure').style.display = 'block'
+  }
+
+  // Define a mapping between mood names and colors
+  var moodColors = {
+      'Furious' : '#a31d1d',
+      'Bitter': '#cf3838',
+      'Frustrated': '#f03a3a',
+      'Annoyed' : '#ff5757',
+      'Depressed': '#213291',
+      'Lonely': '#2a44d4',
+      'Disappointed' : '#4491e3',
+      'Sad': '#58a8fc',
+      'Afraid': '#fcad03',
+      'Stressed' : '#fccf03',
+      'Anxious': '#fcf403',
+      'Nervous': '#fafc5d',
+      'Relaxed' : '#30c208',
+      'Okay': '#44e019',
+      'Joyful': '#32f22c',
+      'Loved' : '#79fc8f'
+  };
+
+  $(document).ready(function() {
+      // Get the initial date from the URL parameter
+      var currentDate = new Date($('#current-date').text());
+
+      // Function to update the URL with the new date
+      function updateURL(newDate) {
+          var newURL = window.location.pathname + '?date=' + newDate.toISOString().split('T')[0];
+          history.replaceState({}, '', newURL);
+      }
+
+      // Handle the "previous" button click
+      $('#previous').on('click', function() {
+          if (on_week===true){
+            currentDate.setDate(currentDate.getDate() - 7);
+          } else if (on_month===true){
+              // Get the month and year of the current date
+              var currentMonth = currentDate.getMonth();
+              var currentYear = currentDate.getFullYear();
+
+              // Calculate the month and year of the previous month
+              var previousMonth = currentMonth - 1;
+              var previousYear = currentYear;
+
+              // Handle the case when the previous month is December (month number 0)
+              if (previousMonth === -1) {
+                  previousMonth = 11; // Set previousMonth to December (month number 11)
+                  previousYear--;     // Decrement the year for the previous month
+              }
+
+              currentDate.setFullYear(previousYear, previousMonth, currentDate.getDate())
+          }
+          $('#current-date').text(currentDate.toISOString().split('T')[0]);
+          updateURL(currentDate);
+          // Reload the chart with the updated data based on the new date
+          // reloadChart();
+          getUpdatedChartData();
+      });
+
+      // Handle the "next" button click
+      $('#next').on('click', function() {
+          if (on_week===true){
+              currentDate.setDate(currentDate.getDate() + 7);
+          } else if (on_month===true){
+              // Get the month and year of the current date
+              var currentMonth = currentDate.getMonth();
+              var currentYear = currentDate.getFullYear();
+
+              // Calculate the month and year of the next month
+              var nextMonth = currentMonth + 1;
+              var nextYear = currentYear;
+
+              // Handle the case when the next month is January (month number 12)
+              if (nextMonth === 12) {
+                  nextMonth = 0; // Set nextMonth to January (month number 0)
+                  nextYear++;     // Increment the year for the next month
+              }
+
+              currentDate.setFullYear(nextYear, nextMonth, currentDate.getDate())
+          }
+          $('#current-date').text(currentDate.toISOString().split('T')[0]);
+          updateURL(currentDate);
+          // Reload the chart with the updated data based on the new date
+          // reloadChart();
+
+          getUpdatedChartData();
+      });
+
+      // Function to make an AJAX request to get the updated chart data
+      function getUpdatedChartData() {
+          var updatedDate = new Date($('#current-date').text());
+
+          $.ajax({
+              type: 'GET',
+              url: '/users/<%= params[:id] %>/progress?date=' + updatedDate.toISOString().split('T')[0],
+              data: {
+                  date: updatedDate.toISOString().split('T')[0] // Pass the current date as a parameter
+                  // date: $('#current-date').text() // Pass the current date as a parameter
+              },
+              dataType: 'json',
+              success: function(response) {
+                  console.log('success');
+
+                  var mood_data_week = response.mood_data_week;
+                  var mood_data_month = response.mood_data_month;
+
+                  var colors_week = mood_data_week.map(function (dataSeries){
+                      return moodColors[dataSeries.name] || 'gray';
+                  })
+                  var colors_month = mood_data_month.map(function (dataSeries){
+                      return moodColors[dataSeries.name] || 'gray';
+                  })
+
+                  // var customEmptyMessage = '<div class="custom-empty-message">No data available. Please try again later.</div>';
+
+
+                  // Create a custom empty message element
+                  var customEmptyMessage = document.createElement('div');
+                  customEmptyMessage.className = 'custom-empty-message';
+                  customEmptyMessage.textContent = 'No data available. Please try again later.';
+
+                  // Get the chart container element
+                  var chartContainerWeek = document.getElementById('week-chart-figure');
+                  var chartContainerMonth = document.getElementById('month-chart-figure');
+
+                  // Clear any existing content in the chart container
+                  while (chartContainerWeek.firstChild) {
+                      chartContainerWeek.removeChild(chartContainerWeek.firstChild);
+                  }
+                  while (chartContainerMonth.firstChild) {
+                      chartContainerMonth.removeChild(chartContainerMonth.firstChild);
+                  }
+
+                  // Update the chart with the new data
+                  if (on_week === true) {
+                        if(mood_data_week.length > 0) {
+                            $('#week-chart-figure').empty();
+                            new Chartkick.LineChart('week-chart-figure', mood_data_week,
+                                {
+                                    id: 'mood-chart',
+                                    title: 'Mood Variations',
+                                    colors: colors_week,
+                                    xtitle: 'Date',
+                                    ytitle: 'Mood',
+                                    label: "Mood",
+                                    // legend: false,
+                                    empty: customEmptyMessage,
+                                    dataset: {
+                                        radius: 10
+                                    }
+                                })
+                        } else {
+                              // Data is empty, show the custom empty message
+                              chartContainerWeek.appendChild(customEmptyMessage);
+                        }
+                  } else if (on_month === true) {
+                      if (mood_data_month.length > 0) {
+                          $('#month-chart-figure').empty();
+                          new Chartkick.LineChart('month-chart-figure', mood_data_month,
+                              {
+                                  id: 'mood-chart',
+                                  title: 'Mood Variations',
+                                  colors: colors_month,
+                                  xtitle: 'Date',
+                                  ytitle: 'Mood',
+                                  label: "Mood",
+                                  empty: customEmptyMessage,
+                                  dataset: {
+                                      radius: 10
+                                  }
+                              })
+                      } else {
+                            // Data is empty, show the custom empty message
+                            chartContainerMonth.appendChild(customEmptyMessage);
+                      }
+                  }
+              },
+              error: function(xhr, status, error) {
+                  console.log(error);
+              }
+          });
+      }
+
+
+      getUpdatedChartData();
+
+  });
+
+
+</script>
+
+
+

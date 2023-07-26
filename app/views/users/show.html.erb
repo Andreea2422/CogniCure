@@ -11,7 +11,7 @@
     <% if !current_user.doctor? && logged_in?%>
 
       <div class="grid-item">
-        <%=link_to progress_user_path, class: "nav-link"  do %>
+        <%=link_to progress_user_path(date: @today), class: "nav-link"  do %>
           My Progress
           <div class="subtext">
             Keep track of your progress here ->

@@ -262,21 +262,26 @@ body.homepage{
 
 /////////////////////////////////////////////////////////////
 /* my progress page */
-#week-chart-figure{
- display: block;
+#week-chart-figure {
+  display: block;
+}
+#week-chart-figure, #month-chart-figure{
+  height: 400px;
+  //max-width: 800px;
+  margin: 1em auto;
+  background-color: white;
 }
 #month-chart-figure{
   display: none;
 }
-#mood-chart{
-  min-width: 360px;
-  max-width: 800px;
-  margin: 1em auto;
-  background-color: white;
-
-
+.custom-empty-message{
+  height: inherit;
+  font-size: 30px;
+  width: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
-
 
 #app-cover{
   //position: absolute;
@@ -292,6 +297,40 @@ body.homepage{
   //grid-gap: 50px;
   margin-bottom: 200px;
 }
+#app-grid{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  //grid-gap: 20px;
+  justify-items: center;
+  justify-content: space-between;
+
+  @media screen and (min-width: 600px) and (max-width: 1000px){
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 50px;
+  }
+
+  @media screen and (max-width: 600px){
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 50px;
+  }
+}
+#app-emotions{
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+}
+.app-emotions-card{
+  width: 200px;
+  height: 200px;
+  background-color: transparent;
+  border: none;
+}
+
+.mood-dropdown{
+  position: relative !important;
+  transform: none !important;
+}
+
 .app-title{
   color: #4b525b;
   font-size: 30px;
@@ -306,8 +345,10 @@ body.homepage{
   top: 0;
   width: 135px;
   height: 135px;
-  float: left;
+  //float: left;
   padding: 25px;
+  //margin: 10px;
+  margin: 10px 0 10px 30px;
   transition: 0.5s ease top;
   cursor: pointer;
 }
@@ -320,29 +361,35 @@ body.homepage{
 {
   content: '';
   position: absolute;
-  top: 36px;
-  left: 32px;
-  width: 79px;
-  height: 79px;
+  top: 25px;
+  left: 28px;
+  width: 80px;
+  height: 80px;
   background-color: #fff;
   border-radius: 50%;
   transition: 0.3s ease background-color;
   z-index: -1;
 }
 
-#mood-anxious.active:after, #mood-anxious:hover:after
+#mood-furious.active:after, #mood-furious:hover:after, #mood-bitter.active:after, #mood-bitter:hover:after,
+#mood-frustrated.active:after, #mood-frustrated:hover:after, #mood-annoyed.active:after, #mood-annoyed:hover:after
 {
-  background-color: #ebf7e8;
+  background-color: #fde1df;
 }
-
-#mood-relaxed.active:after, #mood-relaxed:hover:after
+#mood-depressed.active:after, #mood-depressed:hover:after, #mood-lonely.active:after, #mood-lonely:hover:after,
+#mood-disappointed.active:after, #mood-disappointed:hover:after, #mood-sad.active:after, #mood-sad:hover:after
 {
-  background-color: #f1f3f4;
+  background-color: #d0fcff;
 }
-
-#mood-joyful.active:after, #mood-joyful:hover:after
+#mood-anxious.active:after, #mood-anxious:hover:after, #mood-afraid.active:after, #mood-afraid:hover:after,
+#mood-stressed.active:after, #mood-stressed:hover:after, #mood-nervous.active:after, #mood-nervous:hover:after
 {
-  background-color: #fde4e3;
+  background-color: #ececc9;
+}
+#mood-joyful.active:after, #mood-joyful:hover:after, #mood-relaxed.active:after, #mood-relaxed:hover:after,
+#mood-okay.active:after, #mood-okay:hover:after, #mood-loved.active:after, #mood-loved:hover:after
+{
+  background-color: #e9f6e6;
 }
 
 .face
@@ -358,12 +405,12 @@ body.homepage{
   position: relative;
   top: 22px;
 }
-
-#mood-anxious .eyes-cover
+#mood-joyful .eyes-cover, #mood-relaxed .eyes-cover, #mood-okay .eyes-cover, #mood-loved .eyes-cover
 {
   top: 25px;
 }
 
+/////////////////// EYES
 .eye
 {
   position: absolute;
@@ -383,35 +430,71 @@ body.homepage{
   right: 18px;
 }
 
-#mood-anxious .eye
+
+/// RED
+#mood-furious .left, #mood-bitter .left, #mood-frustrated .left, #mood-annoyed .left
+{
+  width: 23px;
+  height: 8px;
+  transform: rotateZ(45deg) scale(1);
+}
+#mood-furious .right, #mood-bitter .right, #mood-frustrated .right, #mood-annoyed .right
+{
+  width: 23px;
+  height: 8px;
+  transform: rotateZ(-45deg) scale(1);
+}
+
+#mood-furious .left:first-child, #mood-bitter .left:first-child, #mood-frustrated .left:first-child, #mood-annoyed .left:first-child
+{
+  left: 10px;
+}
+
+#mood-furious .right:last-child, #mood-bitter .right:last-child, #mood-frustrated .right:last-child, #mood-annoyed .right:last-child
+{
+  right: 10px;
+}
+
+/// BLUE
+#mood-depressed .left, #mood-lonely .left, #mood-disappointed .left, #mood-sad .left {
+  width: 18px;
+  transform: rotateZ(-45deg) scale(1);
+  border-radius: 0 0 50px 50px;
+}
+
+#mood-depressed .right, #mood-lonely .right, #mood-disappointed .right, #mood-sad .right{
+  width: 18px;
+  transform: rotateZ(45deg) scale(1);
+  border-radius: 0 0 50px 50px;
+}
+
+#mood-depressed .left:first-child, #mood-lonely .left:first-child, #mood-disappointed .left:first-child, #mood-sad .left:first-child {
+  left: 14px;
+}
+#mood-depressed .right:last-child, #mood-lonely .right:last-child, #mood-disappointed .right:last-child, #mood-sad .right:last-child{
+  right: 14px;
+}
+
+/// GREEN
+#mood-joyful .eye, #mood-relaxed .eye, #mood-okay .eye, #mood-loved .eye
 {
   width: 8px;
   height: 8px;
   transform: rotateZ(-45deg) scale(1);
   border-radius: 0;
 }
-
-#mood-anxious .eye:first-child
+#mood-joyful .eye:first-child, #mood-relaxed .eye:first-child, #mood-okay .eye:first-child, #mood-loved .eye:first-child
 {
   left: 20px;
 }
 
-#mood-anxious .eye:last-child
+#mood-joyful .eye:last-child, #mood-relaxed .eye:last-child, #mood-okay .eye:last-child, #mood-loved .eye:last-child
 {
   right: 20px;
 }
 
-#mood-joyful .eye:first-child
-{
-  left: 19px;
-}
-
-#mood-joyful .eye:last-child
-{
-  right: 19px;
-}
-
-#mood-anxious .eye:before, #mood-anxious .eye:after
+#mood-joyful .eye:before, #mood-joyful .eye:after, #mood-relaxed .eye:before, #mood-relaxed .eye:after,
+#mood-okay .eye:before, #mood-okay .eye:after, #mood-loved .eye:before, #mood-loved .eye:after
 {
   content: '';
   position: absolute;
@@ -422,18 +505,18 @@ body.homepage{
   border-radius: 50%;
 }
 
-#mood-anxious .eye:before
+#mood-joyful .eye:before, #mood-relaxed .eye:before, #mood-okay .eye:before, #mood-loved .eye:before
 {
   top: -4px;
   left: 0;
 }
-
-#mood-anxious .eye:after
+#mood-joyful .eye:after, #mood-relaxed .eye:after, #mood-okay .eye:after, #mood-loved .eye:after
 {
   top: 0;
   right: -4px;
 }
 
+//////////////////////// MOUTH
 .mouth
 {
   position: absolute;
@@ -445,30 +528,38 @@ body.homepage{
   background-color: #d9e0e3;
 }
 
-#mood-anxious .mouth, #mood-joyful .mouth
+/// RED - BLUE - YELLOW - GREEN
+#mood-joyful .mouth, #mood-relaxed .mouth, #mood-okay .mouth,, #mood-loved .mouth,
+#mood-furious .mouth, #mood-bitter .mouth, #mood-frustrated .mouth, #mood-annoyed .mouth
 {
   height: 13px;
   border-radius: 0 0 40px 40px;
 }
-
-#mood-relaxed .mouth
+#mood-furious .mouth, #mood-bitter .mouth, #mood-frustrated .mouth, #mood-annoyed .mouth,
+#mood-depressed .mouth, #mood-lonely .mouth, #mood-disappointed .mouth, #mood-sad .mouth
+{
+ transform: rotateZ(180deg);
+}
+#mood-depressed .mouth, #mood-lonely .mouth, #mood-disappointed .mouth, #mood-sad .mouth
+{
+  height: 6px;
+  border-radius: 0 0 40px 40px;
+}
+#mood-anxious .mouth, #mood-nervous .mouth, #mood-stressed .mouth, #mood-afraid .mouth
 {
   height: 8px;
   margin-left: 22px;
   border-radius: 10px;
 }
 
-#mood-joyful .mouth
-{
-  top: 44px;
-  transform: rotateZ(180deg);
-}
 
-.face, .eyes-cover, .eye, #mood-anxious .eye:before, #mood-anxious .eye:after, .mouth
+.face, .eyes-cover, .eye, #mood-joyful .eye:before, #mood-joyful .eye:after, #mood-relaxed .eye:before, #mood-relaxed .eye:after,
+#mood-okay .eye:before, #mood-okay .eye:after, #mood-loved .eye:before, #mood-loved .eye:after, .mouth
 {
   transition: 0.3s ease all;
 }
 
+//////////////////////////////// MOOD NAME
 .mood-name
 {
   position: absolute;
@@ -494,19 +585,15 @@ body.homepage{
   opacity: 1;
 }
 
-#mood-anxious .mood-name
+#mood-joyful .mood-name, #mood-relaxed .mood-name, #mood-okay .mood-name, #mood-loved .mood-name,
 {
   width: 90px;
 }
-
-#mood-relaxed .mood-name
+#mood-anxious .mood-name, #mood-afraid .mood-name, #mood-stressed .mood-name, #mood-nervous .mood-name,
+#mood-furious .mood-name, #mood-bitter .mood-name, #mood-annoyed .mood-name,
+#mood-lonely .mood-name, #mood-sad .mood-name
 {
-  width: 90px;
-}
-
-#mood-joyful .mood-name
-{
-  width: 85px;
+  width: 100px;
 }
 
 .mood-name span
@@ -533,104 +620,286 @@ body.homepage{
   z-index: 1;
 }
 
+#mood-furious.active .face, #mood-furious:hover .face
+{
+  border-color: #a31d1d;
+}
+#mood-bitter.active .face, #mood-bitter:hover .face
+{
+  border-color: #cf3838;
+}
+#mood-frustrated.active .face, #mood-frustrated:hover .face
+{
+  border-color: #f03a3a;
+}
+#mood-annoyed.active .face, #mood-annoyed:hover .face
+{
+  border-color: #ff5757;
+}
+#mood-furious.active .left, #mood-furious:hover .left, #mood-furious.active .right, #mood-furious:hover .right, #mood-furious.active .mouth, #mood-furious:hover .mouth
+{
+  background-color: #a31d1d;
+}
+#mood-bitter.active .left, #mood-bitter:hover .left, #mood-bitter.active .right, #mood-bitter:hover .right, #mood-bitter.active .mouth, #mood-bitter:hover .mouth
+{
+  background-color: #cf3838;
+}
+#mood-frustrated.active .left, #mood-frustrated:hover .left, #mood-frustrated.active .right, #mood-frustrated:hover .right, #mood-frustrated.active .mouth, #mood-frustrated:hover .mouth
+{
+  background-color: #f03a3a;
+}
+#mood-annoyed.active .left, #mood-annoyed:hover .left, #mood-annoyed.active .right, #mood-annoyed:hover .right, #mood-annoyed.active .mouth, #mood-annoyed:hover .mouth
+{
+  background-color: #ff5757;
+}
+
+#mood-depressed.active .face, #mood-depressed:hover .face
+{
+  border-color: #213291;
+}
+#mood-depressed.active .left, #mood-depressed:hover .left, #mood-depressed.active .right, #mood-depressed:hover .right, #mood-depressed.active .mouth, #mood-depressed:hover .mouth
+{
+  background-color: #213291;
+}
+#mood-lonely.active .face, #mood-lonely:hover .face
+{
+  border-color: #2a44d4;
+}
+#mood-lonely.active .left, #mood-lonely:hover .left, #mood-lonely.active .right, #mood-lonely:hover .right, #mood-lonely.active .mouth, #mood-lonely:hover .mouth
+{
+  background-color: #2a44d4;
+}
+#mood-disappointed.active .face, #mood-disappointed:hover .face
+{
+  border-color: #4491e3;
+}
+#mood-disappointed.active .left, #mood-disappointed:hover .left, #mood-disappointed.active .right, #mood-disappointed:hover .right, #mood-disappointed.active .mouth, #mood-disappointed:hover .mouth
+{
+  background-color: #4491e3;
+}
+#mood-sad.active .face, #mood-sad:hover .face
+{
+  border-color: #58a8fc;
+}
+#mood-sad.active .left, #mood-sad:hover .left, #mood-sad.active .right, #mood-sad:hover .right, #mood-sad.active .mouth, #mood-sad:hover .mouth
+{
+  background-color: #58a8fc;
+}
+
+#mood-afraid.active .face, #mood-afraid:hover .face
+{
+  border-color: #fcad03;
+}
+#mood-afraid.active .eye, #mood-afraid:hover .eye, #mood-afraid.active .eye:before, #mood-afraid:hover .eye:before, #mood-afraid.active .eye:after, #mood-afraid:hover .eye:after, #mood-afraid.active .mouth, #mood-afraid:hover .mouth
+{
+  background-color: #fcad03;
+}
+#mood-stressed.active .face, #mood-stressed:hover .face
+{
+  border-color: #fccf03;
+}
+#mood-stressed.active .eye, #mood-stressed:hover .eye, #mood-stressed.active .eye:before, #mood-stressed:hover .eye:before, #mood-stressed.active .eye:after, #mood-stressed:hover .eye:after, #mood-stressed.active .mouth, #mood-stressed:hover .mouth
+{
+  background-color: #fccf03;
+}
+#mood-nervous.active .face, #mood-nervous:hover .face
+{
+  border-color: #fafc5d ;
+}
+#mood-nervous.active .eye, #mood-nervous:hover .eye, #mood-nervous.active .eye:before, #mood-nervous:hover .eye:before, #mood-nervous.active .eye:after, #mood-nervous:hover .eye:after, #mood-nervous.active .mouth, #mood-nervous:hover .mouth
+{
+  background-color: #fafc5d ;
+}
 #mood-anxious.active .face, #mood-anxious:hover .face
 {
-  border-color: #9ad88b;
+  border-color: #fcf403;
 }
-
 #mood-anxious.active .eye, #mood-anxious:hover .eye, #mood-anxious.active .eye:before, #mood-anxious:hover .eye:before, #mood-anxious.active .eye:after, #mood-anxious:hover .eye:after, #mood-anxious.active .mouth, #mood-anxious:hover .mouth
 {
-  background-color: #9ad88b;
-}
-
-#mood-relaxed.active .face, #mood-relaxed:hover .face
-{
-  border-color: #b1babe;
-}
-
-#mood-relaxed.active .eye, #mood-relaxed:hover .eye, #mood-relaxed.active .eye:before, #mood-relaxed:hover .eye:before, #mood-relaxed.active .eye:after, #mood-relaxed:hover .eye:after, #mood-relaxed.active .mouth, #mood-relaxed:hover .mouth
-{
-  background-color: #b1babe;
+  background-color: #fcf403;
 }
 
 #mood-joyful.active .face, #mood-joyful:hover .face
 {
-  border-color: #f57a71;
+  border-color: #32f22c;
 }
-
 #mood-joyful.active .eye, #mood-joyful:hover .eye, #mood-joyful.active .eye:before, #mood-joyful:hover .eye:before, #mood-joyful.active .eye:after, #mood-joyful:hover .eye:after, #mood-joyful.active .mouth, #mood-joyful:hover .mouth
 {
-  background-color: #f57a71;
+  background-color: #32f22c;
+}
+#mood-relaxed.active .face, #mood-relaxed:hover .face
+{
+  border-color: #30c208;
+}
+#mood-relaxed.active .eye, #mood-relaxed:hover .eye, #mood-relaxed.active .eye:before, #mood-relaxed:hover .eye:before, #mood-relaxed.active .eye:after, #mood-relaxed:hover .eye:after, #mood-relaxed.active .mouth, #mood-relaxed:hover .mouth
+{
+  background-color: #30c208;
+}
+#mood-okay.active .face, #mood-okay:hover .face
+{
+  border-color: #44e019;
+}
+#mood-okay.active .eye, #mood-okay:hover .eye, #mood-okay.active .eye:before, #mood-okay:hover .eye:before, #mood-okay.active .eye:after, #mood-okay:hover .eye:after, #mood-okay.active .mouth, #mood-okay:hover .mouth
+{
+  background-color: #44e019;
+}
+#mood-loved.active .face, #mood-loved:hover .face
+{
+  border-color: #79fc8f;
+}
+#mood-loved.active .eye, #mood-loved:hover .eye, #mood-loved.active .eye:before, #mood-loved:hover .eye:before, #mood-loved.active .eye:after, #mood-loved:hover .eye:after, #mood-loved.active .mouth, #mood-loved:hover .mouth
+{
+  background-color: #79fc8f;
 }
 
-#mood-anxious.active .eye, #mood-anxious:hover .eye
+
+#mood-furious.active .mouth, #mood-furious:hover .mouth,
+#mood-bitter.active .mouth, #mood-bitter:hover .mouth,
+#mood-frustrated.active .mouth, #mood-frustrated:hover .mouth,
+#mood-annoyed.active .mouth, #mood-annoyed:hover .mouth
 {
-  animation: great 0.7s linear;
+  animation: red_mouth 1s linear ;
+}
+#mood-furious.active .eyes-cover, #mood-furious:hover .eyes-cover,
+#mood-bitter.active .eyes-cover, #mood-bitter:hover .eyes-cover,
+#mood-frustrated.active .eyes-cover, #mood-frustrated:hover .eyes-cover,
+#mood-annoyed.active .eyes-cover, #mood-annoyed:hover .eyes-cover
+{
+  animation: red_eyes 1s linear;
+}
+#mood-depressed.active .eyes-cover, #mood-depressed:hover .eyes-cover,
+#mood-lonely.active .eyes-cover, #mood-lonely:hover .eyes-cover,
+#mood-disappointed.active .eyes-cover, #mood-disappointed:hover .eyes-cover,
+#mood-sad.active .eyes-cover, #mood-sad:hover .eyes-cover
+{
+  animation: blue_eyes 1s linear;
+}
+#mood-depressed.active .mouth, #mood-depressed:hover .mouth,
+#mood-lonely.active .mouth, #mood-lonely:hover .mouth,
+#mood-disappointed.active .mouth, #mood-disappointed:hover .mouth,
+#mood-sad.active .mouth, #mood-sad:hover .mouth
+{
+  animation: blue_mouth 1s linear;
+}
+#mood-anxious.active .mouth, #mood-anxious:hover .mouth,
+#mood-stressed.active .mouth, #mood-stressed:hover .mouth,
+#mood-nervous.active .mouth, #mood-nervous:hover .mouth,
+#mood-afraid.active .mouth, #mood-afraid:hover .mouth
+{
+  animation: yellow_mouth 0.9s linear 0.4s;
+}
+#mood-anxious.active .eyes-cover, #mood-anxious:hover .eyes-cover,
+#mood-stressed.active .eyes-cover, #mood-stressed:hover .eyes-cover,
+#mood-nervous.active .eyes-cover, #mood-nervous:hover .eyes-cover,
+#mood-afraid.active .eyes-cover, #mood-afraid:hover .eyes-cover
+{
+  animation: yellow_eyes 1s linear;
+}
+#mood-anxious.active .left, #mood-anxious:hover .left,
+#mood-stressed.active .left, #mood-stressed:hover .left,
+#mood-nervous.active .left, #mood-nervous:hover .left,
+#mood-afraid.active .left, #mood-afraid:hover .left
+{
+  animation: yellow_eyes_left 1s linear;
+}
+#mood-anxious.active .right, #mood-anxious:hover .right,
+#mood-stressed.active .right, #mood-stressed:hover .right,
+#mood-nervous.active .right, #mood-nervous:hover .right,
+#mood-afraid.active .right, #mood-afraid:hover .right,
+{
+  animation: yellow_eyes_right 1s linear;
+}
+#mood-joyful.active .eye, #mood-joyful:hover .eye,
+#mood-relaxed.active .eye, #mood-relaxed:hover .eye,
+#mood-okay.active .eye, #mood-okay:hover .eye,
+#mood-loved.active .eye, #mood-loved:hover .eye
+{
+  animation: green_eyes 0.7s linear;
 }
 
-#mood-relaxed.active .mouth, #mood-relaxed:hover .mouth
+@keyframes green_eyes
 {
-  animation: okay 0.9s linear 0.4s;
-}
-
-#mood-joyful.active .eyes-cover, #mood-joyful:hover .eyes-cover
-{
-  animation:  bad_eyes 1s linear;
-}
-
-#mood-joyful.active .mouth, #mood-joyful:hover .mouth
-{
-  animation:  bad_mouth 1s linear ;
-}
-
-#mood-joyful.active:after, #mood-joyful:hover:after
-{
-  animation: bad_after 0.3s linear;
-}
-
-@keyframes great
-{
-  0% { transform: rotateZ(-45deg)  scale(1); }
+  0% { transform: rotateZ(-45deg) scale(1); }
   25%  { transform: rotateZ(-45deg) scale(1.3); }
   50% { transform: rotateZ(-45deg) scale(1); }
   75% { transform: rotateZ(-45deg) scale(1.3); }
   100% { transform: rotateZ(-45deg) scale(1); }
 }
-
-@keyframes okay
-{
-  0% { width:28px; margin-left: 22px;  }
-  25% { width:15px; margin-left: 24px;  }
-  50% { width:15px; margin-left: 24px; }
-  75% { width:15px; margin-left: 24px; }
-  100% { width:28px; margin-left: 22px; }
-}
-
-@keyframes bad_eyes
+@keyframes red_eyes
 {
   0% { top: 22px; left: 0; }
   25% { top: 24px; left: -7px;  }
-  50% { top:24px; left: -7px; }
-  75% { top:24px; left: -7px; }
-  100% { top:22px; left: 0; }
+  50% { top: 24px; left: -7px; }
+  75% { top: 24px; left: -7px; }
+  100% { top: 22px; left: 0; }
+}
+@keyframes yellow_eyes
+{
+  0% { top: 22px; left: 0; }
+  20% { top: 28px; left: -7px; }
+  50% { top: 28px; left: 7px; }
+  80% { top: 28px; left: -7px; }
+  100% { top: 22px; left: 0; }
+}
+@keyframes yellow_eyes_left
+{
+  0% {  }
+  30% { border-radius: 20px 20px 50px 50px; transform: rotateZ(-45deg) scale(1); width: 14px; }
+  50% { border-radius: 20px 20px 50px 50px; transform: rotateZ(-45deg) scale(1);width: 14px;}
+  70% { border-radius: 20px 20px 50px 50px; transform: rotateZ(-45deg) scale(1);width: 14px;}
+  100% {  }
+}
+@keyframes yellow_eyes_right
+{
+  0% {  }
+  30% { border-radius: 20px 20px 50px 50px; transform: rotateZ(45deg) scale(1); width: 14px;}
+  50% { border-radius: 20px 20px 50px 50px; transform: rotateZ(45deg) scale(1);width: 14px;}
+  70% { border-radius: 20px 20px 50px 50px; transform: rotateZ(45deg) scale(1);width: 14px;}
+  100% {  }
 }
 
-@keyframes bad_mouth
+@keyframes blue_eyes
 {
-  0% { top: 44px; left: 0; }
+  0% { top: 22px }
+  25% { top: 35px; }
+  50% { top:35px; }
+  75% { top:35px; }
+  100% { top:22px; }
+}
+
+@keyframes red_mouth
+{
+  0% { top: 46px; left: 0; }
   25% { top: 41px; left: -8px;  }
   50% { top:41px; left: -8px; }
   75% { top:41px; left: -8px; }
-  100% { top:44px; left: 0; }
+  100% { top:46px; left: 0; }
+}
+@keyframes blue_mouth
+{
+  0% { top: 44px; }
+  25% { top: 55px; }
+  50% { top:55px; }
+  75% { top:55px; }
+  100% { top:44px; }
+}
+@keyframes yellow_mouth
+{
+  0% { width:28px; margin-left: 22px; top: 46px;  }
+  20% { width:15px; margin-left: 24px; top: 50px; }
+  50% { width:15px; margin-left: 24px; top: 50px;}
+  80% { width:15px; margin-left: 24px; top: 50px; }
+  100% { width:28px; margin-left: 22px; top: 46px; }
 }
 
-@keyframes bad_after
+@keyframes green_after
 {
-  0% { top:36px; left: 32px; }
-  25% { top:33px; left: 29px;  }
-  50% { top:36px; left: 32px; }
-  75% { top:33px; left: 35px;  }
-  100% { top:36px; left: 32px; }
+  0% { top:25px; left: 28px; }
+  25% { top:22px; left: 25px;  }
+  50% { top:25px; left: 28px; }
+  75% { top:22px; left: 31px;  }
+  100% { top:25px; left: 28px; }
+
 }
 
 /////////////////////////////////////////////////////////////

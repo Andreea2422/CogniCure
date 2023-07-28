@@ -1,0 +1,61 @@
+<main id="game-container">
+  <div class="game-grid-container box-shadow">
+
+    <div id="situation">
+          <%= render partial: 'situations/situation', locals: { situation: @situation } %>
+    </div>
+
+    <div id="choices" class="opacity-0">
+        <%= render partial: 'choices/choices', locals: { situation_choices: @situation_choices, situation: @situation, choices: @choices } %>
+    </div>
+
+  </div>
+</main>
+
+
+<script type="text/javascript" charset="UTF-8">
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Attach the click event listener to the parent container
+        var mainContainer = document.getElementById('game-container');
+
+        var situationDiv = document.getElementById('situation');
+        var choicesDiv = document.getElementById('choices');
+        situationDiv.addEventListener('animationend', function() {
+            // Add a class to #choices to trigger its animation
+            choicesDiv.classList.replace('opacity-0','animated');
+
+        });
+
+        mainContainer.addEventListener('click', function(event) {
+            var target = event.target;
+
+            // Check if the clicked element is a choice button
+            if (target.classList.contains('choice-btn')) {
+                var selectedChoiceId = target.dataset.choiceId;
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/users/<%= params[:id] %>/choice_game',
+                    data: {
+                        selectedChoice: selectedChoiceId
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('success');
+                        // Update the view with the new situation and choices from the response
+                        $('#situation').html(response.situation);
+                        $('#choices').html(response.choice);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Error "+error);
+                    }
+                });
+            }
+
+        });
+    });
+
+
+
+</script>

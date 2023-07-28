@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
+  get 'user_choices/index'
+  get 'user_choices/show'
+  get 'user_choices/create'
+  get 'user_choices/update'
+  get 'choices/index'
+  get 'choices/show'
+  get 'situations/index'
+  get 'situations/show'
+  get 'situations/first'
   root 'static_pages#home'
 
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
+
   get '/discover', to: 'static_pages#discover'
   get '/discover/:keyword', to: 'static_pages#keyword', as: 'static_keyword'
   get '/learn-more-about-yourself', to: 'static_pages#learn_more_about_yourself', as: 'yourself'
@@ -38,6 +48,7 @@ Rails.application.routes.draw do
       get :progress
       get :chat
       get :appointments
+      get :choice_game
     end
   end
 
@@ -46,6 +57,10 @@ Rails.application.routes.draw do
   resources :infos, only: [:new, :create, :edit, :update]
   resources :moods, only: [:new, :create]
 
+  resources :situation_choices
+  resources :user_choices, only: [:index, :show, :update]
+  resources :choices, only: [:index, :show]
+  resources :situations, only: [:index, :show]
 
 
 

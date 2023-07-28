@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @home_page = true
+    # @home_page = true
   end
 
   def help
@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
   end
 
   def discover
-    @home_page = true
+    # @home_page = true
     @discover_page = true
     @search_query = params[:keyword] #&.downcase # Downcase the search query if it's not nil
 

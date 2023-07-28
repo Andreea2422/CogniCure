@@ -1,0 +1,10 @@
+<% situation_choices.each do |sit_choice| %>
+  <% if sit_choice.situation_id.eql?(situation.id) and sit_choice.outcome.eql?(true) %>
+      <% choice = choices.find_by(id: sit_choice.choice_id) %>
+      <% if choice %>
+              <button class="choice-btn" data-choice-id="<%= choice.id %>">
+                <%= choice.choice_text %><br>
+              </button>
+      <%end %>
+    <% end %>
+  <%end %>

@@ -38,6 +38,66 @@ class UsersController < ApplicationController
     end
   end
 
+  def choice_game
+    @user = User.find(params[:id])
+    selected_choice_id = params[:selectedChoice]
+    @mood = 1
+
+    situations = Situation.where(id_mood: @mood)
+    @choices = Choice.where(id_mood: @mood)
+    @situation_choices = SituationChoice.where(situation_id: situations.first.id..situations.last.id)
+    # debugger
+
+
+
+    # Get the next situation based on the selected choice
+    # Look for choice_id where outcome=false
+    if selected_choice_id
+      find_next = SituationChoice.find_by(choice_id: selected_choice_id, outcome: false)
+      @next_situation = Situation.find_by(id: find_next.situation_id)
+    end
+
+    # debugger
+    if @next_situation
+      @situation = @next_situation
+      # @all_choices = Choice.where(id_mood: @mood)
+      # @situation_choices = SituationChoice.where(situation_id: next_situation.id)
+      # debugger
+
+    else
+      # Handle the case where there's no next situation (e.g., game over)
+      # You can customize this based on your game logic.
+      # @situation = nil
+      # @all_choices = nil
+      # @situation_choices = nil
+
+      # situations = Situation.where(id_mood: @mood)
+      @situation = situations.first
+      # @all_choices = Choice.where(id_mood: @mood)
+
+      # @situation_choices = SituationChoice.where(situation_id: situations.first.id..situations.last.id)
+
+    end
+
+    # debugger
+
+    respond_to do |format|
+      format.html # Regular HTML response (not used in this case)
+      format.json do
+        # Return the new situation and choices in JSON format
+        render json: {
+          situation: render_to_string(partial: 'situations/situation', formats: :html, layout: false, locals: { situation: @situation }),
+          choice: render_to_string(partial: 'choices/choices', formats: :html, layout: false, locals: { situation_choices: @situation_choices, situation: @situation, choices: @choices })
+        }
+      end
+    end
+
+    # @situation_choices.each do |sit|
+    #   puts sit.situation_id
+    # end
+    # debugger
+  end
+
   def appointments
     @user = User.find(params[:id])
     @appointments = @user.appointments.order(appointment_date: :asc)

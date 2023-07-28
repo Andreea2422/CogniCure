@@ -24,6 +24,11 @@ body {
   height: 100%;
   width: 100%;
   background-color: $light-purple !important;
+  background-image: url("polygons.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 html{
   overflow-y: scroll;
@@ -49,7 +54,7 @@ textarea {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 
 /* Track */
@@ -90,14 +95,14 @@ p{
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /* home page */
-body.homepage{
-  background-image: url("polygons.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  //padding-block: 300px;
-}
+//body.homepage{
+//  background-image: url("polygons.jpg");
+//  background-position: center;
+//  background-size: cover;
+//  background-repeat: no-repeat;
+//  background-attachment: scroll;
+//  //padding-block: 300px;
+//}
 
 .container1{
   //background-color: #00adb4;
@@ -930,7 +935,7 @@ body.homepage{
   position: relative;
   margin: 0 auto 50px;
 }
-.homepage.dark-overlay::before {
+.dark-overlay::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1806,6 +1811,84 @@ blockquote::before, blockquote::after {
 @media screen and (min-width: 1300px) {
   .grid-keywords { grid-template-columns: repeat(5,1fr)}
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+/* GAME PAGE */
+#game-container{
+  position: relative;
+  max-width: 1400px;
+  margin: 50px auto 50px;
+}
+.game-grid-container{
+  display: grid;
+  background-color: rgba(255, 255, 255, 0.27);
+  padding: 25px;
+  border-radius: 50px;
+  grid-gap: 50px;
+  margin-bottom: 200px;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: auto;
+}
+#situation{
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.typed {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 2px solid transparent;
+  animation: typing 1.5s steps(30, end) forwards, blinking 1s step-end 3;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blinking {
+  0% {border-right-color: transparent}
+  50% {border-right-color: black}
+  100% {border-right-color: transparent}
+}
+
+#choices{
+  display: grid;
+  column-gap: 50px;
+  grid-template-columns: auto auto;
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(1,1fr);
+    row-gap: 30px;
+  }
+}
+.choice-btn{
+  background-color: rgba(13, 110, 253, 0.17);
+  border: none;
+  padding: 15px 32px;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+/* Apply the animation to #choices */
+#choices.animated {
+  animation: fadeInUp 1s ease-out;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /* ALL DOCTORS PAGE */

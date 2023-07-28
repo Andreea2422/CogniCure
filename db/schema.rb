@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_20_180551) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_192242) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_180551) do
     t.index ["user_id", "created_at"], name: "index_articles_on_user_id_and_created_at"
   end
 
+  create_table "choices", force: :cascade do |t|
+    t.string "name"
+    t.string "choice_text"
+    t.integer "id_mood"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "infos", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "biography"
@@ -87,6 +95,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_180551) do
     t.index ["user_id"], name: "index_moods_on_user_id"
   end
 
+  create_table "situation_choices", force: :cascade do |t|
+    t.bigint "situation_id", null: false
+    t.bigint "choice_id", null: false
+    t.boolean "outcome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["choice_id"], name: "index_situation_choices_on_choice_id"
+    t.index ["situation_id"], name: "index_situation_choices_on_situation_id"
+  end
+
+  create_table "situations", force: :cascade do |t|
+    t.string "name"
+    t.string "story_text"
+    t.integer "id_mood"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -105,4 +131,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_180551) do
   add_foreign_key "articles", "users"
   add_foreign_key "infos", "users"
   add_foreign_key "moods", "users"
+  add_foreign_key "situation_choices", "choices"
+  add_foreign_key "situation_choices", "situations"
 end

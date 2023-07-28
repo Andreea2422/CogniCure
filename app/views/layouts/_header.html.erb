@@ -38,9 +38,9 @@
               <li><%= link_to "Quizzes", quizzes_path, class: "dropdown-item" %></li>
             </ul>
           </li>
-          <% if (logged_in? and !current_user.doctor?) or (!logged_in?)%>
+          <% if logged_in? and !current_user.doctor? %> <!--or (!logged_in?) -->
             <li class="nav-item">
-                  <%=  link_to "Play our Game!", '#' , class: "nav-link" %>
+                  <%=  link_to "Play our Game!", choice_game_user_path(current_user) , class: "nav-link" %>
             </li>
           <% end %>
 

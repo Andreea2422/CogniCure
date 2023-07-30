@@ -1,15 +1,20 @@
 <div class="relative container1">
   <div class="container1-1 flex flex-row-reverse home-page">
       <div class="title-logo relative">
-        <h1 style="z-index: 10">ME:today</h1>
-        <h2 style="z-index: 10">
-          Description placeholder.<br>
-          Description placeholder.
-          Description placeholder.
-        </h2>
-        <div class="button" style="z-index: 10; margin-top: 60px">
-          <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-        </div>
+        <h2 style="z-index: 10; height: 20%;">CogniCURE: Empowering Minds, Embracing Growth</h2>
+        <h3 style="z-index: 10">
+          Your Guide to Mental Health and Self-Discovery.<br>
+          Explore the Depths of Your Mind, <br>Embrace Positive Change, <br>and Thrive in Life's Journey.
+        </h3>
+        <% if !logged_in? %>
+          <div class="button" style="z-index: 10; margin-top: 60px">
+            <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+          </div>
+        <% else %>
+          <div class="button" style="z-index: 10; margin-top: 60px">
+            <%= link_to "View your profile", current_user, class: "btn btn-lg btn-primary" %>
+          </div>
+        <% end %>
       </div>
 
   </div>
@@ -29,22 +34,49 @@
   </div>
 
   <div class="text-description">
-    <p class="title">TITLE PLACEHOLDER</p>
-    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
-    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
-    <a href="#">Check it out! -></a>
+    <p class="title">Dive into a Treasure Trove of Articles</p>
+    <p class="content">Uncover expert insights, practical tips and empowering knowledge for your mental health and self-growth. <br> Ease your minds with our quizzes while also testing your knowledge. </p>
+    <p class="content">Empower your mind, heal your heart and cultivate resilience through our thoughtful articles<br> on Mental Health, Self-Care and Psychotherapy Techniques.</p>
+    <a href="/discover">Check it out! -></a>
   </div>
 </div>
 
-<div class="container2 relative reverse" id="bottom">
+<div class="container3 relative reverse" id="bottom">
   <div class="text-description">
-    <p class="title">TITLE PLACEHOLDER</p>
-    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
-    <p class="content">Lorem ipsumLorem ipsumLorem ipsumLorem <br>ipsumLorem ipsumLorem ipsumLorem ipsum</p>
-    <a href="#">Check it out! -></a>
+    <p class="title">Meet the Masters of the Mind</p>
+    <p class="content">Discover our team of esteemed Psychologists and Therapists. <br>Your Guides to Mental Health and Self-Growth.</p>
+    <p class="content">Unveiling the compassionate experts who will empower you on your journey to emotional well-being and personal transformation. <br> Book an appointment with them today!</p>
+    <a href="/users">Check it out! -></a>
   </div>
 
   <div class="image-puppet">
     <p>IMAGE PLACEHOLDER</p>
+  </div>
+</div>
+
+<div class="container2 relative" id="middle">
+  <div class="image-puppet">
+    <p>IMAGE PLACEHOLDER</p>
+  </div>
+
+  <div class="text-description">
+    <p class="title">Mindful Tracker</p>
+    <p class="content">Your Personal Journal for Appointments and Mood Reflections <br> - Nurturing Mental Health, One Entry at a Time. </p>
+    <p class="content">Stay organized, self-aware, and emotionally attuned with <br> our integrated tracking tool designed to support your mental well-being journey.</p>
+<!--    <a href="/discover">Check it out! -></a>-->
+  </div>
+</div>
+
+<div class="container4 relative reverse" id="bottom">
+  <div class="text-description">
+    <p class="title">Pathways of Insight: A Journey of Understanding Mental Health Factors and Triggers</p>
+    <p class="content">Engage in an immersive psychotherapy-inspired game to explore the origins of mental health factors and triggers, fostering empathy and self-discovery. <br> "Navigate the Labyrinth of the Mind, Unravel the Source, Embrace Empowerment."</p>
+    <p class="content">Embark on an extraordinary adventure of self-discovery with "Pathways of Insight," a captivating choice-based game inspired by the principles of psychotherapy and mental health exploration.
+      <br> Delve deep into the intricate labyrinth of the mind as you uncover the origins of various factors and triggers that shape your emotional landscape, based on your mood today. </p>
+    <% if !logged_in? %>
+      <a href="/login">Log in to play! -></a>
+    <% elsif !current_user.doctor?%>
+      <%=  link_to "PLAY ->", choice_game_user_path(current_user) , class: "nav-link" %>
+    <% end %>
   </div>
 </div>

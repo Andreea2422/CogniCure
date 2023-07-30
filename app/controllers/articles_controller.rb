@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   def show
+    @shadow = true
     @article = Article.find(params[:id])
 
     learn_more_about_yourself = ['Counselling','Emotional Intelligence', 'Empathy', 'Happiness', 'Loneliness',

@@ -43,8 +43,8 @@
         <%= f.label :doctor_name, class: 'title-form' %>
         <%= f.text_field :doctor_name, class: 'my-form-control', id: 'appointment_doctor_name', readonly: true %>
 
-        <%= f.label :doctor_id, class: 'title-form' %>
-        <%= f.number_field :doctor_id, class: 'my-form-control', id: 'appointment_doctor_id', readonly: true %>
+        <%= f.label :doctor_id, class: 'title-form', hidden: true %>
+        <%= f.number_field :doctor_id, class: 'my-form-control', id: 'appointment_doctor_id', readonly: true, hidden: true %>
 
         <%= f.submit yield(:button_text), class: "my-form-button" %>
       <% end %>

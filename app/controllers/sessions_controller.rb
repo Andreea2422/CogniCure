@@ -18,6 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    session[:cod_mood] = nil
+    session[:execute_once] = nil
     log_out if logged_in?
     redirect_to root_url
   end

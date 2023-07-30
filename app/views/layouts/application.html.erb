@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MEtoday</title>
+    <title>CogniCure</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= render 'layouts/rails_default' %>
     <%= render 'layouts/shim' %>
   </head>
 
-  <body class="<%= @discover_page ? 'dark-overlay' : '' %>">
+  <body class="<%= @shadow ? 'dark-overlay' : '' %>">
     <%= render 'layouts/header' %>
 
     <% flash.each do |message_type, message| %>

@@ -8,16 +8,130 @@
     </div>
   </div>
 
-    <div class="grid-container box-shadow">
-      <% @doctors.each do |doctor| %>
-    <!--    <li>-->
-        <div class="grid-item">
-          <%=link_to show_info_path(doctor.id), class: "nav-link"  do %>
-              <%= gravatar_for doctor, size: 100 %>
-              <%= doctor.name %>
-          <%end %>
+  <div class="main-content-flex mt-0">
+
+<!--    <div id="filter-container" class="filter-doctors">-->
+      <%# @uniq_specialities.each do |spec| %>
+<!--        <button class="btn-info filter-btn" data-filter="<%#= spec %>">-->
+          <%#= spec %>
+<!--        </button>-->
+      <%# end %>
+<!--    </div>-->
+
+    <div id="filter-container" class="filter-doctors">
+        <label class="title-form">Filter</label>
+        <div class="row">
+          <div class="form-group">
+            <div class="grid-container text-center text-uppercase">
+              <% @uniq_specialities.each do |spec| %>
+                <div>
+                  <label class="checkbox-button">
+                    <input type="checkbox" value="<%= spec %>">
+                    <%= spec %>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-    <!--    </li>-->
-      <% end %>
     </div>
+
+    <div id="show-doctors" class="grid-container box-shadow">
+      <%= render partial: 'doctors', locals: { doctors: @filtered_doctors } %>
+    </div>
+
+
+  </div>
+
 </main>
+
+
+
+<script type="text/javascript" charset="UTF-8">
+    function updateURL(filter) {
+        var encodedFilters = filter.map(function(f) {
+            return encodeURIComponent(f);
+        });
+
+        var newURL = window.location.pathname;
+        if (encodedFilters.length > 0) {
+            newURL += '?filter=' + encodedFilters.join('%2C');
+        }
+        history.replaceState({}, '', newURL);
+    }
+
+    function updateFilters(filters){
+        $.ajax({
+            type: 'GET',
+            url: '/users',
+            data: {
+                filter: filters
+            },
+            dataType: 'json',
+            success: function(response) {
+                // console.log('success');
+                // console.log(response);
+                // Update the view with the new situation and choices from the response
+                $('#show-doctors').html(response.filtering);
+            },
+            error: function(xhr, status, error) {
+                console.log("Error "+ error);
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create an empty array to store the selected values
+        var selectedFilters = [];
+        var urlParams = new URLSearchParams(window.location.search);
+        var filtersFromURL = urlParams.get('filter');
+        selectedFilters = filtersFromURL ? filtersFromURL.split(',') : [];
+
+        updateFilters(selectedFilters);
+
+        var checkboxButtons = document.querySelectorAll('.checkbox-button');
+        checkboxButtons.forEach(function(button) {
+            var checkbox = button.querySelector('input[type="checkbox"]');
+
+            // Check if the checkbox value is in the selectedFilters array
+            if (selectedFilters.includes(checkbox.value)) {
+                checkbox.checked = true; // Set 'checked' property to true
+                checkbox.parentElement.classList.add('selected'); // Add 'selected' class to the parent element
+            } else {
+                checkbox.checked = false; // Set 'checked' property to false
+                checkbox.parentElement.classList.remove('selected'); // Remove 'selected' class from the parent element
+            }
+
+            button.addEventListener('click', function() {
+                // Toggle the 'selected' class on the button when it's clicked
+                button.classList.toggle('selected', checkbox.checked);
+            });
+        });
+
+
+        // Get all the checkboxes
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = selectedFilters.includes(checkbox.value);
+            checkbox.addEventListener('change', function() {
+                // If the checkbox is checked, add its value to the selectedFilters array
+                if (this.checked) {
+                    selectedFilters.push(checkbox.value);
+                    updateURL(selectedFilters);
+                    updateFilters(selectedFilters);
+                } else {
+                    // If the checkbox is unchecked, remove its value from the selectedFilters array
+                    var index = selectedFilters.indexOf(checkbox.value);
+                    if (index !== -1) {
+                        selectedFilters.splice(index, 1);
+                        updateURL(selectedFilters);
+                        updateFilters(selectedFilters);
+                    }
+                }
+                console.log(selectedFilters);
+            });
+        });
+    });
+
+
+</script>

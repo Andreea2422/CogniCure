@@ -1,79 +1,176 @@
 <main id="main">
-  <div class="my-account-header page-title normal-title">
-    <div class="page-title-inner flex-row container">
-      <div class="flex-col flex-grow text-center">
-        <h1 class="uppercase mb-0">Hi <%= @user.name %>!</h1>
+<!--  <div class="my-account-header page-title normal-title">-->
+<!--    <div class="page-title-inner flex-row container">-->
+<!--      <div class="flex-col flex-grow text-center">-->
+<!--        <h1 class="uppercase mb-0">Hi <%#= @user.name %>!</h1>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <div class="main-content-flex mt-0 column-gap-0 w-full">
+    <div class="left-flex align-items-stretch flex-grow-1 w-50">
+
+<!--      <div class="main-content-flex mt-0">-->
+        <div class="left-flex">
+
+          <% if @last_mood.day.eql?(Date.parse(@today)) %>
+            <div>
+              <p> Your mood today: <%= @last_mood.name %></p>
+            </div>
+          <% else %>
+            <%= render template: 'moods/new' %>
+          <% end %>
+        </div>
+
+        <div class="d-inline-block">
+
+            <button class="btn btn-success" id="week">
+              By Week
+            </button>
+            <button class="btn btn-success" id="month">
+              By Month
+            </button>
+            <br>
+
+            <span id="current-date"><%= params[:date] %></span>
+
+            <button class="btn btn-success" id="previous">
+              <-
+            </button>
+            <button class="btn btn-success" id="next">
+              ->
+            </button>
+
+
+            <div id="week-chart-figure">
+              <%#= line_chart @mood_data_week ,
+                   id: 'mood-chart',
+                   title: 'Mood Variations',
+                   colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03']],
+                   xtitle: 'Date',
+                   ytitle: 'Mood',
+                   label: "Mood",
+                   legend: false,
+                   dataset: {
+                     radius: 10
+                   }
+              %>
+            </div>
+
+            <div id="month-chart-figure" > <!--style="pointer-events: none"-->
+              <%#= line_chart @mood_data_month ,
+                      # id: 'mood-chart',
+                      title: 'Mood Variations',
+                      colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03'],['#79fc8f']],
+                      xtitle: 'Month',
+                      ytitle: 'Mood',
+                      label: "Mood",
+                      dataset: {
+                         radius: 10
+                       }
+              %>
+            </div>
+
+        </div>
+<!--      </div>-->
+
+    </div>
+
+    <div class="right-flex flex-grow-1 w-50 justify-content-start">
+
+<!--      <div class="col-md-8">-->
+        <%# if @user.moods.any? %>
+<!--          <h3>Moods (<%#= @user.moods.count %>)</h3>-->
+<!--          <ol class="moods">-->
+            <%#= render @all_moods %>
+<!--          </ol>-->
+        <%# end%>
+<!--      </div>-->
+
+
+      <div class="wrapper" style="background-color: antiquewhite">
+<!--        <h1>Letter-like form with inline fields</h1>-->
+
+<!--        <form class="form__contact" action="">-->
+<!--          <fieldset>-->
+<!--            <p>Hey, Stranger!</p>-->
+<!--            <p>My name is <span class="form__field field--name" data-placeholder="your name" tabindex="1" contenteditable></span> and I'm writting tou you since I'm interested in <span class="form__field field--message" data-placeholder="your message" tabindex="2" contenteditable></span>.</p>-->
+<!--            <p>This is my <span class="form__field field--email" data-placeholder="email address" tabindex="3" contenteditable></span>.</p>-->
+<!--            <p>Hope to get in touch soon. Cheers!</p>-->
+<!--            <button type="submit" class="button button--xlarge" tabindex="4">Send message &#187;</button>-->
+<!--          </fieldset>-->
+<!--        </form>-->
+
+        <%#= edit_mood_path(@last_mood) %>
+
+        <div id="mood-description">
+          <% if @last_mood.day.eql?(Date.parse(@today)) %>
+            <label>Input feelings:
+              <span id="mood-description"><%=  @last_mood.description  %></span>
+            </label>
+            <button id="edit-button">Edit</button>
+          <% else %>
+            <p>Please choose a mood </p>
+          <%  end %>
+        </div>
+
       </div>
+
+
     </div>
   </div>
 
-  <div class="col-md-8">
-    <% if @user.moods.any? %>
-      <h3>Moods (<%= @user.moods.count %>)</h3>
-      <ol class="moods">
-        <%= render @all_moods %>
-      </ol>
-    <% end%>
-  </div>
 
-
-  <!--  <div class="grid-container">-->
-  <%# unless @last_mood.day.eql?(Date.parse(@today)) %>
-    <%=  render template: 'moods/new'  %>
-  <%#  end %>
-
-  <!--  </div>-->
-
-  <button class="btn btn-success" id="week">
-    By Week
-  </button>
-  <button class="btn btn-success" id="month">
-    By Month
-  </button>
-  <br>
-
-  <span id="current-date"><%= params[:date] %></span>
-
-  <button class="btn btn-success" id="previous">
-    <-
-  </button>
-  <button class="btn btn-success" id="next">
-    ->
-  </button>
-
-
-  <div id="week-chart-figure">
-    <%#= line_chart @mood_data_week ,
-                 id: 'mood-chart',
-                 title: 'Mood Variations',
-                 colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03']],
-                 xtitle: 'Date',
-                 ytitle: 'Mood',
-                 label: "Mood",
-                 legend: false,
-                 dataset: {
-                   radius: 10
-                 }
-    %>
-  </div>
-
-  <div id="month-chart-figure" > <!--style="pointer-events: none"-->
-    <%#= line_chart @mood_data_month ,
-                    # id: 'mood-chart',
-                    title: 'Mood Variations',
-                    colors:[['#fcf403'],['#30c208'],['#44e019'],['#213291'],['#cf3838'],['#32f22c'],['#fcad03'],['#79fc8f']],
-                    xtitle: 'Month',
-                    ytitle: 'Mood',
-                    label: "Mood",
-                    dataset: {
-                       radius: 10
-                     }
-    %>
-  </div>
 
 </main>
 
 <script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function() {
+        // Function to fetch the edit form via AJAX
+        function fetchEditForm() {
+            $.ajax({
+                url: '/moods/<%= @last_mood.id %>/edit',
+                type: 'GET',
+                dataType: 'html',
+                success: function(response) {
+                    // Replace the original content with the edit form
+                    $('#mood-description').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching edit form:', error);
+                }
+            });
+        }
+
+        // Event listener for the "Edit" button click
+        $('#edit-button').click(function() {
+            fetchEditForm();
+        });
+
+        // Event listener for the form submission
+        $(document).on('submit', '#edit-form', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            var formData = $(this).serialize(); // Serialize the form data
+
+            // Send the updated data to the server via AJAX
+            $.ajax({
+                url: '/moods/<%= @last_mood.id %>',
+                type: 'PATCH', // Use PATCH method for updating the resource
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    // Update the original content with the updated information
+                    $('#mood-description').text(response.description);
+                    // Optionally, display a success message or close the edit form
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error updating resource:', error);
+                }
+            });
+        });
+    });
+
   const week = document.getElementById('week');
   const month = document.getElementById('month');
 

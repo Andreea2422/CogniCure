@@ -25,6 +25,13 @@
       <%= f.text_field :readtime, class: 'my-form-control' %>
 
       <%= f.label :content, class: 'title-form' %>
+      <div>
+        <ul> Please use the following to customize your content:
+          <li> b- content -b -> <strong>Bold text</strong> </li>
+          <li> l- content -l -> To mark the start and end of your list </li>
+          <li> li- content -li -> To mark the start and end of your list items </li>
+        </ul>
+      </div>
       <%= f.text_area :content, size: "70x5", class: 'my-form-control' %>
 
       <%= f.label :quote, "Add a quote (not mandatory)", class: 'title-form' %>

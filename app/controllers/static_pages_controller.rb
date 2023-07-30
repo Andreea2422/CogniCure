@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
 
   def discover
     # @home_page = true
-    @discover_page = true
+    @shadow = true
     @search_query = params[:keyword] #&.downcase # Downcase the search query if it's not nil
 
     # Then redirect to the appropriate page based on the search query

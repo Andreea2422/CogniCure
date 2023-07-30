@@ -10,8 +10,10 @@
     </div>
   </div>
 
-  <% if current_user.doctor? && logged_in?%>
-    <%= link_to "Post up now!", submit_path %>
+  <% if logged_in?%>
+    <% if current_user.doctor? %>
+      <%= link_to "Post up now!", submit_path %>
+    <% end %>
   <% end %>
 
 

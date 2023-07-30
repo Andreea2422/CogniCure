@@ -1,6 +1,49 @@
 class UsersController < ApplicationController
   def index
-    @doctors = User.where(doctor: true).order(name: :asc)
+    doctors = User.where(doctor: true).order(name: :asc)
+    @filtered_doctors = []
+    # Check if the filter parameter is present in params and split it into an array if it is
+    if params[:filter].present? && params[:filter].is_a?(Array)
+      filters = params[:filter]
+    else
+      filters = []  # If the filter parameter is not present, initialize an empty array
+    end
+
+    specialities = []
+    doctors.each do |doctor|
+      doctor_info = Info.joins(:user).find_by(infos: {user_id: doctor.id})
+      if doctor_info
+        doctor_info.speciality.each do |sp|
+          specialities << sp
+        end
+      end
+    end
+    @uniq_specialities = specialities.uniq
+
+    if filters.empty?
+      @filtered_doctors = doctors
+    else
+      # doctors.each do |doctor|
+      #   doctor_info = Info.joins(:user).find_by(infos: {user_id: doctor.id})
+      #   if doctor_info and filters.any? {|spec| doctor_info.speciality.include?(spec)}
+      #     @filtered_doctors << doctor
+      #   end
+      # end
+      @filtered_doctors = doctors.joins(:info).where("infos.speciality @> ARRAY[?]::varchar[]", filters)
+    end
+
+    respond_to do |format|
+      format.html do
+        render 'users/index'
+      end
+      format.json do
+        puts 'JSON request received'
+        render json: {
+          filtering: render_to_string(partial: 'doctors', formats: :html, layout: false, locals: { doctors: @filtered_doctors } )
+        }
+      end
+    end
+
   end
 
   def show
@@ -41,14 +84,28 @@ class UsersController < ApplicationController
   def choice_game
     @user = User.find(params[:id])
     selected_choice_id = params[:selectedChoice]
-    @mood = 1
 
-    situations = Situation.where(id_mood: @mood)
-    @choices = Choice.where(id_mood: @mood)
+    today_mood = @user.moods.order(day: :desc).first
+    if session[:execute_once].nil? || session[:execute_once] == true
+      if today_mood.day.eql?(Date.current)
+        if today_mood.name.eql?("furious") || today_mood.name.eql?("bitter") || today_mood.name.eql?("frustrated") || today_mood.name.eql?("annoyed")
+          cod_mood = 1
+        elsif today_mood.name.eql?("depressed") || today_mood.name.eql?("lonely") || today_mood.name.eql?("disappointed") || today_mood.name.eql?("sad")
+          cod_mood = 2
+        elsif today_mood.name.eql?("afraid") || today_mood.name.eql?("stressed") || today_mood.name.eql?("anxious") || today_mood.name.eql?("nervous")
+          cod_mood = 3
+        end
+      else
+        cod_mood = (rand(3)) + 1
+      end
+      # Store @cod_mood in the session
+      session[:cod_mood] = cod_mood
+      session[:execute_once] = false
+    end
+
+    situations = Situation.where(id_mood: session[:cod_mood])
+    @choices = Choice.where(id_mood: session[:cod_mood])
     @situation_choices = SituationChoice.where(situation_id: situations.first.id..situations.last.id)
-    # debugger
-
-
 
     # Get the next situation based on the selected choice
     # Look for choice_id where outcome=false
@@ -57,29 +114,12 @@ class UsersController < ApplicationController
       @next_situation = Situation.find_by(id: find_next.situation_id)
     end
 
-    # debugger
     if @next_situation
       @situation = @next_situation
-      # @all_choices = Choice.where(id_mood: @mood)
-      # @situation_choices = SituationChoice.where(situation_id: next_situation.id)
-      # debugger
-
     else
-      # Handle the case where there's no next situation (e.g., game over)
-      # You can customize this based on your game logic.
-      # @situation = nil
-      # @all_choices = nil
-      # @situation_choices = nil
-
-      # situations = Situation.where(id_mood: @mood)
+      # Handle the case where there's no next situation (e.g., start game)
       @situation = situations.first
-      # @all_choices = Choice.where(id_mood: @mood)
-
-      # @situation_choices = SituationChoice.where(situation_id: situations.first.id..situations.last.id)
-
     end
-
-    # debugger
 
     respond_to do |format|
       format.html # Regular HTML response (not used in this case)
@@ -113,6 +153,7 @@ class UsersController < ApplicationController
     @last_mood = @moods_ord.last
 
     @today = params[:date]
+    # debugger
     formatted_date = Date.parse(@today)
 
 

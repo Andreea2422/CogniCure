@@ -23,8 +23,9 @@ body {
   margin-bottom: 60px;
   height: 100%;
   width: 100%;
-  background-color: $light-purple !important;
+  //background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(186, 159, 220) 99%), url("polygons.jpg");
   background-image: url("polygons.jpg");
+  background-color: $light-purple !important;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -133,7 +134,7 @@ p{
   top: 0;
   left: 0;
   width: 100%;
-  height: 250px;
+  height: 300px;
   margin-top: -50px;
   background-image: url("metoday.png");
   opacity: 20%;
@@ -143,25 +144,53 @@ p{
   z-index: -1;
 }
 
-.container2{
-  //background-color: #00adb4;
+.container2, .container3, .container4{
   display: flex;
   min-height: 100%;
   justify-content: space-between;
   align-items: center;
 }
-.container2 > div{
+.container2{
+  background-image: linear-gradient(to bottom, rgb(102, 0, 208), rgba(186, 159, 220, 0.01)), url("polygons.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.container2 > div, .container3 > div, .container4 > div{
   margin: 50px;
   padding: 20px;
   font-size: 20px;
 }
+.container2 .text-description{
+  display: flex;
+  justify-items: end;
+  flex-direction: column;
+  align-items: flex-end;
+  .content {
+    text-align: end;
+  }
+}
+.container3 .text-description{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  .content {
+    text-align: start;
+  }
+}
+.container4 .text-description{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .content {
+    text-align: center;
+  }
+}
 .text-description{
   .title{
-    text-align: center;
     font-family: "Arial Black", serif;
   }
   .content{
-    text-align: center;
     font-family: "Arial", serif;
   }
 }
@@ -170,13 +199,15 @@ p{
   .scroll-button{
     display: none;
   }
-  .container2{
+  .container2, .container3, .container4{
     flex-direction: column;
+    margin-top: 60px;
+    min-height: 0;
   }
-  .container2 > div{
+  .container2 > div, .container3 > div, .container4 > div{
     margin: 50px;
     padding: 20px;
-    font-size: 10px;
+    font-size: 15px;
   }
   .reverse{
     flex-direction: column-reverse;
@@ -200,8 +231,8 @@ p{
   position: relative;
 }
 .normal-title .page-title-inner{
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .page-title-inner{
   position: relative;
@@ -219,7 +250,7 @@ p{
 }
 .uppercase{
   text-transform: uppercase;
-  font-size: 60px;
+  //font-size: 60px;
   line-height: 1.2;
 }
 .box-shadow{
@@ -228,31 +259,73 @@ p{
 .grid-container {
   display: grid;
   //grid-template-columns: auto auto auto;
-  background-color: #ffffff;
+  background-color: aliceblue;
   //box-shadow: 0 0 20px 20px rgba(0,0,0,.2);
-  padding: 80px;
+  padding: 50px;
   border-radius: 50px;
   grid-gap: 50px;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
+}
+.main-content-flex {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 7%;
+  column-gap: 200px;
+  //margin-bottom: 10%;
+}
+.left-flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  row-gap: 10px;
+}
+.right-flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  row-gap: 10px;
+  flex-wrap: wrap;
 }
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
   //border: 1px solid $purple;
   box-shadow: 0 0 20px 5px #6600d03d;
   padding: 20px;
-  font-size: 30px;
+  //font-size: 30px;
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
 }
+.flex-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  //border: 1px solid $purple;
+  box-shadow: 0 0 20px 5px #6600d03d;
+  padding: 20px;
+  //font-size: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  border-radius: 10px;
+}
+
 .subtext{
   text-transform: none;
   font-weight: normal;
-  font-size: 20px;
+  //font-size: 20px;
   line-height: 1.2;
 }
 .grid-item:hover{
   background-color: #6600d03d;
+}
+.flex-item:hover{
+  transition: 0.3s;
+  background-color: #6600d03d;
+  color: white;
 }
 
 @media screen and (max-width: 800px) {
@@ -263,6 +336,16 @@ p{
 }
 @media screen and (min-width: 1300px) {
   .grid-container { grid-template-columns: repeat(3,1fr)}
+}
+
+@media screen and (max-width: 800px) {
+  .main-content-flex {
+    flex-direction: column;
+    row-gap: 60px;
+  }
+  .flex-item{
+    width: 90%;
+  }
 }
 
 /////////////////////////////////////////////////////////////
@@ -300,7 +383,7 @@ p{
   padding: 80px;
   border-radius: 50px;
   //grid-gap: 50px;
-  margin-bottom: 200px;
+  //margin-bottom: 200px;
 }
 #app-grid{
   display: grid;
@@ -927,7 +1010,26 @@ p{
   color: white;
   background-image: linear-gradient(to right, $blue, #812fcc, $light-purple);
 }
+.grid-container-app {
+  display: grid;
+  //grid-template-columns: auto auto auto;
+  background-color: $light-purple;
+  padding: 50px;
+  border: 10px solid $dark-blue;
+  grid-gap: 50px;
+  margin-bottom: 150px;
+  //align-items: baseline;
+}
 
+@media screen and (max-width: 800px) {
+  .grid-container-app { grid-template-columns: repeat(1,1fr)}
+}
+@media screen and (min-width: 800px) {
+  .grid-container-app { grid-template-columns: repeat(2,1fr)}
+}
+@media screen and (min-width: 1300px) {
+  .grid-container-app { grid-template-columns: repeat(3,1fr)}
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /* DISCOVER PAGE */
@@ -1592,7 +1694,7 @@ a{
 }
 .article-title{
   position: relative;
-  padding: 100px 160px 10px 160px;
+  padding: 30px 160px 10px 160px;
   font-weight: bold;
 }
 .text-left{
@@ -1814,6 +1916,26 @@ blockquote::before, blockquote::after {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 /* GAME PAGE */
+.digital-text {
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  font-weight: bold;
+  color: #0ae80a; /* Light green color */
+  background-color: #000000; /* Black background color */
+  line-height: 1.5;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+.neon {
+  text-shadow:
+          0 0 5px #0ae80a,
+          0 0 10px #41de2e,
+          0 0 20px #6ce35e,
+          0 0 40px #86ea7b,
+          0 0 80px #c4eebe,
+          0 0 90px #edfcec,
+          0 0 100px #f8fff7;
+}
+
 #game-container{
   position: relative;
   max-width: 1400px;
@@ -1821,7 +1943,8 @@ blockquote::before, blockquote::after {
 }
 .game-grid-container{
   display: grid;
-  background-color: rgba(255, 255, 255, 0.27);
+  background-color: black;
+  color: white;
   padding: 25px;
   border-radius: 50px;
   grid-gap: 50px;
@@ -1865,7 +1988,7 @@ blockquote::before, blockquote::after {
   }
 }
 .choice-btn{
-  background-color: rgba(13, 110, 253, 0.17);
+  background-color: rgba(13, 110, 253, 0.93);
   border: none;
   padding: 15px 32px;
   text-decoration: none;
@@ -1934,7 +2057,7 @@ blockquote::before, blockquote::after {
   inline-size: fit-content;
   //max-width: 100%; /* Ensures the container does not exceed its parent's width */
   //width: 100%; /* Responsive width */
-  //height: auto;
+  height: fit-content;
 }
 
 
@@ -2082,10 +2205,23 @@ button:focus {
   .summary { width: 80%; }
 }
 
+
+/////////////////////////////////////////////////////////////
+/* ABOUT STATIC PAGE */
+.grid-container-about{
+  display: flex;
+  background-color: aliceblue;
+  padding: 50px;
+  border-radius: 50px;
+  margin-bottom: 150px;
+  flex-direction: column;
+  align-items: center;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /* HEADER */
 .header{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0,0,0,0));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 nav.absolute-top{
   position: absolute;
@@ -2108,13 +2244,13 @@ nav.absolute-top{
   color: #fff;
   text-transform: none;
   letter-spacing: -1px;
-  padding-top: 9px;
+  //padding-top: 9px;
   font-weight: bold;
   text-decoration: none;
 }
 
 #img-logo{
-  margin-bottom: 27px;
+  //margin-bottom: 27px;
 }
 
 //@media screen and (min-width: 992px) {
@@ -2135,8 +2271,8 @@ nav.absolute-top{
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /* footer */
-.footer {
-  position: fixed;
+footer {
+  //position: fixed;
   margin-top: 45px;
   margin-left: 100px;
   margin-right: 100px;
@@ -2146,7 +2282,7 @@ nav.absolute-top{
   height: 10px;
 
   a {
-    color: $gray;
+    color: #f4eff8;
 
     &:hover {
       color: $dark-blue;
@@ -2170,6 +2306,9 @@ nav.absolute-top{
 
 @media screen and (max-width: 800px) {
   footer {
+    margin-left: 30px;
+    margin-right: 30px;
+
     small {
       display: block;
       float: none;

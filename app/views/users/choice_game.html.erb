@@ -1,61 +1,86 @@
 <main id="game-container">
   <div class="game-grid-container box-shadow">
+    <div id="start-game" class="flex flex-column align-items-center row-gap-2">
 
-    <div id="situation">
+      <div class="page-title-inner flex-row container">
+        <div class="flex-col flex-grow text-center">
+          <h1 class="uppercase mb-0">
+            Pathways of Insight: Unravel the Threads of Your Mind
+          </h1>
+        </div>
+      </div>
+      <p class="text-center lh-base digital-text neon" > <!--style="text-align: justify" -->
+        "Navigate the Labyrinth of the Mind, Unravel the Source, Embrace Empowerment"
+
+        <br>Embark on an extraordinary adventure of self-discovery with "Pathways of Insight," a captivating choice-based game inspired by the principles of psychotherapy and mental health exploration. Delve deep into the intricate labyrinth of the mind as you uncover the origins of various factors and triggers that shape your emotional landscape.
+
+        <br><br>In this interactive journey, you'll assume the role of a protagonist facing a range of life situations and emotional challenges. As you progress through the game, you'll encounter pivotal moments and critical decisions that have a profound impact on your character's well-being. Your choices will lead you through different paths, each revealing unique insights into the psychological factors that influence your character's thoughts, emotions, and behavior.
+
+        Uncover the hidden threads that connect your character's struggles to their origins, and along the way, you might just find a piece of yourself mirrored in the narrative.
+
+        <br>Are you ready to take the plunge into the enigmatic world of "Pathways of Insight"? Embark on a transformative journey that illuminates the corridors of your mind, leading you to embrace empowerment, empathy, and a greater understanding of mental health. Remember, the choices you make hold the key to unraveling the source of your character's challenges and unlocking the secrets of your own psyche.
+      </p>
+      <button id="btn-start">Start game</button>
+    </div>
+
+    <div id="situation" class="d-none">
           <%= render partial: 'situations/situation', locals: { situation: @situation } %>
     </div>
 
-    <div id="choices" class="opacity-0">
+    <div id="choices" class="opacity-0 d-none">
         <%= render partial: 'choices/choices', locals: { situation_choices: @situation_choices, situation: @situation, choices: @choices } %>
     </div>
-
   </div>
 </main>
 
 
 <script type="text/javascript" charset="UTF-8">
+  document.addEventListener("DOMContentLoaded", function() {
+      // Attach the click event listener to the parent container
+      var mainContainer = document.getElementById('game-container');
+      var start_game = document.getElementById('start-game');
+      var btn_start = document.getElementById('btn-start');
+      var situationDiv = document.getElementById('situation');
+      var choicesDiv = document.getElementById('choices');
 
-    document.addEventListener("DOMContentLoaded", function() {
-        // Attach the click event listener to the parent container
-        var mainContainer = document.getElementById('game-container');
+      btn_start.addEventListener('click', function (){
+          start_game.classList.add('hidden');
+          situationDiv.classList.remove('d-none');
+          choicesDiv.classList.remove('d-none');
+      });
 
-        var situationDiv = document.getElementById('situation');
-        var choicesDiv = document.getElementById('choices');
-        situationDiv.addEventListener('animationend', function() {
-            // Add a class to #choices to trigger its animation
-            choicesDiv.classList.replace('opacity-0','animated');
+    situationDiv.addEventListener('animationend', function() {
+        // Add a class to #choices to trigger its animation
+        choicesDiv.classList.replace('opacity-0','animated');
 
-        });
-
-        mainContainer.addEventListener('click', function(event) {
-            var target = event.target;
-
-            // Check if the clicked element is a choice button
-            if (target.classList.contains('choice-btn')) {
-                var selectedChoiceId = target.dataset.choiceId;
-
-                $.ajax({
-                    type: 'GET',
-                    url: '/users/<%= params[:id] %>/choice_game',
-                    data: {
-                        selectedChoice: selectedChoiceId
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log('success');
-                        // Update the view with the new situation and choices from the response
-                        $('#situation').html(response.situation);
-                        $('#choices').html(response.choice);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log("Error "+error);
-                    }
-                });
-            }
-
-        });
     });
 
+    mainContainer.addEventListener('click', function(event) {
+        var target = event.target;
 
+        // Check if the clicked element is a choice button
+        if (target.classList.contains('choice-btn')) {
+            var selectedChoiceId = target.dataset.choiceId;
 
+            $.ajax({
+                type: 'GET',
+                url: '/users/<%= params[:id] %>/choice_game',
+                data: {
+                    selectedChoice: selectedChoiceId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    console.log('success');
+                    // Update the view with the new situation and choices from the response
+                    $('#situation').html(response.situation);
+                    $('#choices').html(response.choice);
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error "+error);
+                }
+            });
+        }
+    });
+
+  });
 </script>

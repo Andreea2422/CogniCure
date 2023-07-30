@@ -1,33 +1,15 @@
 Rails.application.routes.draw do
-  get 'user_choices/index'
-  get 'user_choices/show'
-  get 'user_choices/create'
-  get 'user_choices/update'
-  get 'choices/index'
-  get 'choices/show'
-  get 'situations/index'
-  get 'situations/show'
-  get 'situations/first'
   root 'static_pages#home'
 
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
-
   get '/discover', to: 'static_pages#discover'
   get '/discover/:keyword', to: 'static_pages#keyword', as: 'static_keyword'
   get '/learn-more-about-yourself', to: 'static_pages#learn_more_about_yourself', as: 'yourself'
   get '/mental-health', to: 'static_pages#mental_health', as: 'mental'
-  # get '/learn-more-about-yourself/article1', to: 'static_pages#article1', as: 'article1'
-  # get '/learn-more-about-yourself/:id', to: 'static_pages#article', as: 'article'
   get '/quizzes', to: 'static_pages#quizzes'
   get '/quizzes/quiz1', to: 'static_pages#quiz1', as: 'quiz1'
-  # get '/yourself', to: 'static_pages#yourself'
-  # get '/yourself', to: 'static_pages#yourself'
-
-  # get '/my-progress', to: 'static_pages#progress', as: 'progress'
-
-  get '/signup', to: 'users#new'
 
   get '/article/:id', to: 'articles#show', as: 'show_article'
   get '/submit-article', to: 'articles#new', as: 'submit'
@@ -38,6 +20,8 @@ Rails.application.routes.draw do
   get '/create-doctor-details', to: 'infos#new', as: 'create_info'
   get '/doctor-details/:id', to: 'infos#show', as: 'show_info'
   get '/doctor-details/:id/edit', to: 'infos#edit', as: 'edit_info'
+
+  get '/signup', to: 'users#new'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -52,17 +36,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/moods/:id/edit', to: 'moods#edit_partial', as: 'edit_partial'
   resources :articles, only: [:new, :create, :destroy, :edit, :update]
   resources :appointments, only: [:new, :create, :destroy]
   resources :infos, only: [:new, :create, :edit, :update]
-  resources :moods, only: [:new, :create]
-
-  resources :situation_choices
-  resources :user_choices, only: [:index, :show, :update]
-  resources :choices, only: [:index, :show]
-  resources :situations, only: [:index, :show]
-
-
+  resources :moods, only: [:new, :create, :update]
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

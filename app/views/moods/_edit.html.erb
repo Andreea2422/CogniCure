@@ -1,12 +1,12 @@
 
-<div class="mood-form">
+<div class="mood-form px-3">
   <!--    <div class="col-md-5 col-md-offset-3 row-edit">-->
   <%= form_with(model: mood, local: true) do |f| %>
     <%#= render 'shared/error_messages', object: f.object%>
 
 
-    <label class="title-form"> Input feelings:
-      <textarea type="text" name="mood[description]"><%=mood.description %> </textarea>
+    <label class="title-form" style="font-size: 25px;"> Input feelings:
+      <textarea rows="5" cols="70" type="text" name="mood[description]" style="font-size: 20px;"><%=mood.description %> </textarea>
     </label>
 
     <%= f.submit "Save feelings", class: "my-form-button" %>

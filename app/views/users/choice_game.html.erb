@@ -9,7 +9,7 @@
           </h1>
         </div>
       </div>
-      <p class="text-center lh-base digital-text neon" > <!--style="text-align: justify" -->
+      <p class="text-center lh-base digital-text " > <!--neon style="text-align: justify" -->
         "Navigate the Labyrinth of the Mind, Unravel the Source, Embrace Empowerment"
 
         <br>Embark on an extraordinary adventure of self-discovery with "Pathways of Insight," a captivating choice-based game inspired by the principles of psychotherapy and mental health exploration. Delve deep into the intricate labyrinth of the mind as you uncover the origins of various factors and triggers that shape your emotional landscape.
@@ -35,7 +35,45 @@
 
 
 <script type="text/javascript" charset="UTF-8">
+
+    // function animateChoices() {
+    //     var choicesDiv = document.getElementById('choices');
+    //     // Add a one-time 'animationend' event listener to the situation div
+    //     var situationDiv = document.getElementById('situation');
+    //     situationDiv.addEventListener('animationend', function() {
+    //         // Add a class to #choices to trigger its animation
+    //         choicesDiv.classList.replace('opacity-0','animated');
+    //
+    //     }, { once: true });
+    // }
+    // function setupMutationObserver() {
+    //     // Select the target node (the parent element that contains the situation and choices)
+    //     var mainContainer = document.getElementById('game-container');
+    //
+    //     // Create a new MutationObserver
+    //     var observer = new MutationObserver(function(mutationsList) {
+    //         for (var mutation of mutationsList) {
+    //             // Check if the mutation is an added node (i.e., situation or choices added to the DOM)
+    //             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+    //                 // Check if the added node is the choices element
+    //                 if (mutation.addedNodes[0].id === 'choices') {
+    //                     animateChoices();
+    //                 }
+    //             }
+    //         }
+    //     });
+    //
+    //     // Configuration of the MutationObserver
+    //     var config = { childList: true };
+    //
+    //     // Start observing the target node with the specified configuration
+    //     observer.observe(mainContainer, config);
+    // }
+
+
+
   document.addEventListener("DOMContentLoaded", function() {
+      // setupMutationObserver();
       // Attach the click event listener to the parent container
       var mainContainer = document.getElementById('game-container');
       var start_game = document.getElementById('start-game');
@@ -74,6 +112,8 @@
                     // Update the view with the new situation and choices from the response
                     $('#situation').html(response.situation);
                     $('#choices').html(response.choice);
+
+                    choicesDiv.classList.replace('animated','opacity-0');
                 },
                 error: function(xhr, status, error) {
                     console.log("Error "+error);

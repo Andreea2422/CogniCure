@@ -259,7 +259,7 @@ p{
 .grid-container {
   display: grid;
   //grid-template-columns: auto auto auto;
-  background-color: aliceblue;
+  background-color: antiquewhite;
   //box-shadow: 0 0 20px 20px rgba(0,0,0,.2);
   padding: 50px;
   border-radius: 50px;
@@ -385,6 +385,33 @@ p{
   //grid-gap: 50px;
   //margin-bottom: 200px;
 }
+.left-flex.width, .right-flex.width{
+  width: 50%;
+}
+#mood-description-wrapper{
+  width: 90%;
+  height: 90%;
+  background-color: antiquewhite;
+  padding-top: 150px;
+}
+@media screen and (max-width: 800px) {
+  .main-content-flex {
+    flex-direction: column;
+    row-gap: 60px;
+  }
+  .left-flex.width, .right-flex.width{
+    width: 100%;
+  }
+  .left-flex.width {
+    row-gap: 40px;
+  }
+  #mood-description-wrapper{
+    width: 100%;
+    height: 100%;
+    padding: 150px 0 150px 0;
+  }
+}
+
 #app-grid{
   display: grid;
   grid-template-columns: auto auto auto auto;
@@ -2210,7 +2237,7 @@ button:focus {
 /* ABOUT STATIC PAGE */
 .grid-container-about{
   display: flex;
-  background-color: aliceblue;
+  background-color: antiquewhite;
   padding: 50px;
   border-radius: 50px;
   margin-bottom: 150px;

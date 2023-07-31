@@ -8,13 +8,13 @@
 <!--  </div>-->
 
   <div class="main-content-flex mt-0 column-gap-0 w-full">
-    <div class="left-flex align-items-stretch flex-grow-1 w-50">
+    <div class="left-flex align-items-stretch flex-grow-1 width">
 
 <!--      <div class="main-content-flex mt-0">-->
         <div class="left-flex">
 
           <% if @last_mood.day.eql?(Date.parse(@today)) %>
-            <div>
+            <div style="background-color: antiquewhite">
               <p> Your mood today: <%= @last_mood.name %></p>
             </div>
           <% else %>
@@ -76,7 +76,7 @@
 
     </div>
 
-    <div class="right-flex flex-grow-1 w-50 justify-content-start">
+    <div class="right-flex flex-grow-1 justify-content-start width">
 
 <!--      <div class="col-md-8">-->
         <%# if @user.moods.any? %>
@@ -87,34 +87,20 @@
         <%# end%>
 <!--      </div>-->
 
-
-      <div class="wrapper" style="background-color: antiquewhite">
-<!--        <h1>Letter-like form with inline fields</h1>-->
-
-<!--        <form class="form__contact" action="">-->
-<!--          <fieldset>-->
-<!--            <p>Hey, Stranger!</p>-->
-<!--            <p>My name is <span class="form__field field--name" data-placeholder="your name" tabindex="1" contenteditable></span> and I'm writting tou you since I'm interested in <span class="form__field field--message" data-placeholder="your message" tabindex="2" contenteditable></span>.</p>-->
-<!--            <p>This is my <span class="form__field field--email" data-placeholder="email address" tabindex="3" contenteditable></span>.</p>-->
-<!--            <p>Hope to get in touch soon. Cheers!</p>-->
-<!--            <button type="submit" class="button button--xlarge" tabindex="4">Send message &#187;</button>-->
-<!--          </fieldset>-->
-<!--        </form>-->
-
-        <%#= edit_mood_path(@last_mood) %>
-
-        <div id="mood-description">
+        <div id="mood-description-wrapper" class="center">
           <% if @last_mood.day.eql?(Date.parse(@today)) %>
-            <label>Input feelings:
-              <span id="mood-description"><%=  @last_mood.description  %></span>
-            </label>
+            <div><p>Day: <br><%= @last_mood.day.strftime('%A, %B %d, %Y') %></p></div>
+            <div>
+              <p>Input feelings:</p>
+              <p id="mood-description"><%=  @last_mood.description  %></p>
+            </div>
             <button id="edit-button">Edit</button>
           <% else %>
             <p>Please choose a mood </p>
           <%  end %>
         </div>
 
-      </div>
+<!--      </div>-->
 
 
     </div>
@@ -135,7 +121,7 @@
                 dataType: 'html',
                 success: function(response) {
                     // Replace the original content with the edit form
-                    $('#mood-description').html(response);
+                    $('#mood-description-wrapper').html(response);
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching edit form:', error);

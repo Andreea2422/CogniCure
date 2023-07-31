@@ -12,7 +12,7 @@
 
   <div class="article-form">
 <!--    <div class="col-md-5 col-md-offset-3 row-edit">-->
-      <%= form_with(model: @user, local: true) do |f| %>
+      <%= form_with(model: @user, local: true, html: { id: 'signup-form' } ) do |f| %>
         <%= render "shared/error_messages", object: f.object %>
 
         <%= f.label :name, class: 'title-form' %>
@@ -27,10 +27,18 @@
         <%= f.label :password_confirmation, "Confirmation", class: 'title-form' %>
         <%= f.password_field :password_confirmation, class: 'my-form-control' %>
 
-        <%= f.label :doctor, class: "checkbox inline" do %>
-          <%= f.check_box :doctor %>
-          <span>Are you a doctor?</span>
-        <% end %>
+        <%#= f.label :doctor, class: "checkbox inline" do %>
+        <label class="checkbox inline" for="user_doctor">
+            <%= f.check_box :doctor %>
+            <span>Are you a doctor?</span>
+        </label>
+        <%# end %>
+
+<!--      <label class="checkbox inline" for="user_doctor">-->
+<!--        <input name="user[doctor]" type="hidden" value="0" autocomplete="off">-->
+<!--        <input type="checkbox" value="1" name="user[doctor]" id="user_doctor">-->
+<!--        <span>Are you a doctor?</span>-->
+<!--      </label>-->
 
         <%= f.submit yield(:button_text), class: "my-form-button" %>
       <% end %>
@@ -38,3 +46,32 @@
   </div>
 
 </main>
+
+<script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function (){
+      var form = document.getElementById('signup-form');
+      var checkbox = form.querySelector('input[type="checkbox"]');
+
+      form.addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          var formData = new FormData(form); // Get form data
+          formData.set('doctor', checkbox.checked ? '1' : '0'); // Set 'doctor' value based on checkbox state
+
+          $.ajax({
+          type: 'POST',
+          url: '/users',
+          data: formData,
+          dataType: 'json',
+          processData: false, // Prevent jQuery from processing the data
+          contentType: false, // Prevent jQuery from setting content type
+          success: function(response) {
+              window.location.href = response.redirect_to;
+          },
+          error: function(xhr, status, error) {
+              console.log("Error "+ error);
+          }
+      });
+  });
+  });
+</script>

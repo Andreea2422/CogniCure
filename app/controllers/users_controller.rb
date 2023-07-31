@@ -57,12 +57,20 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the app!"
-      redirect_to @user
-    else
-      render 'new'
+    debugger
+    @user.doctor = params[:doctor]
+    debugger
+    respond_to do |format|
+      if @user.save
+        log_in @user
+        flash[:success] = "Welcome to the app!"
+
+        format.html { redirect_to @user }
+        format.json { render json: { redirect_to: user_path(@user) } } # JSON response with redirect URL
+      else
+        format.html { render 'new' } # Render the 'new' template for regular HTML request
+        format.json { render json: @user.errors, status: :unprocessable_entity } # JSON response with errors
+      end
     end
   end
 
@@ -288,7 +296,7 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation, :doctor)
+                                 :password_confirmation)
   end
 
 end

@@ -6,6 +6,8 @@ ruby "3.1.3"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
+gem 'database_cleaner'
+
 gem "faker",                      "2.21.0"
 gem "will_paginate",              "3.3.1"
 gem "bootstrap-will_paginate",    "1.0.0"

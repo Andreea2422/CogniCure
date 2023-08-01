@@ -57,9 +57,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    debugger
     @user.doctor = params[:doctor]
-    debugger
     respond_to do |format|
       if @user.save
         log_in @user

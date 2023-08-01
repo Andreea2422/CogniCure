@@ -1,11 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  mood: MyString
-  day: 2023-07-01
-  user: one
+anxious:
+  name: "MyString"
+  day: "2023-07-01"
+  description: "MyString"
+  user: michael
 
-two:
-  mood: MyString
-  day: 2023-07-01
-  user: two
+#two:
+#  mood: MyString
+#  day: 2023-07-01
+#  user: two

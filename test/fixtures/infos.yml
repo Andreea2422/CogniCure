@@ -1,15 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
+#an info is already created in models/info_test.rb so no need to do it here too
+  # as there should be only one info associated with the doctor
+info_hailey:
+  user: hailey
   biography: MyText
-  speciality: MyString
+  speciality: <%= %w[k1 k2 k3] %>
   experience: MyString
-  contact: MyString
+  contact: <%= %w[k1 k2 k3] %>
 
-two:
-  user: two
-  biography: MyText
-  speciality: MyString
-  experience: MyString
-  contact: MyString

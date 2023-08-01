@@ -57,7 +57,6 @@
                 <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
                 <li><%= link_to "My Journal", progress_user_path(current_user,date: Date.current.strftime('%Y-%m-%d')), class: "dropdown-item" %></li>
                 <li><%= link_to "Appointments", appointments_user_path(current_user), class: "dropdown-item" %></li>
-                <li><%= link_to " ---", chat_user_path(current_user), class: "dropdown-item" %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %></li>
               <%elsif current_user.doctor?%>
                 <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>

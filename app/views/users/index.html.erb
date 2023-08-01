@@ -37,7 +37,9 @@
     </div>
 
     <div id="show-doctors" class="grid-container box-shadow">
-      <%= render partial: 'doctors', locals: { doctors: @filtered_doctors } %>
+
+        <%= render partial: 'doctors', locals: { doctors: @filtered_doctors, pagination: @filtered_doctors } %>
+
     </div>
 
 
@@ -48,7 +50,9 @@
 
 
 <script type="text/javascript" charset="UTF-8">
-    function updateURL(filter) {
+    // localStorage.setItem('currentPage', "1");
+
+    function updateURL(filter, pageNumber) {
         var encodedFilters = filter.map(function(f) {
             return encodeURIComponent(f);
         });
@@ -57,38 +61,71 @@
         if (encodedFilters.length > 0) {
             newURL += '?filter=' + encodedFilters.join('%2C');
         }
+        if (pageNumber) {
+            newURL += (newURL.indexOf('?') === -1 ? '?' : '&') + 'page=' + pageNumber;
+        }
         history.replaceState({}, '', newURL);
     }
 
-    function updateFilters(filters){
-        $.ajax({
-            type: 'GET',
-            url: '/users',
-            data: {
-                filter: filters
-            },
-            dataType: 'json',
-            success: function(response) {
-                // console.log('success');
-                // console.log(response);
-                // Update the view with the new situation and choices from the response
-                $('#show-doctors').html(response.filtering);
-            },
-            error: function(xhr, status, error) {
-                console.log("Error "+ error);
-            }
-        });
-    }
+
 
     document.addEventListener('DOMContentLoaded', function() {
         // Create an empty array to store the selected values
         var selectedFilters = [];
         var urlParams = new URLSearchParams(window.location.search);
+        var currentPage = urlParams.get('page');
         var filtersFromURL = urlParams.get('filter');
         selectedFilters = filtersFromURL ? filtersFromURL.split(',') : [];
 
-        updateFilters(selectedFilters);
+        function updateFilters(filters,pagenr){
+            $.ajax({
+                type: 'GET',
+                url: '/users',
+                data: {
+                    filter: filters,
+                    page: pagenr
+                },
+                dataType: 'json',
+                success: function(response) {
+                    // console.log('success');
+                    // console.log(response);
+                    // Update the view with the new situation and choices from the response
+                    $('#show-doctors').html(response.filtering);
 
+                    // Reinitialize event listeners after updating the DOM
+                    initializeEventListeners();
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error "+ error);
+                }
+            });
+            updateURL(filters,pagenr)
+        }
+
+        // Function to initialize event listeners for pagination links
+        function initializeEventListeners() {
+            // Get all the pagination links
+            var paginationLinks = document.querySelectorAll('.pagination a');
+            paginationLinks.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    var pageNumber = link.getAttribute('href').split('page=')[1];
+                    console.log(pageNumber)
+                    updateFilters(selectedFilters,pageNumber);
+                });
+            });
+        }
+        // Initialize event listeners on page load
+        initializeEventListeners();
+
+        if (currentPage) {
+            updateFilters(selectedFilters,currentPage);
+        } else {
+            // If there's no stored page number, initialize with the first page
+            updateFilters(selectedFilters,1);
+        }
+
+        // Update checkboxes visual
         var checkboxButtons = document.querySelectorAll('.checkbox-button');
         checkboxButtons.forEach(function(button) {
             var checkbox = button.querySelector('input[type="checkbox"]');
@@ -109,7 +146,7 @@
         });
 
 
-        // Get all the checkboxes
+        // Update the list of doctors based on the selected filters
         var checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
             checkbox.checked = selectedFilters.includes(checkbox.value);
@@ -117,15 +154,17 @@
                 // If the checkbox is checked, add its value to the selectedFilters array
                 if (this.checked) {
                     selectedFilters.push(checkbox.value);
-                    updateURL(selectedFilters);
-                    updateFilters(selectedFilters);
+                    // Reset the current page for the selected filters
+                    currentPage = 1;
+                    updateFilters(selectedFilters, currentPage);
                 } else {
                     // If the checkbox is unchecked, remove its value from the selectedFilters array
                     var index = selectedFilters.indexOf(checkbox.value);
                     if (index !== -1) {
                         selectedFilters.splice(index, 1);
-                        updateURL(selectedFilters);
-                        updateFilters(selectedFilters);
+                        // Reset the current page
+                        currentPage = 1;
+                        updateFilters(selectedFilters, currentPage);
                     }
                 }
                 console.log(selectedFilters);

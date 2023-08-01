@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # A pair of virtual attributes (password and password_confirmation),
   #   including presence validations upon object creation
   #   and a validation requiring that they match
-  validates(:password, presence: true, length: {minimum: 6})
+  validates(:password, presence: true, length: {minimum: 6}, allow_nil: true)
 
   has_secure_password
 

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:show, :edit, :update, :appointments, :choice_game, :progress]
+  before_action :correct_user, only: [:show, :edit, :update, :appointments, :choice_game, :progress]
+
   def index
     doctors = User.where(doctor: true).order(name: :asc)
     @filtered_doctors = []
@@ -32,6 +35,9 @@ class UsersController < ApplicationController
       @filtered_doctors = doctors.joins(:info).where("infos.speciality @> ARRAY[?]::varchar[]", filters)
     end
 
+    # debugger
+    @filtered_doctors = @filtered_doctors.paginate(page: params[:page], per_page: 5)
+
     respond_to do |format|
       format.html do
         render 'users/index'
@@ -40,6 +46,7 @@ class UsersController < ApplicationController
         puts 'JSON request received'
         render json: {
           filtering: render_to_string(partial: 'doctors', formats: :html, layout: false, locals: { doctors: @filtered_doctors } )
+          # pagination: render_to_string(partial: 'will_paginate', formats: :html, layout: false, locals: { collection: @filtered_doctors } )
         }
       end
     end
@@ -285,16 +292,33 @@ class UsersController < ApplicationController
   end
 
 
-  def chat
-    @user = User.find(params[:id])
-  end
-
-
   ##########################
   private
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
   end
+
+  # Before filters
+  #
+  # Confirms a logged-in user.
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
+
+  # Confirms the correct user.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url, status: :see_other) unless current_user?(@user)
+  end
+
+  # # Confirms an admin user.
+  # def admin_user
+  #   redirect_to(root_url, status: :see_other) unless current_user.admin?
+  # end
 
 end

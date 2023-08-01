@@ -1,5 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+article:
+  title: "Title Example"
+  description: "Title Example"
+  publish_date: "2023-07-13"
+  readtime: "5 min read"
+  content: "Content Example"
+  quote: "Quote Example"
+  user: hailey
+  keywords: <%= %w[keyword1 keyword2 keyword3] %>
+  created_at: <%= 3.years.ago %>
+
 most_recent:
   title: "MyString"
   description: "MyString"
@@ -9,4 +20,5 @@ most_recent:
   quote: "MyString"
   user: hailey
   keywords: <%= %w[k1 k2 k3] %>
+  created_at: <%= Time.zone.now %>
 

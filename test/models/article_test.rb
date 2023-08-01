@@ -2,15 +2,17 @@ require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
   def setup
-    @doctor = users(:hailey)
-    @article = @doctor.articles.build(title: "Title Example",
-                           description: "Title Example",
-                           publish_date: "2023-07-13",
-                           readtime: "5 min read",
-                           content: "Content Example",
-                           quote: "Quote Example",
-                           keywords: %w[keyword1 keyword2 keyword3]
-                           )
+    # @doctor = users(:hailey)
+    # @article = @doctor.articles.build(title: "Title Example",
+    #                        description: "Title Example",
+    #                        publish_date: "2023-07-13",
+    #                        readtime: "5 min read",
+    #                        content: "Content Example",
+    #                        quote: "Quote Example",
+    #                        keywords: %w[keyword1 keyword2 keyword3]
+    #                        )
+
+    @article = articles(:article)
 
   end
 

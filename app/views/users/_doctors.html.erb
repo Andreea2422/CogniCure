@@ -1,6 +1,6 @@
 <% doctors.each do |doctor| %>
     <div class="grid-item">
-      <%=link_to show_info_path(doctor.id), class: "nav-link"  do %>
+      <%=link_to show_info_path(doctor), class: "nav-link"  do %>
         <%= gravatar_for doctor, size: 100 %>
         <%= doctor.name %>
       <%end %>

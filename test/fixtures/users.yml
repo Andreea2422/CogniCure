@@ -5,8 +5,28 @@ michael:
   email: michael@example.com
   password_digest: <%= User.digest('password') %>
 
+normal_user:
+  name: Normal Example
+  email: normal@example.com
+  password_digest: <%= User.digest('password') %>
+
 hailey:
   name: Hailey Doc
   email: haileydoc@clinic.com
   password_digest: <%= User.digest('password') %>
   doctor: true
+
+other_doc:
+  name: Other Doc
+  email: otherdoc@clinic.com
+  password_digest: <%= User.digest('password') %>
+  doctor: true
+
+<% 5.times do |n| %>
+user_<%= n %>:
+  name: <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+  doctor: true
+<% end %>
+

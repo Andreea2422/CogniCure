@@ -1,4 +1,8 @@
 class InfosController < ApplicationController
+  before_action :logged_in_user, only: [:new, :create, :edit, :update]
+  before_action :doctor_user, only: [:new, :create, :edit, :update]
+  before_action :correct_user, only: [:new, :create, :edit, :update]
+
   def new
     @info = Info.new
   end
@@ -33,13 +37,14 @@ class InfosController < ApplicationController
 
   def edit
     # @user = User.find(params[:id])
-    @user_info = Info.joins(:user).find_by(infos: {user_id: current_user.id})
+    # debugger
+    @user_info = Info.joins(:user).find_by(infos: {user_id: params[:id]})
 
   end
 
   def update
     # @user = User.find(params[:id])
-    @user_info = Info.joins(:user).find_by(infos: {user_id: current_user.id})
+    @user_info = Info.joins(:user).find_by(infos: {user_id: params[:id]})
 
     @user_info.speciality = process_array_params(params[:info][:speciality])
     @user_info.contact = process_array_params(params[:info][:contact])
@@ -62,5 +67,26 @@ class InfosController < ApplicationController
 
   def process_array_params(array_string)
     array_string.split(',').map(&:strip)
+  end
+
+  # Before filters
+  #
+  # Confirms a logged-in user.
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
+
+  # Confirms the correct user.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url, status: :see_other) unless current_user?(@user)
+  end
+
+  def doctor_user
+    redirect_to(root_url, status: :see_other) unless current_user.doctor?
   end
 end

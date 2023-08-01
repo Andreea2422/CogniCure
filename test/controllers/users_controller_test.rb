@@ -38,4 +38,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert flash.empty?
     assert_redirected_to root_url
   end
+
+  test "should not allow the doctor attribute to be edited via the web" do
+    log_in_as(@user)
+    assert_not @user.doctor?
+    patch user_path(@user), params: {
+      user: { password: "password",
+              password_confirmation: "password",
+              doctor: true } }
+    assert_not @user.reload.doctor?
+  end
 end

@@ -5,7 +5,15 @@
 info_hailey:
   user: hailey
   biography: MyText
-  speciality: <%= %w[k1 k2 k3] %>
+  speciality: <%= %w[Psychology k2 k3] %>
   experience: MyString
-  contact: <%= %w[k1 k2 k3] %>
+  contact: <%= %w[0145 k2 k3] %>
 
+<% 5.times do |n| %>
+info_<%= n %>:
+  user: user_<%= n %>
+  biography: <%= "MyText #{n}" %>
+  speciality: <%= %w[Psychology k2 k3] %>
+  experience: <%= "MyString #{n}" %>
+  contact: <%= %w[1542 k2 k3] %>
+<% end %>

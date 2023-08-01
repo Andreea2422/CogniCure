@@ -46,8 +46,7 @@ class UsersController < ApplicationController
         puts 'JSON request received'
         render json: {
           filtering: render_to_string(partial: 'doctors', formats: :html, layout: false, locals: { doctors: @filtered_doctors } )
-          # pagination: render_to_string(partial: 'will_paginate', formats: :html, layout: false, locals: { collection: @filtered_doctors } )
-        }
+         }
       end
     end
 
@@ -107,6 +106,8 @@ class UsersController < ApplicationController
           cod_mood = 2
         elsif today_mood.name.eql?("afraid") || today_mood.name.eql?("stressed") || today_mood.name.eql?("anxious") || today_mood.name.eql?("nervous")
           cod_mood = 3
+        elsif today_mood.name.eql?("relaxed") || today_mood.name.eql?("okay") || today_mood.name.eql?("joyful") || today_mood.name.eql?("loved")
+          cod_mood = (rand(3)) + 1
         end
       else
         cod_mood = (rand(3)) + 1
@@ -315,10 +316,5 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to(root_url, status: :see_other) unless current_user?(@user)
   end
-
-  # # Confirms an admin user.
-  # def admin_user
-  #   redirect_to(root_url, status: :see_other) unless current_user.admin?
-  # end
 
 end

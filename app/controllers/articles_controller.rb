@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :doctor_user, only: [:create, :edit, :update]
+  before_action :correct_doctor, only: [:create, :edit, :update]
 
   def show
     @shadow = true
@@ -94,4 +96,13 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :description, :cover_image, :readtime, :content, :quote)
   end
 
+  def doctor_user
+    redirect_to(root_url, status: :see_other) unless logged_in? && current_user.doctor?
+  end
+
+  def correct_doctor
+    @article = Article.find(params[:id])
+    @doctor = User.find(@article.user_id)
+    redirect_to(root_url, status: :see_other) unless current_user?(@doctor)
+  end
 end

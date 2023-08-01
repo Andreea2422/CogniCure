@@ -26,6 +26,8 @@ end
 
 
 class ActionDispatch::IntegrationTest
+  WillPaginate.per_page = 5
+
   # Log in as a particular user.
   def log_in_as(user, password: 'password', remember_me: '1')
     post login_path, params: { session: { email: user.email,

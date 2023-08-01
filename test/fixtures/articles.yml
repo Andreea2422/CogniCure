@@ -8,8 +8,19 @@ article:
   content: "Content Example"
   quote: "Quote Example"
   user: hailey
-  keywords: <%= %w[keyword1 keyword2 keyword3] %>
+  keywords: <%= %w[Counselling keyword2 keyword3] %>
   created_at: <%= 3.years.ago %>
+
+another_article:
+  title: "Title Example"
+  description: "Title Example"
+  publish_date: "2023-07-13"
+  readtime: "5 min read"
+  content: "Content Example"
+  quote: "Quote Example"
+  user: other_doc
+  keywords: <%= %w[Counselling keyword2 keyword3] %>
+  created_at: <%= 2.years.ago %>
 
 most_recent:
   title: "MyString"
@@ -19,6 +30,6 @@ most_recent:
   content: "Writing a short test"
   quote: "MyString"
   user: hailey
-  keywords: <%= %w[k1 k2 k3] %>
+  keywords: <%= %w[Counselling k2 k3] %>
   created_at: <%= Time.zone.now %>
 

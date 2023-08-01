@@ -1,5 +1,6 @@
 class MoodsController < ApplicationController
-
+  before_action :logged_in_user, only: [:create, :update]
+  before_action :correct_user, only: [:create, :update]
   def new
     @mood = Mood.new
   end
@@ -50,5 +51,22 @@ class MoodsController < ApplicationController
   private
   def mood_params
     params.require(:mood).permit(:name)
+  end
+
+  # Before filters
+  #
+  # Confirms a logged-in user.
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+  end
+
+  # Confirms the correct user.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url, status: :see_other) unless current_user?(@user)
   end
 end

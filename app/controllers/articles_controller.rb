@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :doctor_user, only: [:create, :edit, :update]
-  before_action :correct_doctor, only: [:create, :edit, :update]
+  before_action :correct_doctor, only: [:edit, :update]
 
   def show
     @shadow = true

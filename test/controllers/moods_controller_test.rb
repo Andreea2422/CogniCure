@@ -18,7 +18,7 @@ class MoodsControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect update when logged in as wrong doctor" do
     log_in_as(@other_user)
-    patch mood_path(@user), params: { mood: {   name: @mood.name,
+    patch mood_path(@mood), params: { mood: {   name: @mood.name,
                                                 day: @mood.day,
                                                 description: @mood.description } }
     assert flash.empty?

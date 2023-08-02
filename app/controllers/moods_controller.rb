@@ -1,6 +1,6 @@
 class MoodsController < ApplicationController
   before_action :logged_in_user, only: [:create, :update]
-  before_action :correct_user, only: [:create, :update]
+  before_action :correct_user, only: [:update]
   def new
     @mood = Mood.new
   end
@@ -66,7 +66,8 @@ class MoodsController < ApplicationController
 
   # Confirms the correct user.
   def correct_user
-    @user = User.find(params[:id])
+    @mood = Mood.find(params[:id])
+    @user = User.find(@mood.user_id)
     redirect_to(root_url, status: :see_other) unless current_user?(@user)
   end
 end

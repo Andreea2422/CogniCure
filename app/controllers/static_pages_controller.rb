@@ -35,7 +35,7 @@ class StaticPagesController < ApplicationController
   end
 
   def mental_health
-    @articles = Article.all
+    @articles = find_articles('Mental Health')
   end
 
   def quizzes

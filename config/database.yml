@@ -86,6 +86,6 @@ test:
 #
 production:
   <<: *default
-#  database: MEtoday_production
-#  username: MEtoday
-#  password: <%#= ENV["METODAY_DATABASE_PASSWORD"] %>
+  database: cognicureprod
+  username: <%= Rails.application.credentials.dig(:database, :username) %>
+  password: <%= Rails.application.credentials.dig(:database, :password) %>

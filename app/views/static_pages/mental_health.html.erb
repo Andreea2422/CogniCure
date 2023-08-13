@@ -1,5 +1,5 @@
 <main id="main">
-  <div class="page-title normal-title">
+  <div class="page-title normal-title font-serif">
     <div class="page-title-inner flex-row container">
       <div class="flex-col flex-grow text-center">
         <h1 class="uppercase mb-0"> Mental Health</h1>
@@ -10,11 +10,11 @@
     </div>
   </div>
 
-  <% if logged_in?%>
-    <% if current_user.doctor? %>
-      <%= link_to "Post up now!", submit_path %>
-    <% end %>
-  <% end %>
+  <%# if logged_in?%>
+    <%# if current_user.doctor? %>
+      <%#= link_to "Post up now!", submit_path %>
+    <%# end %>
+  <%# end %>
 
 
   <section class="cards">

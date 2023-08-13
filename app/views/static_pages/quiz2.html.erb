@@ -1,0 +1,255 @@
+<head>
+  <title>Personality Quiz</title>
+</head>
+
+
+<div class="quiz-container">
+  <div class="quiz-title">Personality Quiz</div>
+  <div id="question" class="question"></div>
+  <label class="option">
+    <input type="radio" name="option" class="option-button" value="1" />
+    <span class="option1"></span>
+  </label>
+  <label class="option">
+    <input type="radio" name="option" class="option-button" value="2" />
+    <span class="option2"></span>
+  </label>
+  <label class="option">
+    <input type="radio" name="option" class="option-button" value="3" />
+    <span class="option3"></span>
+  </label>
+  <label class="option">
+    <input type="radio" name="option" class="option-button" value="4" />
+    <span class="option4"></span>
+  </label>
+  <!-- Buttons -->
+  <div class="controls">
+    <button class="previous"> < </button>
+    <button class="next-btn"> > </button>
+  </div>
+</div>
+
+<div class="result">
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    // QUESTIONS
+
+    const questions = [
+        {
+            "question": "What environment do you find most rejuvenating?",
+            "answer1": "A bustling city with endless activities and opportunities.",
+            "answer1Total": "1",
+            "answer2": "A serene natural landscape surrounded by trees, mountains, or the sea.",
+            "answer2Total": "2",
+            "answer3": "A cozy and quiet space where you can immerse yourself in your interests.",
+            "answer3Total": "3",
+            "answer4": "A social gathering with friends and acquaintances.",
+            "answer4Total": "4"
+        },
+        {
+            "question": "How do you handle challenges?",
+            "answer1": "Head-on, with strategic planning and determination.",
+            "answer1Total": "1",
+            "answer2": "Patiently, waiting for the right moment to take action.",
+            "answer2Total": "2",
+            "answer3": "By seeking advice from others and collaborating to find solutions.",
+            "answer3Total": "3",
+            "answer4": "With enthusiasm, turning challenges into opportunities for social interactions.",
+            "answer4Total": "4"
+        },
+        {
+            "question": "What is your ideal way to spend a free day?",
+            "answer1": "Attending a workshop or learning something new.",
+            "answer1Total": "1",
+            "answer2": "Exploring a new hiking trail or engaging in outdoor activities.",
+            "answer2Total": "2",
+            "answer3": "Reading a book, watching movies, or indulging in a personal hobby.",
+            "answer3Total": "3",
+            "answer4": "Organizing a gathering, party, or spending time with friends and family.",
+            "answer4Total": "4"
+        },
+        {
+            "question": "How do you approach decision-making?",
+            "answer1": "Rationally, by analyzing pros and cons before making a choice.",
+            "answer1Total": "1",
+            "answer2": "Intuitively, following your gut feeling and instincts.",
+            "answer2Total": "2",
+            "answer3": "By discussing options with others and considering their input.",
+            "answer3Total": "3",
+            "answer4": "Spontaneously, going with the flow and adapting as situations change.",
+            "answer4Total": "4"
+        },
+        {
+            "question": "What type of social interaction do you prefer?",
+            "answer1": "Engaging in deep one-on-one conversations with close friends.",
+            "answer1Total": "1",
+            "answer2": "Participating in group activities that involve shared experiences.",
+            "answer2Total": "2",
+            "answer3": "Enjoying your own company or spending time with a small, close-knit group.",
+            "answer3Total": "3",
+            "answer4": "Attending large gatherings where you can meet new people and network.",
+            "answer4Total": "4"
+        },
+        {
+            "question": "How do you handle unexpected changes to your plans?",
+            "answer1": "Quickly adapt and find alternative solutions.",
+            "answer1Total": "1",
+            "answer2": "Take your time to assess the situation before deciding on a new course of action.",
+            "answer2Total": "2",
+            "answer3": "Seek advice from others and brainstorm ideas together.",
+            "answer3Total": "3",
+            "answer4": "Embrace the change and view it as an opportunity for spontaneity.",
+            "answer4Total": "4"
+        },
+        {
+            "question": "What do you value most in a job or activity?",
+            "answer1": "Achievement, recognition, and opportunities for advancement",
+            "answer1Total": "1",
+            "answer2": "Personal growth, work-life balance, and a sense of purpose",
+            "answer2Total": "2",
+            "answer3": "Autonomy, creativity, and the ability to work at your own pace",
+            "answer3Total": "3",
+            "answer4": "Interaction with others, teamwork, and a dynamic environment.",
+            "answer4Total": "4"
+        },
+        {
+            "question": "What's your preferred way of expressing yourself?",
+            "answer1": "Through articulate communication and well-structured arguments.",
+            "answer1Total": "1",
+            "answer2": "Through art, music, or other creative outlets.",
+            "answer2Total": "2",
+            "answer3": "Through introspective writing or thoughtful conversations.",
+            "answer3Total": "3",
+            "answer4": "Through social interactions, jokes, and engaging storytelling.",
+            "answer4Total": "4"
+        }
+    ]
+
+
+    let currentQuestion = 0;
+    let score = [];
+    let selectedAnswersData = [];
+    const totalQuestions =questions.length;
+
+    const container = document.querySelector('.quiz-container');
+    const questionEl = document.querySelector('.question');
+    const option1 = document.querySelector('.option1');
+    const option2 = document.querySelector('.option2');
+    const option3 = document.querySelector('.option3');
+    const option4 = document.querySelector('.option4');
+    const nextButton = document.querySelector('.next-btn');
+    const previousButton = document.querySelector('.previous');
+    const restartButton = document.querySelector('.restart');
+    const result = document.querySelector('.result');
+
+    //Function to generate question
+    function generateQuestions (index) {
+        //Select each question by passing it a particular index
+        const question = questions[index];
+        const option1Total = questions[index].answer1Total;
+        const option2Total = questions[index].answer2Total;
+        const option3Total = questions[index].answer3Total;
+        const option4Total = questions[index].answer4Total;
+        //Populate html elements
+        questionEl.innerHTML = `${index + 1}. ${question.question}`
+        option1.setAttribute('data-total', `${option1Total}`);
+        option2.setAttribute('data-total', `${option2Total}`);
+        option3.setAttribute('data-total', `${option3Total}`);
+        option4.setAttribute('data-total', `${option4Total}`);
+        option1.innerHTML = `${question.answer1}`
+        option2.innerHTML = `${question.answer2}`
+        option3.innerHTML = `${question.answer3}`
+        option4.innerHTML = `${question.answer4}`
+    }
+
+
+    function loadNextQuestion () {
+        const selectedOption = document.querySelector('input[type="radio"]:checked');
+        //Check if there is a radio input checked
+        if(!selectedOption) {
+            alert('Please select your answer!');
+            return;
+        }
+        //Get value of selected radio
+        const answerScore = Number(selectedOption.nextElementSibling.getAttribute('data-total'));
+
+        ////Add the answer score to the score array
+        score.push(answerScore);
+
+        selectedAnswersData.push()
+
+
+        const totalScore = score.reduce((total, currentNum) => total + currentNum);
+
+        //Finally we increment the current question number ( to be used as the index for each array)
+        currentQuestion++;
+
+        //once finished clear checked
+        selectedOption.checked = false;
+        //If quiz is on the final question
+        if(currentQuestion == totalQuestions - 1) {
+            nextButton.textContent = 'Finish';
+        }
+        //If the quiz is finished then we hide the questions container and show the results
+        if(currentQuestion == totalQuestions) {
+            var finalresult;
+            var description;
+            if (totalScore < 11){
+                finalresult = "The Achiever";
+                description = "You're a goal-oriented and strategic thinker who values success, recognition, and personal advancement. Your determination and analytical skills make you a natural leader.";
+            } else if (totalScore >= 11 && totalScore < 18){
+                finalresult = "The Seeker";
+                description = "You have a deep connection to nature and a strong intuition. You value personal growth, purpose, and taking the time to savor life's experiences. Your reflective nature often leads you to profound insights.";
+            } else if (totalScore >= 18 && totalScore < 25 ){
+                finalresult = "The Individualist";
+                description = "You're an independent thinker who values self-expression, creativity, and meaningful connections. Your introspective nature fuels your curiosity and allows you to appreciate the beauty in life's details.";
+            } else if (totalScore >= 25){
+                finalresult = "The Social Butterfly";
+                description = "You thrive in social settings, valuing connections, interactions, and lively experiences. Your spontaneity and enthusiasm make you a magnetic presence in various situations.";
+            }
+
+
+            container.style.display = 'none';
+            result.innerHTML =
+                `<h1 class="final-score">Your score: ${finalresult}</h1>
+                     <div class="summary">
+                        <h1>Summary</h1>
+                        <p>${description}</p>
+                    </div>
+                    <button class="restart">Restart Quiz</button>
+                     `;
+            return;
+        }
+        generateQuestions(currentQuestion);
+    }
+
+    //Function to load previous question
+    function loadPreviousQuestion() {
+        //Decrement quentions index
+        currentQuestion--;
+        //remove last array value;
+        score.pop();
+        //Generate the question
+        generateQuestions(currentQuestion);
+    }
+
+    //Fuction to reset and restart the quiz;
+    function restartQuiz(e) {
+        if(e.target.matches('button')) {
+            //reset array index and score
+            currentQuestion = 0;
+            score = [];
+            //Reload quiz to the start
+            location.reload();
+        }
+
+    }
+
+
+    generateQuestions(currentQuestion);
+    nextButton.addEventListener('click', loadNextQuestion);
+    previousButton.addEventListener('click',loadPreviousQuestion);
+    result.addEventListener('click',restartQuiz);
+</script>

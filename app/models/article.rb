@@ -10,6 +10,24 @@ class Article < ApplicationRecord
   has_one_attached :cover_image
   validate :validate_cover_image
 
+  def self.available_keywords
+    ['Anxiety', 'Addiction', 'ADHD', 'Bipolar Disorder', 'Breathing Techniques',
+     'Cognitive Behavioral Therapy', 'Counselling', 'Depression', 'Eating Disorders',
+     'Emotional Intelligence', 'Empathy', 'Food Guilt', 'Grief', 'Happiness', 'Loneliness',
+     'Meditation', 'Mental Health', 'Mindfulness', 'Obsessive Compulsive Disorder', 'Online Bullying',
+     'Personal Growth', 'PTSD', 'Self Love', 'Social Anxiety', 'Stress', 'Techniques To Use', 'Therapy']
+  end
+  def self.selfgrowth
+    ['Counselling', 'Emotional Intelligence', 'Empathy', 'Happiness',
+     'Meditation', 'Mindfulness', 'Personal Growth', 'Self Love']
+  end
+  def self.mentalhealth
+    ['Anxiety', 'Addiction', 'ADHD', 'Bipolar Disorder', 'Breathing Techniques',
+     'Cognitive Behavioral Therapy', 'Depression', 'Eating Disorders',
+     'Food Guilt', 'Grief', 'Loneliness', 'Mental Health', 'Obsessive Compulsive Disorder',
+     'Online Bullying', 'PTSD', 'Social Anxiety', 'Stress', 'Therapy']
+  end
+
   ###################
   private
   def validate_cover_image

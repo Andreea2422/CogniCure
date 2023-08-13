@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create]
   def new
-    @doctors = User.where(doctor: true)
+    # @doctors = User.where(doctor: true).order(name: :asc)
     @appointment = Appointment.new
 
     @all_appointments = Appointment.all

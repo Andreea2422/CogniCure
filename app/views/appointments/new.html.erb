@@ -1,5 +1,5 @@
 <main id="main">
-  <div class="my-account-header page-title normal-title">
+  <div class="my-account-header page-title normal-title font-serif">
     <div class="page-title-inner flex-row container">
       <div class="flex-col flex-grow text-center">
         <h1 class="uppercase mb-0">Book your Appointment</h1>
@@ -10,48 +10,55 @@
   <% provide(:button_text, 'Book') %>
 
 
-  <div class="grid-container">
-    <% @doctors.each do |doctor| %>
-      <div class="grid-item">
-      <button class="doctor-btn"
+  <div style="border-bottom: 5px #2b107c solid;
+              padding-bottom: 20px;
+              padding-left: 10px;
+              color: white;
+              font-size: 20px;"> Please select a therapist: </div>
+  <div class="grid-appointments">
+    <% Appointment.doctors.each do |doctor| %>
+      <div>
+      <button class="flex flex-column-reverse align-items-center row-gap-2 doctor-btn"
               data-doctor-id="<%= doctor.id %>"
-              data-doctor-name="<%= doctor.name %>" >
-        <span class="user"><%= doctor.name%></span>
-        <span class="user"><%= gravatar_for doctor, size: 50 %></span>
+              data-doctor-name="<%= doctor.name %>">
+        <span class="user" style="color: white"><%= doctor.name%></span>
+        <span class="user"><%= gravatar_for doctor, size: 80 %></span>
       </button>
       </div>
     <%end %>
   </div>
 
+
+</main>
+<div style="margin-top: 100px">
   <div id="form">
-    <div class="article-form">
+    <div class="book-form">
       <%= form_with(model: @appointment, local: true) do |f| %>
-        <%#= render "shared/error_messages", object: f.object %>
+        <%= render "shared/error_messages", object: f.object %>
 
         <%= f.label :patient, class: 'title-form' %>
-        <%= f.text_field :patient, class: 'my-form-control' %>
+        <%= f.text_field :patient, class: 'my-form-control', style: 'box-shadow: none' %>
 
-        <div class="col-lg-3 col-sm-6 datepicker-wrapper">
-            <%= f.label :appointment_date, class: 'title-form' %>
-            <%= f.text_field :appointment_date, class: 'my-form-control', id: 'appointment_appointment_date' %>   <!--, data: { doctor_id: '' }-->
-            <span class="calendar-icon">
-              <i class="fas fa-calendar input-prefix" tabindex=0></i>
-            </span>
+        <div class="datepicker-wrapper">
+          <%= f.label :appointment_date, class: 'title-form' %>
+          <%= f.text_field :appointment_date, class: 'my-form-control', style: 'box-shadow: none', id: 'appointment_appointment_date' %>
+          <span class="calendar-icon">
+                <i class="fas fa-calendar input-prefix" tabindex=0></i>
+              </span>
         </div>
 
 
         <%= f.label :doctor_name, class: 'title-form' %>
-        <%= f.text_field :doctor_name, class: 'my-form-control', id: 'appointment_doctor_name', readonly: true %>
+        <%= f.text_field :doctor_name, class: 'my-form-control', id: 'appointment_doctor_name', style: 'box-shadow: none', readonly: true %>
 
         <%= f.label :doctor_id, class: 'title-form', hidden: true %>
         <%= f.number_field :doctor_id, class: 'my-form-control', id: 'appointment_doctor_id', readonly: true, hidden: true %>
 
-        <%= f.submit yield(:button_text), class: "my-form-button" %>
+        <%= f.submit yield(:button_text), class: "my-form-button book" %>
       <% end %>
     </div>
   </div>
-</main>
-
+</div>
 <script>
 
   var inputFieldName = document.getElementById("appointment_doctor_name")

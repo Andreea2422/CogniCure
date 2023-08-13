@@ -4,7 +4,7 @@
       <% if logged_in? %>
         <% if current_user.doctor? and current_user.id == @article.user_id %>
           <span style="float: right">
-            <%=link_to "Edit", edit_article_path, class: "custom-link"  %>
+            <%=link_to "Edit", edit_article_path, class: "custom-link", style: "color: white"  %>
           </span>
         <%end %>
       <% end %>

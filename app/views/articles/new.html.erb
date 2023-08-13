@@ -1,5 +1,5 @@
 <main id="main">
-  <div class="my-account-header page-title normal-title">
+  <div class="my-account-header page-title normal-title font-serif">
     <div class="page-title-inner flex-row container">
       <div class="flex-col flex-grow text-center">
         <h1 class="uppercase mb-0">Submit your new Article</h1>
@@ -10,7 +10,7 @@
   <% provide(:button_text, 'Submit my article') %>
   <div class="article-form">
     <%= form_with(model: @article, local: true, multipart: true) do |f| %>
-      <%#= render "shared/error_messages", object: f.object %>
+      <%= render "shared/error_messages", object: f.object %>
 
       <%= f.label :title, class: 'title-form' %>
       <%= f.text_field :title, class: 'my-form-control' %>
@@ -41,7 +41,7 @@
           <div class="row">
             <div class="form-group">
               <div class="grid-container text-center text-uppercase">
-                <% @keywords.each do |keyword| %>
+                <% Article.available_keywords.each do |keyword| %>
                   <div>
                     <label class="checkbox-button">
                       <input type="checkbox" name="article[keywords][]" value="<%= keyword %>">

@@ -31,11 +31,23 @@ class StaticPagesController < ApplicationController
   end
 
   def learn_more_about_yourself
-    @articles = Article.all
+    all_articles = []
+    Article.selfgrowth.each do |tag|
+      mh_articles = find_articles(tag)
+      all_articles = all_articles|mh_articles
+    end
+    all_articles.sort_by! {|article| article.publish_date }
+    @articles = all_articles.reverse!
   end
 
   def mental_health
-    @articles = find_articles('Mental Health')
+    all_articles = []
+    Article.mentalhealth.each do |tag|
+      mh_articles = find_articles(tag)
+      all_articles = all_articles|mh_articles
+    end
+    all_articles.sort_by! {|article| article.publish_date }
+    @articles = all_articles.reverse!
   end
 
   def quizzes
@@ -48,10 +60,10 @@ class StaticPagesController < ApplicationController
   private
   def find_articles(keyword)
     # Query all articles from the database
-    @articles = Article.all
+    articles = Article.all
 
     # Filter articles to only include those where 'keywords' array contains the search query
-    @articles = @articles.select { |article| article.keywords.include?(keyword) }
+    articles.select { |article| article.keywords.include?(keyword) }
   end
 
 end

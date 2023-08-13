@@ -1,10 +1,15 @@
-<% doctors.each do |doctor| %>
-    <div class="grid-item">
-      <%=link_to show_info_path(doctor), class: "nav-link"  do %>
-        <%= gravatar_for doctor, size: 100 %>
-        <%= doctor.name %>
-      <%end %>
-    </div>
-<% end %>
+<div class="digg_pagination grid" style="justify-items: center" >
+    <%= will_paginate doctors %>
+</div>
 
-<%= will_paginate doctors %>
+<div class="grid-container pt-0 mb-0"  style="background-color: transparent">
+    <% doctors.each do |doctor| %>
+        <div class="grid-item">
+          <%=link_to show_info_path(doctor), class: "nav-link"  do %>
+            <%= gravatar_for doctor, size: 100 %>
+            <%= doctor.name %>
+          <%end %>
+        </div>
+    <% end %>
+</div>
+

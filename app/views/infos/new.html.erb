@@ -12,7 +12,7 @@
   <div class="article-form">
     <!--    <div class="col-md-5 col-md-offset-3 row-edit">-->
     <%= form_with(model: @info, local: true) do |f| %>
-      <%#= render 'shared/error_messages', object: f.object%>
+      <%= render 'shared/error_messages', object: f.object%>
 
       <%= f.label :biography, class: 'title-form' %>
       <%= f.text_area :biography, size: "70x5", class: 'my-form-control' %>

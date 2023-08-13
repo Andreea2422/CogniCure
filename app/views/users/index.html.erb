@@ -1,31 +1,23 @@
-<main id="main">
+<main id="main-discover">
   <% provide(:title, 'All users') %>
-  <div class="my-account-header page-title normal-title">
+  <div class="my-account-header page-title normal-title font-serif">
     <div class="page-title-inner flex-row container">
       <div class="flex-col flex-grow text-center">
-        <h1 class="uppercase mb-0">All psychologists and therapists</h1>
+        <h1 class="uppercase mb-0">Meet all psychologists and therapists</h1>
       </div>
     </div>
   </div>
 
-  <div class="main-content-flex mt-0">
-
-<!--    <div id="filter-container" class="filter-doctors">-->
-      <%# @uniq_specialities.each do |spec| %>
-<!--        <button class="btn-info filter-btn" data-filter="<%#= spec %>">-->
-          <%#= spec %>
-<!--        </button>-->
-      <%# end %>
-<!--    </div>-->
-
-    <div id="filter-container" class="filter-doctors">
-        <label class="title-form">Filter</label>
+  <div class="main-content-flex mt-0 column-gap-0">
+    <div id="filter-container" class="filter-doctors mx-2">
+        <h3 class="title-form" style="color: white; text-align: center">Filter therapists by specialities</h3>
         <div class="row">
           <div class="form-group">
-            <div class="grid-container text-center text-uppercase">
+            <div class="grid-container gap-0 my-0 text-center text-uppercase" style="background-color: transparent;
+              border: 5px solid #2b107c">
               <% @uniq_specialities.each do |spec| %>
                 <div>
-                  <label class="checkbox-button">
+                  <label class="checkbox-button white">
                     <input type="checkbox" value="<%= spec %>">
                     <%= spec %>
                   </label>
@@ -36,9 +28,10 @@
         </div>
     </div>
 
-    <div id="show-doctors" class="grid-container box-shadow">
 
-        <%= render partial: 'doctors', locals: { doctors: @filtered_doctors, pagination: @filtered_doctors } %>
+    <div id="show-doctors">
+
+        <%= render partial: 'doctors', locals: { doctors: @filtered_doctors } %>
 
     </div>
 

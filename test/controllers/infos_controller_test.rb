@@ -37,16 +37,6 @@ class InfosControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test "should redirect update when logged in as wrong doctor" do
-    log_in_as(@other_doc)
-    patch info_path(@doctor), params: { info: {   biography: @info_hailey.biography,
-                                                  speciality: @info_hailey.speciality,
-                                                  experience: @info_hailey.experience,
-                                                  contact: @info_hailey.contact } }
-    assert flash.empty?
-    assert_redirected_to root_url
-  end
-
   test "info as non-doctor" do
     log_in_as(@user)
     get show_info_path(@doctor)

@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     end
 
     # debugger
-    @filtered_doctors = @filtered_doctors.paginate(page: params[:page], per_page: 5)
+    @filtered_doctors = @filtered_doctors.paginate(page: params[:page], per_page: 9)
 
     respond_to do |format|
       format.html do
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @today = Date.current.strftime('%Y-%m-%d')
   end
 
@@ -79,11 +79,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update(user_params)
       # Handle a successful update.
       flash[:success] = "Profile updated"
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
   end
 
   def choice_game
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     selected_choice_id = params[:selectedChoice]
 
     today_mood = @user.moods.order(day: :desc).first
@@ -153,7 +153,7 @@ class UsersController < ApplicationController
   end
 
   def appointments
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @appointments = @user.appointments.order(appointment_date: :asc)
     @doctor_appointments = @user.doctor_appointments.order(appointment_date: :asc)
 
@@ -161,7 +161,7 @@ class UsersController < ApplicationController
   end
 
   def progress
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @all_moods = @user.moods
     @moods_ord = @user.moods.order(:day)
     @last_mood = @moods_ord.last

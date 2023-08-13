@@ -259,7 +259,7 @@ p{
 .grid-container {
   display: grid;
   //grid-template-columns: auto auto auto;
-  background-color: antiquewhite;
+  background-color: white;
   //box-shadow: 0 0 20px 20px rgba(0,0,0,.2);
   padding: 50px;
   border-radius: 50px;
@@ -354,7 +354,7 @@ p{
   display: block;
 }
 #week-chart-figure, #month-chart-figure{
-  height: 400px;
+  height: 300px;
   //max-width: 800px;
   margin: 1em auto;
   background-color: white;
@@ -370,29 +370,39 @@ p{
   align-items: center;
   justify-content: space-evenly;
 }
+.my-progress-btn{
+  border-radius: 50px;
+  padding: 10px;
+  font-weight: bold;
+  background-color: $light-purple;
+  transition: 0.2s;
+}
+.my-progress-btn:hover{
+  transition: 0.2s;
+  color: white;
+  background-color: $dark-blue;
+}
 
 #app-cover{
-  //position: absolute;
   width: 100%;
-  //margin: 100px auto 0 auto;
-  //font-family: Nunito, serif;
   display: inline-block;
-  //grid-template-columns: auto auto auto;
   background-color: #ba9fdc;
   box-shadow: 0 0 20px 20px rgba(0,0,0,.2);
   padding: 80px;
   border-radius: 50px;
-  //grid-gap: 50px;
-  //margin-bottom: 200px;
 }
 .left-flex.width, .right-flex.width{
   width: 50%;
 }
 #mood-description-wrapper{
   width: 90%;
-  height: 90%;
-  background-color: antiquewhite;
-  padding-top: 150px;
+  //height: 90%;
+  background-color: $light-purple;
+  border: 10px solid $dark-blue;
+  padding: 10px;
+}
+.responsive-flex{
+  flex-direction: row;
 }
 @media screen and (max-width: 800px) {
   .main-content-flex {
@@ -409,6 +419,14 @@ p{
     width: 100%;
     height: 100%;
     padding: 150px 0 150px 0;
+  }
+  #app-cover{
+    padding: 30px 10px 30px 10px;
+    border-radius: 0;
+  }
+  .responsive-flex{
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -429,21 +447,11 @@ p{
     row-gap: 50px;
   }
 }
-#app-emotions{
-  text-decoration: none;
-  background-color: transparent;
-  border: none;
-}
 .app-emotions-card{
   width: 200px;
   height: 200px;
   background-color: transparent;
   border: none;
-}
-
-.mood-dropdown{
-  position: relative !important;
-  transform: none !important;
 }
 
 .app-title{
@@ -463,7 +471,8 @@ p{
   //float: left;
   padding: 25px;
   //margin: 10px;
-  margin: 10px 0 10px 30px;
+  //margin: 10px 0 10px 30px;
+  margin-top: 20px;
   transition: 0.5s ease top;
   cursor: pointer;
 }
@@ -483,7 +492,7 @@ p{
   background-color: #fff;
   border-radius: 50%;
   transition: 0.3s ease background-color;
-  z-index: -1;
+  //z-index: -1;
 }
 
 #mood-furious.active:after, #mood-furious:hover:after, #mood-bitter.active:after, #mood-bitter:hover:after,
@@ -513,6 +522,7 @@ p{
   height: 80px;
   border: 6px solid #d9e0e3;
   border-radius: 50%;
+  z-index: 3;
 }
 
 .eyes-cover
@@ -1035,8 +1045,14 @@ p{
   font-weight: 600;
   text-transform: uppercase;
   color: white;
+  transition: 0.2s;
   background-image: linear-gradient(to right, $blue, #812fcc, $light-purple);
 }
+
+.book-app-button:hover{
+  transition: 0.2s;
+  color: black;
+ }
 .grid-container-app {
   display: grid;
   //grid-template-columns: auto auto auto;
@@ -1048,14 +1064,38 @@ p{
   //align-items: baseline;
 }
 
-@media screen and (max-width: 800px) {
+.grid-appointments{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  padding: 10px 0 10px 0;
+  justify-items: center;
+  grid-gap: 50px;
+  margin-bottom: 60px;
+  background-color: rgba(43, 16, 124, 0.52);
+}
+.doctor-btn{
+  background-color: transparent;
+  border: none;
+}
+.doctor-btn:hover{
+  transition: 1s smooth;
+  zoom: 1.5;
+}
+@media screen and (max-width: 400px) {
   .grid-container-app { grid-template-columns: repeat(1,1fr)}
+  .grid-appointments { grid-template-columns: repeat(2,1fr)}
+}
+@media screen and (min-width: 400px) {
+  .grid-container-app { grid-template-columns: repeat(1,1fr)}
+  .grid-appointments { grid-template-columns: repeat(3,1fr)}
 }
 @media screen and (min-width: 800px) {
   .grid-container-app { grid-template-columns: repeat(2,1fr)}
+  .grid-appointments { grid-template-columns: repeat(4,1fr)}
 }
 @media screen and (min-width: 1300px) {
   .grid-container-app { grid-template-columns: repeat(3,1fr)}
+  .grid-appointments { grid-template-columns: repeat(5,1fr)}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1981,47 +2021,63 @@ blockquote::before, blockquote::after {
   grid-template-columns: auto;
 }
 #situation{
-  background-color: aquamarine;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 }
 .typed {
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
-  border-right: 2px solid transparent;
-  animation: typing 1.5s steps(30, end) forwards, blinking 1s step-end 3;
-}
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-@keyframes blinking {
-  0% {border-right-color: transparent}
-  50% {border-right-color: black}
-  100% {border-right-color: transparent}
+  animation: fadeInUp 1s ease-out;
 }
 
 #choices{
   display: grid;
+  width: 50%;
   column-gap: 50px;
   grid-template-columns: auto auto;
 
   @media screen and (max-width: 900px) {
     grid-template-columns: repeat(1,1fr);
     row-gap: 30px;
+    width: 100%;
   }
 }
-.choice-btn{
-  background-color: rgba(13, 110, 253, 0.93);
+#btn-start{
+  background-color: $purple;
+  color: white;
   border: none;
   padding: 15px 32px;
   text-decoration: none;
-  /* display: inline-block; */
   font-size: 16px;
   text-transform: capitalize;
+  transition: 1.5s;
+}
+#btn-start:hover{
+  background-color: $light-purple;
+  color: black;
+  border: none;
+  transition: 1.5s;
+}
+.choice-btn{
+  background-color: $purple;
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  //text-transform: capitalize;
+  transition: 1.5s;
+}
+.choice-btn:hover{
+  background-color: $light-purple;
+  color: black;
+  border: none;
+  transition: 1.5s;
 }
 
 /* Apply the animation to #choices */
@@ -2154,7 +2210,7 @@ blockquote::before, blockquote::after {
   padding: 20px;
   margin: 1rem;
 }
-.previous, .next {
+.previous, .next-btn {
   padding: 8px 24px;
   border: none;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
@@ -2167,20 +2223,26 @@ blockquote::before, blockquote::after {
   display: grid;
 }
 button.previous {
-  background: #c84630;
+  background: $blue;
 }
-button.next {
-  background: #3c91e6;
+button.previous:hover {
+  background: $dark-blue;
+}
+button.next-btn {
+  background: $blue;
+}
+button.next-btn:hover {
+  background: $dark-blue;
 }
 button.restart {
-  background: #0cf574;
-  color: #00000050;
+  background: $blue;
+  color: white;
   font-size: 32px;
   margin-bottom: 1rem;
   transition: all 0.4s;
 }
 button.restart:hover {
-  color: #00000098;
+  background: $dark-blue;
 }
 button:hover,
 button:focus {
@@ -2218,13 +2280,13 @@ button:focus {
 }
 
 @media screen and (max-width: 800px) {
-  .quiz-container { width: 100%; }
+  .quiz-container { width: 100%; margin: 0; }
   .quiz-title { font-size: 30px;}
   .question { font-size: 14px; }
   .button.restart { font-size: 22px; }
   .summary { font-size: 10px; width: 100%; }
   .controls { padding: 10px; margin: 20px 0 0 0; }
-  .next, .previous { padding: 4px 12px; }
+  .next-btn, .previous { padding: 4px 12px; }
   .restart { font-size: 20px; }
 }
 @media screen and (min-width: 800px ) and (max-width: 1300px) {
@@ -2237,7 +2299,7 @@ button:focus {
 /* ABOUT STATIC PAGE */
 .grid-container-about{
   display: flex;
-  background-color: antiquewhite;
+  background-color: white;
   padding: 50px;
   border-radius: 50px;
   margin-bottom: 150px;
@@ -2362,6 +2424,48 @@ footer {
   @include box_sizing;
 }
 
+.digg_pagination {
+  cursor: default;
+}
+
+.digg_pagination .disabled a{
+  color: #999999;
+  border: 1px solid #999999;
+  cursor: not-allowed;
+}
+
+.digg_pagination a {
+  padding: 0.2em 0.5em;
+  display: block;
+  float: left;
+  margin-right: 1px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #dddddd;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+/* common elements */
+.two-columns-grid {
+  display: grid;
+  grid-template-columns: auto auto;
+
+  .page-title{
+    margin: 200px 280px 0 280px;
+  }
+}
+.font-serif{
+  font-family: serif;
+}
+
+@media screen and (max-width: 900px) {
+  .two-columns-grid {
+    grid-template-columns: auto;
+    .page-title{
+      margin: 0;
+    }
+  }
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /* sidebar */
@@ -2426,12 +2530,12 @@ input {
 }
 
 .checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
-  }
+  //margin-top: -10px;
+  //margin-bottom: 10px;
+  //span {
+  //  margin-left: 20px;
+  //  font-weight: normal;
+  //}
 }
 #session_remember_me {
   width: auto;
@@ -2445,7 +2549,17 @@ input {
   box-shadow: 0 0 20px 20px rgba(0,0,0,.2);
   padding: 80px;
   border-radius: 50px;
-  margin-bottom: 200px;
+  //margin-bottom: 200px;
+}
+.book-form{
+  display: grid;
+  background-color: $light-purple;
+  padding: 80px;
+  //margin: 0 20px 0 20px;
+  width: 50%;
+  margin: auto;
+  border: 5px solid $dark-blue;
+  border-radius: 20px;
 }
 
 
@@ -2468,6 +2582,9 @@ input {
 .checkbox-button.selected {
   background-color: #6600d03d; /* Selected background color */
 }
+.checkbox-button.white.selected {
+  color: white;
+}
 .items-collection{
   margin:20px 0 0 0;
   display: grid;
@@ -2482,14 +2599,14 @@ input {
 
 
 .title-form{
-  font-size: 30px;
+  //font-size: 30px;
   font-family: "Arial", serif;
   font-weight: bold;
 }
 .my-form-control{
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: inset 0 0 20px 5px #6600d03d;
-  padding: 10px;
+  //padding: 10px;
   font-size: 20px;
   margin-bottom: 10px;
 }
@@ -2499,15 +2616,21 @@ input {
   font-size: 20px;
 }
 .my-form-button{
-  margin-top: 50px;
   width: 50%;
-  margin-left: 25%;
   border-radius: 50px;
   padding: 10px;
   font-size: 20px;
   font-weight: bold;
   background-color: $light-purple;
 }
+.book{
+  margin-top: 50px;
+  margin-left: 25%;
+  background-color: white;
+  border: 5px solid $dark-blue;
+  border-radius: 50px;
+}
+
 .my-form-subtext{
   margin-top: 60px;
 }
@@ -2517,19 +2640,21 @@ input {
  }
 .calendar-icon {
   position: absolute;
-  top: 50%;
+  top: 60%;
   right: 10px;
-  //transform: translateY(-50%);
+  transform: translateY(-50%);
   pointer-events: none;
 }
 
 @media screen and (max-width: 600px){
   .my-form-button{
     width: 100%;
-    margin-left: 0;
     font-size: 15px;
     padding: 5px;
   }
+  .book{
+     margin-left: 0;
+   }
   .article-form{
     padding: 30px;
     margin-bottom: 100px;

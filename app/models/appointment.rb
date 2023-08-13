@@ -5,4 +5,8 @@ class Appointment < ApplicationRecord
   validates :patient, presence: true
   validates :appointment_date, presence: true
   validates :doctor_id, presence: true
+
+  def self.doctors
+    User.where(doctor: true).order(name: :asc)
+  end
 end

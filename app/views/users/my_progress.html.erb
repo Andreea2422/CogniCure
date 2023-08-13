@@ -1,21 +1,12 @@
 <main id="main">
-<!--  <div class="my-account-header page-title normal-title">-->
-<!--    <div class="page-title-inner flex-row container">-->
-<!--      <div class="flex-col flex-grow text-center">-->
-<!--        <h1 class="uppercase mb-0">Hi <%#= @user.name %>!</h1>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
   <div class="main-content-flex mt-0 column-gap-0 w-full">
     <div class="left-flex align-items-stretch flex-grow-1 width">
 
-<!--      <div class="main-content-flex mt-0">-->
         <div class="left-flex">
 
           <% if @last_mood.day.eql?(Date.parse(@today)) %>
-            <div style="background-color: antiquewhite">
-              <p> Your mood today: <%= @last_mood.name %></p>
+            <div style="background-color: #BA9FDCFF; border: 10px solid #2B107CFF; padding: 10px; margin: 40px;">
+              <h4> Your mood today: <%= @last_mood.name %></h4>
             </div>
           <% else %>
             <%= render template: 'moods/new' %>
@@ -24,23 +15,24 @@
 
         <div class="d-inline-block">
 
-            <button class="btn btn-success" id="week">
+          <div class="flex justify-content-around align-items-center responsive-flex">
+            <button class="my-progress-btn" id="week">
               By Week
             </button>
-            <button class="btn btn-success" id="month">
+            <button class="my-progress-btn" id="month">
               By Month
             </button>
             <br>
 
-            <span id="current-date"><%= params[:date] %></span>
 
-            <button class="btn btn-success" id="previous">
+            <button class="my-progress-btn" id="previous">
               <-
             </button>
-            <button class="btn btn-success" id="next">
+            <h4 id="current-date"><%= params[:date] %></h4>
+            <button class="my-progress-btn" id="next">
               ->
             </button>
-
+          </div>
 
             <div id="week-chart-figure">
               <%#= line_chart @mood_data_week ,
@@ -72,36 +64,21 @@
             </div>
 
         </div>
-<!--      </div>-->
-
     </div>
 
     <div class="right-flex flex-grow-1 justify-content-start width">
-
-<!--      <div class="col-md-8">-->
-        <%# if @user.moods.any? %>
-<!--          <h3>Moods (<%#= @user.moods.count %>)</h3>-->
-<!--          <ol class="moods">-->
-            <%#= render @all_moods %>
-<!--          </ol>-->
-        <%# end%>
-<!--      </div>-->
-
         <div id="mood-description-wrapper" class="center">
           <% if @last_mood.day.eql?(Date.parse(@today)) %>
-            <div><p>Day: <br><%= @last_mood.day.strftime('%A, %B %d, %Y') %></p></div>
+            <div><h3>Today: <br><%= @last_mood.day.strftime('%A, %B %d, %Y') %></h3></div>
             <div>
-              <p>Input feelings:</p>
+              <h4>Feelings:</h4>
               <p id="mood-description"><%=  @last_mood.description  %></p>
             </div>
             <button id="edit-button">Edit</button>
           <% else %>
-            <p>Please choose a mood </p>
+            <p> Please choose a mood </p>
           <%  end %>
         </div>
-
-<!--      </div>-->
-
 
     </div>
   </div>

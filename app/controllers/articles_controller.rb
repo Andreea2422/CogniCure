@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
       # @path = mental_path
     elsif mental_health.include?(@article.keywords.first)
       @path_active = "Mental Health"
-      @path_title = "Mental Illnesses"
+      @path_title = "More about Mental Illnesses"
       @path = mental_path
     end
 
@@ -31,11 +31,6 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @keywords = ['Anxiety', 'Addiction', 'ADHD', 'Bipolar Disorder', 'Breathing Techniques',
-                 'Cognitive Behavioral Therapy', 'Counselling', 'Depression', 'Eating Disorders',
-                 'Emotional Intelligence', 'Empathy', 'Food Guilt', 'Grief', 'Happiness', 'Loneliness',
-                 'Meditation', 'Mental Health', 'Mindfulness', 'Obsessive Compulsive Disorder', 'Online Bullying',
-                 'Personal Growth', 'PTSD', 'Self Love', 'Social Anxiety', 'Stress', 'Techniques To Use', 'Therapy']
   end
 
   def create
@@ -59,11 +54,11 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    @all_keywords = ['Anxiety', 'Addiction', 'ADHD', 'Bipolar Disorder', 'Breathing Techniques',
-                     'Cognitive Behavioral Therapy', 'Counselling', 'Depression', 'Eating Disorders',
-                     'Emotional Intelligence', 'Empathy', 'Food Guilt', 'Grief', 'Happiness', 'Loneliness',
-                     'Meditation', 'Mental Health', 'Mindfulness', 'Obsessive Compulsive Disorder', 'Online Bullying',
-                     'Personal Growth', 'PTSD', 'Self Love', 'Social Anxiety', 'Stress', 'Techniques To Use', 'Therapy']
+    # @all_keywords = ['Anxiety', 'Addiction', 'ADHD', 'Bipolar Disorder', 'Breathing Techniques',
+    #                  'Cognitive Behavioral Therapy', 'Counselling', 'Depression', 'Eating Disorders',
+    #                  'Emotional Intelligence', 'Empathy', 'Food Guilt', 'Grief', 'Happiness', 'Loneliness',
+    #                  'Meditation', 'Mental Health', 'Mindfulness', 'Obsessive Compulsive Disorder', 'Online Bullying',
+    #                  'Personal Growth', 'PTSD', 'Self Love', 'Social Anxiety', 'Stress', 'Techniques To Use', 'Therapy']
     @article_keywords = @article.keywords
   end
 

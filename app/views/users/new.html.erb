@@ -2,49 +2,43 @@
   <% provide(:title, 'Sign up') %>
   <% provide(:button_text, 'Create my account') %>
 
-  <div class="my-account-header page-title normal-title">
-    <div class="page-title-inner flex-row container">
-      <div class="flex-col flex-grow text-center">
-        <h1 class="uppercase mb-0">Sign up</h1>
+
+  <div class="two-columns-grid mt-4">
+    <div class="my-account-header page-title normal-title font-serif">
+      <div class="page-title-inner flex-row container">
+        <div class="flex-col flex-grow text-center">
+          <h1 class="uppercase mb-0">Sign up</h1>
+        </div>
       </div>
     </div>
+
+    <div class="article-form">
+        <%= form_with(model: @user, local: true, html: { id: 'signup-form' } ) do |f| %>
+          <%= render "shared/error_messages", object: f.object %>
+
+          <%= f.label :name, class: 'title-form' %>
+          <%= f.text_field :name, class: 'my-form-control' %>
+
+          <%= f.label :email, class: 'title-form' %>
+          <%= f.email_field :email, class: 'my-form-control' %>
+
+          <%= f.label :password, class: 'title-form' %>
+          <%= f.password_field :password, class: 'my-form-control' %>
+
+          <%= f.label :password_confirmation, "Confirmation", class: 'title-form' %>
+          <%= f.password_field :password_confirmation, class: 'my-form-control' %>
+
+        <div class="flex flex-row mt-4 align-items-center justify-content-between">
+          <label class="checkbox inline" for="user_doctor">
+              <%= f.check_box :doctor %>
+              <span>Register as therapist?</span>
+          </label>
+
+          <%= f.submit yield(:button_text), class: "my-form-button" %>
+        </div>
+        <% end %>
+    </div>
   </div>
-
-  <div class="article-form">
-<!--    <div class="col-md-5 col-md-offset-3 row-edit">-->
-      <%= form_with(model: @user, local: true, html: { id: 'signup-form' } ) do |f| %>
-        <%= render "shared/error_messages", object: f.object %>
-
-        <%= f.label :name, class: 'title-form' %>
-        <%= f.text_field :name, class: 'my-form-control' %>
-
-        <%= f.label :email, class: 'title-form' %>
-        <%= f.email_field :email, class: 'my-form-control' %>
-
-        <%= f.label :password, class: 'title-form' %>
-        <%= f.password_field :password, class: 'my-form-control' %>
-
-        <%= f.label :password_confirmation, "Confirmation", class: 'title-form' %>
-        <%= f.password_field :password_confirmation, class: 'my-form-control' %>
-
-        <%#= f.label :doctor, class: "checkbox inline" do %>
-        <label class="checkbox inline" for="user_doctor">
-            <%= f.check_box :doctor %>
-            <span>Are you a doctor?</span>
-        </label>
-        <%# end %>
-
-<!--      <label class="checkbox inline" for="user_doctor">-->
-<!--        <input name="user[doctor]" type="hidden" value="0" autocomplete="off">-->
-<!--        <input type="checkbox" value="1" name="user[doctor]" id="user_doctor">-->
-<!--        <span>Are you a doctor?</span>-->
-<!--      </label>-->
-
-        <%= f.submit yield(:button_text), class: "my-form-button" %>
-      <% end %>
-<!--    </div>-->
-  </div>
-
 </main>
 
 <script type="text/javascript" charset="UTF-8">

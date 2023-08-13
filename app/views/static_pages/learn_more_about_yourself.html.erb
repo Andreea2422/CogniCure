@@ -1,5 +1,5 @@
 <main id="main">
-      <div class="page-title normal-title">
+      <div class="page-title normal-title font-serif">
         <div class="page-title-inner flex-row container">
           <div class="flex-col flex-grow text-center">
             <h1 class="uppercase mb-0"> Learn more about yourself</h1>
@@ -10,17 +10,12 @@
         </div>
       </div>
 
-      <% if logged_in?%>
-        <% if current_user.doctor? %>
+      <%# if logged_in?%>
+        <%# if current_user.doctor? %>
           <%#= render template: "articles/new" %>
-          <%= link_to "Post up now!", submit_path %>
-        <% end %>
-      <% end %>
-
-
-    <!--  <ul>-->
-        <%#= render @articles %>
-    <!--  </ul>-->
+          <%#= link_to "Post up now!", submit_path %>
+        <%# end %>
+      <%# end %>
 
 
         <section class="cards">

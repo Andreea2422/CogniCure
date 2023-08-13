@@ -1,7 +1,7 @@
 class InfosController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :edit, :update]
   before_action :doctor_user, only: [:new, :create, :edit, :update]
-  before_action :correct_user, only: [:new, :create, :edit, :update]
+  before_action :correct_user, only: [:new, :edit]
 
   def new
     @info = Info.new
@@ -36,18 +36,19 @@ class InfosController < ApplicationController
   end
 
   def edit
-    # @user = User.find(params[:id])
+    @user = User.find(params[:id])
     # debugger
     @user_info = Info.joins(:user).find_by(infos: {user_id: params[:id]})
 
   end
 
   def update
-    # @user = User.find(params[:id])
-    @user_info = Info.joins(:user).find_by(infos: {user_id: params[:id]})
+    @user_info = Info.joins(:user).find_by(infos: {user_id: current_user.id})
 
     @user_info.speciality = process_array_params(params[:info][:speciality])
     @user_info.contact = process_array_params(params[:info][:contact])
+
+    debugger
 
     if @user_info.update(info_params)
       # Handle a successful update.
@@ -65,8 +66,8 @@ class InfosController < ApplicationController
     params.require(:info).permit(:biography, :experience)
   end
 
-  def process_array_params(array_string)
-    array_string.split(',').map(&:strip)
+  def process_array_params(string)
+    string.split(',').map(&:strip)
   end
 
   # Before filters

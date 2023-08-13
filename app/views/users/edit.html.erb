@@ -1,38 +1,41 @@
 <main id="main">
   <% provide(:title, "Edit user") %>
 
-  <div class="my-account-header page-title normal-title">
-    <div class="page-title-inner flex-row container">
-      <div class="flex-col flex-grow text-center">
-        <h1 class="uppercase mb-0">Update your profile</h1>
+  <div class="two-columns-grid mt-4">
+    <div class="my-account-header page-title normal-title font-serif mx-5">
+      <div class="page-title-inner flex-row container">
+        <div class="flex-col flex-grow text-center">
+          <h1 class="uppercase mb-0">Update your profile</h1>
+        </div>
       </div>
     </div>
+
+    <div class="article-form">
+        <%= form_with(model: @user, local: true) do |f| %>
+          <%= render 'shared/error_messages', object: f.object%>
+
+          <%= f.label :name, class: 'title-form' %>
+          <%= f.text_field :name, class: 'my-form-control' %>
+
+          <%= f.label :email, class: 'title-form' %>
+          <%= f.email_field :email, class: 'my-form-control' %>
+
+          <%= f.label :password, class: 'title-form' %>
+          <%= f.password_field :password, class: 'my-form-control' %>
+
+          <%= f.label :password_confirmation, "Confirmation", class: 'title-form' %>
+          <%= f.password_field :password_confirmation, class: 'my-form-control' %>
+
+        <div class="flex flex-row mt-4 align-items-center justify-content-between">
+          <div class="gravatar_edit">
+            <%= gravatar_for @user %>
+            <a href="https://gravatar.com/emails" target="_blank" class="mx-3">Change</a>
+          </div>
+
+          <%= f.submit "Save changes", class: "my-form-button" %>
+        </div>
+        <% end %>
+
+    </div>
   </div>
-
-  <div class="article-form">
-<!--    <div class="col-md-5 col-md-offset-3 row-edit">-->
-      <%= form_with(model: @user, local: true) do |f| %>
-        <%= render 'shared/error_messages', object: f.object%>
-
-        <%= f.label :name, class: 'title-form' %>
-        <%= f.text_field :name, class: 'my-form-control' %>
-
-        <%= f.label :email, class: 'title-form' %>
-        <%= f.email_field :email, class: 'my-form-control' %>
-
-        <%= f.label :password, class: 'title-form' %>
-        <%= f.password_field :password, class: 'my-form-control' %>
-
-        <%= f.label :password_confirmation, "Confirmation", class: 'title-form' %>
-        <%= f.password_field :password_confirmation, class: 'my-form-control' %>
-
-        <%= f.submit "Save changes", class: "my-form-button" %>
-      <% end %>
-      <div class="gravatar_edit">
-        <%= gravatar_for @user %>
-        <a href="https://gravatar.com/emails" target="_blank">change</a>
-      </div>
-<!--    </div>-->
-  </div>
-
 </main>

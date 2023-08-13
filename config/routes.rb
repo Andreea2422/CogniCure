@@ -10,10 +10,11 @@ Rails.application.routes.draw do
   get '/mental-health', to: 'static_pages#mental_health', as: 'mental'
   get '/quizzes', to: 'static_pages#quizzes'
   get '/quizzes/quiz1', to: 'static_pages#quiz1', as: 'quiz1'
+  get '/quizzes/quiz2', to: 'static_pages#quiz2', as: 'quiz2'
 
   get '/article/:id', to: 'articles#show', as: 'show_article'
   get '/submit-article', to: 'articles#new', as: 'submit'
-  get '/learn-more-about-yourself/:id/edit', to: 'articles#edit', as: 'edit_article'
+  get '/article/:id/edit', to: 'articles#edit', as: 'edit_article'
 
   get '/book-an-appointment', to: 'appointments#new', as: 'book_appointment'
 

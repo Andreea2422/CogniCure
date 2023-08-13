@@ -1,237 +1,199 @@
 <%= form_with(model: @mood, local: true) do |f| %>
     <div id="app-cover">
       <h1 class="app-title">How was your mood today?</h1>
-      <div id="app-grid">
-        <div class="dropdown">
-            <button class="app-emotions-card" style="background-color: red; width: fit-content; height: auto;" id="emotionRedDropdownMenuLink"
-                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-              RED
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionRedDropdownMenuLink" >
-              <li>
-                  <div class="mood" id="mood-furious" data-mood-name="furious">
-                    <div class="face">
-                      <div class="eyes-cover">
-                        <div class="eye left"></div>
-                        <div class="eye right"></div>
-                      </div>
-                      <div class="mouth"></div>
-                    </div>
-                    <div class="mood-name"><span>furious</span></div>
-                  </div>
-              </li>
-              <li>
-                  <div class="mood" id="mood-bitter" data-mood-name="bitter">
-                    <div class="face">
-                      <div class="eyes-cover">
-                        <div class="eye left"></div>
-                        <div class="eye right"></div>
-                      </div>
-                      <div class="mouth"></div>
-                    </div>
-                    <div class="mood-name"><span>bitter</span></div>
-                  </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-frustrated" data-mood-name="frustrated">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>frustrated</span></div>
-                </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-annoyed" data-mood-name="annoyed">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>annoyed</span></div>
-                </div>
-              </li>
-            </ul>
-        </div>
 
-        <div class="dropdown">
-            <button class="app-emotions-card" style="background-color: blue; width: fit-content; height: auto;" id="emotionBlueDropdownMenuLink"
-                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-              BLUE
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionBlueDropdownMenuLink">
-              <li>
-                  <div class="mood" id="mood-depressed" data-mood-name="depressed">
-                    <div class="face">
-                      <div class="eyes-cover">
-                        <div class="eye left"></div>
-                        <div class="eye right"></div>
-                      </div>
-                      <div class="mouth"></div>
-                    </div>
-                    <div class="mood-name"><span>depressed</span></div>
-                  </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-lonely" data-mood-name="lonely">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>lonely</span></div>
-                </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-disappointed" data-mood-name="disappointed">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>disappointed</span></div>
-                </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-sad" data-mood-name="sad">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>sad</span></div>
-                </div>
-              </li>
-            </ul>
-        </div>
-
-        <div class="dropdown">
-            <button class="app-emotions-card" style="background-color: yellow; width: fit-content; height: auto;" id="emotionYellowDropdownMenuLink"
-                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-              YELLOW
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionYellowDropdownMenuLink">
-              <li>
-                  <div class="mood" id="mood-afraid" data-mood-name="afraid">
-                    <div class="face">
-                      <div class="eyes-cover">
-                        <div class="eye left"></div>
-                        <div class="eye right"></div>
-                      </div>
-                      <div class="mouth"></div>
-                    </div>
-                    <div class="mood-name"><span>afraid</span></div>
-                  </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-stressed" data-mood-name="stressed">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>stressed</span></div>
-                </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-anxious" data-mood-name="anxious">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>anxious</span></div>
-                </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-nervous" data-mood-name="nervous">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye left"></div>
-                      <div class="eye right"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>nervous</span></div>
-                </div>
-              </li>
-            </ul>
-        </div>
-
-        <div class="dropdown">
-            <button class="app-emotions-card" style="background-color: green; width: fit-content; height: auto;" id="emotionGreenDropdownMenuLink"
-                    data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-              GREEN
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end mood-dropdown" aria-labelledby="emotionGreenDropdownMenuLink" >
-              <li>
-                  <div class="mood" id="mood-relaxed" data-mood-name="relaxed">
-                    <div class="face">
-                      <div class="eyes-cover">
-                        <div class="eye"></div>
-                        <div class="eye"></div>
-                      </div>
-                      <div class="mouth"></div>
-                    </div>
-                    <div class="mood-name"><span>relaxed</span></div>
-                  </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-okay" data-mood-name="okay">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye"></div>
-                      <div class="eye"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>okay</span></div>
-                </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-joyful" data-mood-name="joyful">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye"></div>
-                      <div class="eye"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>joyful</span></div>
-                </div>
-              </li>
-              <li>
-                <div class="mood" id="mood-loved" data-mood-name="loved">
-                  <div class="face">
-                    <div class="eyes-cover">
-                      <div class="eye"></div>
-                      <div class="eye"></div>
-                    </div>
-                    <div class="mouth"></div>
-                  </div>
-                  <div class="mood-name"><span>loved</span></div>
-                </div>
-              </li>
-            </ul>
-        </div>
-
-
+      <div class="flex justify-content-around">
+        <button type="button" class="app-emotions-card" onclick="myRedFunction()"
+                style="background-color: red; width: fit-content; height: auto; margin-right: 10px;">
+          Choose a red mood
+        </button>
+        <button type="button" class="app-emotions-card" onclick="myBlueFunction()"
+                style="background-color: blue; width: fit-content; height: auto; margin-right: 10px;">
+          Choose a blue mood
+        </button>
+        <button type="button" class="app-emotions-card" onclick="myYellowFunction()"
+                style="background-color: yellow; width: fit-content; height: auto; margin-right: 10px;">
+          Choose a yellow mood
+        </button>
+        <button type="button" class="app-emotions-card" onclick="myGreenFunction()"
+                style="background-color: green; width: fit-content; height: auto;">
+          Choose a green mood
+        </button>
       </div>
+
+      <div id="red" class="hidden">
+        <div class="mood" id="mood-furious" data-mood-name="furious">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>furious</span></div>
+        </div>
+        <div class="mood" id="mood-bitter" data-mood-name="bitter">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>bitter</span></div>
+        </div>
+        <div class="mood" id="mood-frustrated" data-mood-name="frustrated">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>frustrated</span></div>
+        </div>
+        <div class="mood" id="mood-annoyed" data-mood-name="annoyed">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>annoyed</span></div>
+        </div>
+      </div>
+
+
+      <div id="blue" class="hidden">
+        <div class="mood" id="mood-depressed" data-mood-name="depressed">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>depressed</span></div>
+        </div>
+        <div class="mood" id="mood-lonely" data-mood-name="lonely">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>lonely</span></div>
+        </div>
+        <div class="mood" id="mood-disappointed" data-mood-name="disappointed">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>disappointed</span></div>
+        </div>
+        <div class="mood" id="mood-sad" data-mood-name="sad">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>sad</span></div>
+        </div>
+      </div>
+
+      <div id="yellow" class="hidden">
+        <div class="mood" id="mood-afraid" data-mood-name="afraid">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>afraid</span></div>
+        </div>
+        <div class="mood" id="mood-stressed" data-mood-name="stressed">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>stressed</span></div>
+        </div>
+        <div class="mood" id="mood-anxious" data-mood-name="anxious">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>anxious</span></div>
+        </div>
+        <div class="mood" id="mood-nervous" data-mood-name="nervous">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye left"></div>
+              <div class="eye right"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>nervous</span></div>
+        </div>
+      </div>
+
+      <div id="green" class="hidden">
+        <div class="mood" id="mood-relaxed" data-mood-name="relaxed">
+          <div class="face">
+            <div class="eyes-cover">
+              <div class="eye"></div>
+              <div class="eye"></div>
+            </div>
+            <div class="mouth"></div>
+          </div>
+          <div class="mood-name"><span>relaxed</span></div>
+        </div>
+          <div class="mood" id="mood-okay" data-mood-name="okay">
+            <div class="face">
+              <div class="eyes-cover">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <div class="mood-name"><span>okay</span></div>
+          </div>
+          <div class="mood" id="mood-joyful" data-mood-name="joyful">
+            <div class="face">
+              <div class="eyes-cover">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <div class="mood-name"><span>joyful</span></div>
+          </div>
+          <div class="mood" id="mood-loved" data-mood-name="loved">
+            <div class="face">
+              <div class="eyes-cover">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <div class="mood-name"><span>loved</span></div>
+          </div>
+        </div>
+
     </div>
 
   <div style="display: block">
@@ -244,6 +206,104 @@
 <script type="text/javascript" charset="UTF-8">
     var inputFieldName = document.getElementById("name");
     var form = document.querySelector('form');
+    var red = document.getElementById("red");
+    var blue = document.getElementById("blue");
+    var yellow = document.getElementById("yellow");
+    var green = document.getElementById("green");
+
+    function myRedFunction() {
+        if (!blue.classList.contains("hidden")) {
+            blue.classList.remove("responsive-flex");
+            blue.classList.replace("flex","hidden");
+        }
+        if(!yellow.classList.contains("hidden")){
+            yellow.classList.remove("responsive-flex");
+            yellow.classList.replace("flex","hidden");
+        }
+        if(!green.classList.contains("hidden")){
+            green.classList.remove("responsive-flex");
+            green.classList.replace("flex","hidden");
+        }
+
+        if (red.classList.contains("hidden")) {
+            red.classList.replace("hidden","flex");
+            red.classList.add("responsive-flex");
+        } else {
+            red.classList.remove("responsive-flex");
+            red.classList.replace("flex","hidden");
+        }
+    }
+
+    function myBlueFunction() {
+        if (!red.classList.contains("hidden")) {
+            red.classList.remove("responsive-flex");
+            red.classList.replace("flex","hidden");
+        }
+        if(!yellow.classList.contains("hidden")){
+            yellow.classList.remove("responsive-flex");
+            yellow.classList.replace("flex","hidden");
+        }
+        if(!green.classList.contains("hidden")){
+            green.classList.remove("responsive-flex");
+            green.classList.replace("flex","hidden");
+        }
+
+        if (blue.classList.contains("hidden")) {
+            blue.classList.replace("hidden","flex");
+            blue.classList.add("responsive-flex");
+        } else {
+            blue.classList.remove("responsive-flex");
+            blue.classList.replace("flex","hidden");
+        }
+    }
+
+    function myYellowFunction() {
+        if (!blue.classList.contains("hidden")) {
+            blue.classList.remove("responsive-flex");
+            blue.classList.replace("flex","hidden");
+        }
+        if(!red.classList.contains("hidden")){
+            red.classList.remove("responsive-flex");
+            red.classList.replace("flex","hidden");
+        }
+        if(!green.classList.contains("hidden")){
+            green.classList.remove("responsive-flex");
+            green.classList.replace("flex","hidden");
+        }
+
+        if (yellow.classList.contains("hidden")) {
+            yellow.classList.replace("hidden","flex");
+            yellow.classList.add("responsive-flex");
+        } else {
+            yellow.classList.remove("responsive-flex");
+            yellow.classList.replace("flex","hidden");
+        }
+    }
+
+    function myGreenFunction() {
+        if (!blue.classList.contains("hidden")) {
+            blue.classList.remove("responsive-flex");
+            blue.classList.replace("flex","hidden");
+        }
+        if(!yellow.classList.contains("hidden")){
+            yellow.classList.remove("responsive-flex");
+            yellow.classList.replace("flex","hidden");
+        }
+        if(!red.classList.contains("hidden")){
+            red.classList.remove("responsive-flex");
+            red.classList.replace("flex","hidden");
+        }
+
+        if (green.classList.contains("hidden")) {
+            green.classList.replace("hidden","flex");
+            green.classList.add("responsive-flex");
+        } else {
+            green.classList.remove("responsive-flex");
+            green.classList.replace("flex","hidden");
+        }
+    }
+
+
 
     document.addEventListener("DOMContentLoaded", function() {
         var moodButtons = document.querySelectorAll('.mood');

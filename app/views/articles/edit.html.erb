@@ -10,7 +10,7 @@
   <% provide(:button_text, 'Update my article') %>
   <div class="article-form">
     <%= form_with(model: @article, local: true, multipart: true) do |f| %>
-      <%#= render "shared/error_messages", object: f.object %>
+      <%= render "shared/error_messages", object: f.object %>
 
       <%= f.label :title, class: 'title-form' %>
       <%= f.text_field :title, class: 'my-form-control' %>
@@ -34,7 +34,7 @@
       <div class="row">
         <div class="form-group">
           <div class="grid-container text-center text-uppercase" style="margin-bottom: 0">
-            <% @all_keywords.each do |keyword| %>
+            <% Article.available_keywords.each do |keyword| %>
               <div>
                 <label class="checkbox-button">
                   <input type="checkbox" name="article[keywords][]" value="<%= keyword %>">

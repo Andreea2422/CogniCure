@@ -48,8 +48,6 @@ class InfosController < ApplicationController
     @user_info.speciality = process_array_params(params[:info][:speciality])
     @user_info.contact = process_array_params(params[:info][:contact])
 
-    debugger
-
     if @user_info.update(info_params)
       # Handle a successful update.
       flash[:success] = "Details updated"

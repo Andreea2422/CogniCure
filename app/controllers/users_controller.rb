@@ -72,7 +72,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user }
         format.json { render json: { redirect_to: user_path(@user) } } # JSON response with redirect URL
       else
-        format.html { render 'new' } # Render the 'new' template for regular HTML request
+        format.html { render 'users/new' } # Render the 'new' template for regular HTML request
         format.json { render json: @user.errors, status: :unprocessable_entity } # JSON response with errors
       end
     end

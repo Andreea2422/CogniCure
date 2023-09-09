@@ -4,7 +4,7 @@
 
 <div class="grid-container pt-0 mb-0"  style="background-color: transparent">
     <% doctors.each do |doctor| %>
-        <div class="grid-item">
+        <div class="grid-item p-2">
           <%=link_to show_info_path(doctor), class: "nav-link"  do %>
             <%= gravatar_for doctor, size: 100 %>
             <%= doctor.name %>

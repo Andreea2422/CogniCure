@@ -1,6 +1,6 @@
 <nav class="navbar header <%= @discover_page ? 'absolute-top' : 'fixed-top'%> navbar-expand-lg navbar-dark bg-empty">
   <div class="container-fluid">
-    <%= link_to image_tag("metoday.png", height: 50, id: "img-logo") + "CogniCure", root_path, id: "logo"%>
+    <%= link_to "CogniCure", root_path, id: "logo"%>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -60,6 +60,11 @@
                 <li><%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %></li>
               <%elsif current_user.doctor?%>
                 <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
+                <% if !current_user.info.present? %>
+                  <li><%= link_to "Doctor Profile", create_info_path, class: "dropdown-item" %></li>
+                <% elsif current_user.info.present?%>
+                  <li><%= link_to "Doctor Profile", edit_info_path(current_user), class: "dropdown-item" %></li>
+                <%end %>
                 <li><%= link_to "Post Article", submit_path, class: "dropdown-item" %></li>
                 <li><%= link_to "Appointments", appointments_user_path(current_user), class: "dropdown-item" %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user), class: "dropdown-item" %></li>

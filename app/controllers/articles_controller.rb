@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
 
     if @article.save
       flash[:success] = "Article uploaded!"
-      redirect_to yourself_path
+      redirect_to current_user
     else
       render 'new'
     end

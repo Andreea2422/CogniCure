@@ -73,14 +73,12 @@
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div class="lg:block relative px-6 py-9 rounded-lg min-h-[600px] w-full overflow-hidden col-span-1"
                  style="background-color:#fff6e7">
-              <div class="card__image absolute inset-0 flex items-end" style="background-color: #320288">
-<!--              <div class="card__image absolute inset-0 flex items-end" style="background-image: url('<%#= asset_url("cat1.jpg") %>')">-->
-<!--                <img src="<%#= asset_url("cat1.jpg") %>">-->
+              <div class="card__image absolute inset-0 flex items-end" style="background-image:radial-gradient(transparent,rgba(0,0,0,0.56)), url('<%= asset_url("pexels-thought-catalog-2228580.jpg") %>')">
               </div>
               <div class="flex flex-col justify-between relative h-full">
                 <div>
-                  <h2 class="heading--h3 start" style="color:#4ea9a4">Self-Growth Articles</h2>
-                  <p class="text--lg mt-2">-- insert images</p>
+                  <h2 class="heading--h3 start" style="color:#5ac8c2">Self-Growth Articles</h2>
+                  <p class="text--lg mt-2"><%= @nr_self_articles %> articles</p>
                 </div>
                 <div>
                   <a class="button--secondary w-full h-12" href="/learn-more-about-yourself">Browse All Articles</a>
@@ -89,13 +87,12 @@
             </div>
             <div class="lg:block relative px-6 py-9 rounded-lg min-h-[600px] w-full overflow-hidden col-span-1"
                  style="background-color:#fff6e7">
-              <div class="card__image absolute inset-0 flex items-end" style="background-color: #320288">
-<!--                <img src="<%#= asset_url("cat1.jpg") %>">-->
+              <div class="card__image absolute inset-0 flex items-end" style="background-image:radial-gradient(transparent,rgba(0,0,0,0.56)), url('<%= asset_url("pexels-leeloo-thefirst-5428832.jpg") %>')">
               </div>
               <div class="flex flex-col justify-between relative h-full">
                 <div>
-                  <h2 class="heading--h3 start" style="color:#4ea9a4">Quizzes for fun!</h2>
-                  <p class="text--lg mt-2 text-brand-neutral">-- quizzes</p>
+                  <h2 class="heading--h3 start" style="color:#5ac8c2">Quizzes for fun!</h2>
+                  <p class="text--lg mt-2 text-brand-neutral">6 quizzes</p>
                 </div>
                 <div>
                   <a class="button--secondary w-full h-12" href="/quizzes">Browse All Quizzes</a>
@@ -104,13 +101,12 @@
             </div>
             <div class="lg:block relative px-6 py-9 rounded-lg min-h-[600px] w-full overflow-hidden col-span-1"
                  style="background-color:#fff6e7">
-              <div class="card__image absolute inset-0 flex items-end" style="background-color: #320288">
-<!--                <img src="<%#= asset_url("cat1.jpg") %>">-->
+              <div class="card__image absolute inset-0 flex items-end" style="background-image:radial-gradient(transparent,rgba(0,0,0,0.56)), url('<%= asset_url("pexels-tara-winstead-8378736.jpg") %>')">
               </div>
               <div class="flex flex-col justify-between relative h-full">
                 <div>
-                  <h2 class="heading--h3 start" style="color:#4ea9a4">Mental Health Articles</h2>
-                  <p class="text--lg mt-2 text-brand-neutral">-- articles</p>
+                  <h2 class="heading--h3 start" style="color:#5ac8c2">Mental Health Articles</h2>
+                  <p class="text--lg mt-2 text-brand-neutral"><%= @nr_mental_articles %> articles</p>
                 </div>
                 <div>
                   <a class="button--secondary w-full h-12" href="/mental-health">Browse All Articles</a>
@@ -128,7 +124,7 @@
       </div>
       <nav class="sticky top-0 z-20 mt-4 mb-4">
         <div class="container--boxed">
-          <div class="w-full flex gap-x-2 bg-white/60 backdrop-blur-[2px] rounded lg:justify-center justify-start no-scrollbar">
+          <div class="w-full flex gap-x-2 bg-white/60 backdrop-blur-[2px] rounded lg:justify-center justify-start no-scrollbar py-3">
             <a href="#A" class="tag-links flex justify-center items-center w-10 h-10 rounded-[3.6px] bg-brand-neutral-100 hover:bg-brand-blue text--uppercase font-semibold hover:text-white text-brand-blue">A</a>
             <a href="#B" class="tag-links flex justify-center items-center w-10 h-10 rounded-[3.6px] bg-brand-neutral-100 hover:bg-brand-blue text--uppercase font-semibold hover:text-white text-brand-blue">B</a>
             <a href="#C" class="tag-links flex justify-center items-center w-10 h-10 rounded-[3.6px] bg-brand-neutral-100 hover:bg-brand-blue text--uppercase font-semibold hover:text-white text-brand-blue">C</a>

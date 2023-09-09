@@ -15,13 +15,28 @@ class StaticPagesController < ApplicationController
   def discover
     @discover_page = true
     @shadow = true
+
+    all_articles = []
+    Article.selfgrowth.each do |tag|
+      sg_articles = find_articles(tag)
+      all_articles = all_articles|sg_articles
+    end
+    @nr_self_articles = all_articles.count
+
+    all_articles = []
+    Article.mentalhealth.each do |tag|
+      mh_articles = find_articles(tag)
+      all_articles = all_articles|mh_articles
+    end
+
+    @nr_mental_articles = all_articles.count
+
+
     @search_query = params[:keyword] #&.downcase # Downcase the search query if it's not nil
 
     # Then redirect to the appropriate page based on the search query
     if @search_query.present?
       redirect_to static_keyword_path(@search_query)
-    # else
-    #   redirect_to not_found_path
     end
   end
 

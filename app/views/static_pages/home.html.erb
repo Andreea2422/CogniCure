@@ -7,12 +7,12 @@
           Explore the Depths of Your Mind, <br>Embrace Positive Change, <br>and Thrive in Life's Journey.
         </h3>
         <% if !logged_in? %>
-          <div class="button" style="z-index: 10; margin-top: 60px">
-            <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+          <div class="button" style="z-index: 10; margin-top: 60px; color: mediumpurple">
+            <%= link_to "Sign up now!", signup_path, class: "my-button" %>
           </div>
         <% else %>
           <div class="button" style="z-index: 10; margin-top: 60px">
-            <%= link_to "View your profile", current_user, class: "btn btn-lg btn-primary" %>
+            <%= link_to "View your profile", current_user, class: "my-button" %>
           </div>
         <% end %>
       </div>
@@ -20,18 +20,16 @@
   </div>
 
   <div class="scroll-button">
-    <button onclick="document.getElementById('middle').scrollIntoView()">
-      |
+    <button onclick="document.getElementById('middle').scrollIntoView()" style="background: none; border-radius: 50%;">
+      <%= image_tag("down-arrow.png", size: "40x50") %>
     </button>
   </div>
 </div>
 
 
 
-<div class="container2 relative" id="middle">
-  <div class="image-puppet">
-    <p>IMAGE PLACEHOLDER</p>
-  </div>
+<div class="container2 relative" id="middle" >
+  <div></div>
 
   <div class="text-description">
     <p class="title">Dive into a Treasure Trove of Articles</p>
@@ -43,27 +41,22 @@
 
 <div class="container3 relative reverse" id="bottom">
   <div class="text-description">
-    <p class="title">Meet the Masters of the Mind</p>
-    <p class="content">Discover our team of esteemed Psychologists and Therapists. <br>Your Guides to Mental Health and Self-Growth.</p>
-    <p class="content">Unveiling the compassionate experts who will empower you on your journey to emotional well-being and personal transformation. <br> Book an appointment with them today!</p>
-    <a href="/users">Check it out! -></a>
-  </div>
-
-  <div class="image-puppet">
-    <p>IMAGE PLACEHOLDER</p>
-  </div>
-</div>
-
-<div class="container2 relative" id="middle">
-  <div class="image-puppet">
-    <p>IMAGE PLACEHOLDER</p>
-  </div>
-
-  <div class="text-description">
     <p class="title">Mindful Tracker</p>
     <p class="content">Your Personal Journal for Appointments and Mood Reflections <br> - Nurturing Mental Health, One Entry at a Time. </p>
     <p class="content">Stay organized, self-aware, and emotionally attuned with <br> our integrated tracking tool designed to support your mental well-being journey.</p>
-<!--    <a href="/discover">Check it out! -></a>-->
+  </div>
+
+  <div></div>
+</div>
+
+<div class="container5 relative" id="middle">
+  <div></div>
+
+  <div class="text-description">
+    <p class="title">Meet the Masters of the Mind</p>
+    <p class="content">Discover our team of esteemed Psychologists and Therapists. <br>Your Guides to Mental Health and Self-Growth.</p>
+    <p class="content">Unveiling the compassionate experts who will empower you <br> on your journey to emotional well-being and personal transformation. <br> Book an appointment with them today!</p>
+    <a href="/users" style="color: lightblue">Check it out! -></a>
   </div>
 </div>
 

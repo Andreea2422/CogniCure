@@ -8,7 +8,7 @@
 ### CogniCure: Unlocking Minds, Embracing Growth – Your Path to Mental Wellness and Personal Transformation
 CogniCure aims to be an innovative online platform designed to facilitate improved mental health and personal development in an accessible, interactive and personalized way. The main objective is exploring the crucial role of interactive elements in online platforms dedicated to mental health and self development, highlighting their significance in improving user engagement, facilitating learning and promoting positive change of behavior.
 
-## Installation 
+## :computer: Installation 
 ### Prerequisites
 
 ![Static Badge](https://img.shields.io/badge/Ruby-v3.1.3-%23CC342D?logo=ruby)
@@ -28,7 +28,7 @@ A local database is required in order to run the application. The schema can be 
 To access the new database, a new `master.key` needs to be generated using the `rails credentials:edit` command. Once obtained, it can be used to create new encrypted credentials for the local database.
 
 
-## Usage
+## :clipboard: Usage
 The platform allows account creation and caters to three types of users, with the following features:
 1. **Unregistered users** ( :information_source: These features can also be accessed by the other types of users.)
     <details> <summary>Article Reading</summary> 
@@ -37,6 +37,9 @@ The platform allows account creation and caters to three types of users, with th
       ![CogniCure - Google Chrome 2024-03-24 21-09-45 (online-video-cutter com) (1)](https://github.com/Andreea2422/CogniCure/assets/100094242/dd374c84-762b-4128-a365-1e7d705d378b)
 
      The link "Self-growth" links to a page with all articles containing keywords related to personal development. "Techniques to use" works in the same way. The "Mental Health" page is intended for users who suffer in particular from the respective disorders, but also for those who want to get more information about the topics addressed. Also in the Discover section, the site also offers a more interactive part where users can take quizzes from the various fields covered on the site, some examples being "What's my personality type?", "How much do you know about anxiety?" and so on. These quizzes can be retaken any number of times.
+
+    ![Articole](https://github.com/Andreea2422/CogniCure/assets/100094242/f6e55f56-183a-42ee-94d4-6dd6ca39d793)
+
     </details>
 
     <details> <summary>View Therapists</summary> 
@@ -46,49 +49,50 @@ The platform allows account creation and caters to three types of users, with th
 
    </details>
    
-1. **Registered users with no attribute**
+3. **Registered users with no attribute**
    <details> <summary> My Journal </summary> 
      
       By accessing the "My Journal" page, the user will be redirected to a mood-tracker. The user chooses a mood from the given categories that will be associated with the current day, after which the chart and diary will be updated. They can also input any feelings they had during the day that affected their mood in the journal.
      
-     ![CogniCure - Google Chrome 2024-03-23 20-24-58 (online-video-cutter com) (3)](https://github.com/Andreea2422/CogniCure/assets/100094242/0919e076-9aaf-4187-9fdd-7fee7f26d2c0)
+     ![My Journal](https://github.com/Andreea2422/CogniCure/assets/100094242/0919e076-9aaf-4187-9fdd-7fee7f26d2c0)
 
       The user can view their moods from the current week or have the option to display all moods from the current month. They can also navigate through previous weeks and months. The chart was made using the **Chartkick** library.
 
       ![MoodTrackerAF](https://github.com/Andreea2422/CogniCure/assets/100094242/0e9ed07d-f668-4886-828d-6c2f80ce82f6)
 
-
    </details>
    
    <details> <summary> Appointments </summary> 
       By accessing the "Appointments" page, the user can view the appointments made with certain therapists. Here they can see upcoming appointments, as well as past ones. The user can also opt to make a new appointment. Once on the new page, they will be greeted with a list of therapists from which they will have to select the one they want to complete the appointment form for. The user will be asked for a patient name and to choose a time when the therapist is free to contact them. The calendar is updated according to the selected therapist. Each therapist can only have one appointment per day. Busy days will be blocked and cannot be selected from the calendar.
-   
+
+      ![Appointments](https://github.com/Andreea2422/CogniCure/assets/100094242/4361efbc-acf8-40ac-b69e-0b4396c3685c)
 
    </details>
    <details> <summary> Pathways of Insight </summary> 
        Another important interactive element is in the serious game "Pathways of Insight" that implements a choice-based gameplay. The game offers three categories from where the situations with their respective choices can start. This category is decided based on the user's chosen mood on that day, or will be randomly assigned by a number from one to three if there is no registered mood.
-   
+       
+   ![Pathways of Insight](https://github.com/Andreea2422/CogniCure/assets/100094242/f83a204a-2b60-4530-9822-745dfd9495ef)
 
    </details>
    
-2. **Registered users with attribute (Therapists)**
+4. **Registered users with attribute (Therapists)**
    <details> <summary> Therapists' Details </summary> 
      When a user registers as a therapist, they have to create a public profile for them in order to be discovered by other users on the site. They can enter a short biography, the fields in which they work, their work experience and some contact information. This information can also be updated later if necessary.
-
-
    </details>
    <details> <summary> View Appointments </summary> 
      A user can view the appointments they currently have with different patients, both past and upcoming.
-
    </details>
    <details> <summary> Post Articles </summary> 
      Therapists can create articles that will be saved and viewed on the platform. They can enter a title, a small description of what the article is about, attach a cover image, add the content of the article taking into account the rules displayed to format it, the reading time of the article and, if necessary, a quote deemed appropriate for the article. In addition, for a valid article, certain keywords must be selected from a given list to categorize the article in a specific field.
-
    </details>
 
 
-## Testing
+## :test_tube: Testing
 Unit testing and integration testing were used to test the application. These tests were created using the **Minitest** library. Most of the integration tests used Top-down incremental integration. To run the tests, run the command `rails test`.
 
-
-
+## :bulb: Future work
+- AI-driven chatbots
+- Extended Accessibility
+    - Support for more languages (currently the platform is available only in english)
+    - TTS (text-to-speech) technology
+- VR integration (exposure therapy, guided mindfulness meditations)

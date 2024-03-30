@@ -5,7 +5,8 @@
 > 
 > **Work in progress**
 
-### CogniCure: Unlocking Minds, Embracing Growth – Your Path to Mental Wellness and Personal Transformation
+## CogniCure – Your Path to Mental Wellness and Personal Transformation
+
 CogniCure aims to be an innovative online platform designed to facilitate improved mental health and personal development in an accessible, interactive and personalized way. The main objective is exploring the crucial role of interactive elements in online platforms dedicated to mental health and self development, highlighting their significance in improving user engagement, facilitating learning and promoting positive change of behavior.
 
 ## :computer: Installation 
@@ -88,7 +89,11 @@ The platform allows account creation and caters to three types of users, with th
 
 
 ## :test_tube: Testing
-Unit testing and integration testing were used to test the application. These tests were created using the **Minitest** library. Most of the integration tests used Top-down incremental integration. To run the tests, run the command `rails test`.
+Unit testing and integration testing were used to test the application. 
+
+These tests were created using the **Minitest** library. Most of the integration tests used Top-down incremental integration. 
+
+To run the tests, run the command `rails test`.
 
 ## :bulb: Future work
 - AI-driven chatbots
